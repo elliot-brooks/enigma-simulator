@@ -35,14 +35,15 @@ public class Rotor {
         if (encoding == null) {
             throw new MissingEncodingException();
         }
-        int wiring_shift = rotationPosition - ringSetting;
-        int redirectedInputSignal = (characterIndex + wiring_shift) % ALPHABET_MAX;
-        int correctedOutputSignal = (-wiring_shift + ALPHABET_MAX) % ALPHABET_MAX;
+
+        int encryptionShiftForward = characterIndex + (rotationPosition + ringSetting) % ALPHABET_MAX;
+        int encryptionShiftBackward = characterIndex + (rotationPosition - ringSetting) + ALPHABET_MAX % ALPHABET_MAX;
+
         switch (dir) {
             case FORWARD:
-                return wiring[redirectedInputSignal] + correctedOutputSignal;
+                return wiring[encryptionShiftForward];
             case BACKWARD:
-                return wiringReversed[redirectedInputSignal] + correctedOutputSignal;
+                return wiringReversed[encryptionShiftBackward];
             default:
                 return 0;
         }
