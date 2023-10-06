@@ -1,4 +1,4 @@
-package main.struct;
+package main.enigma;
 
 import main.tools.Constants;
 

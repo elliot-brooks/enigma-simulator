@@ -1,4 +1,4 @@
-package main.struct;
+package main.enigma;
 
 public class Plugboard {
 
