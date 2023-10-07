@@ -3,7 +3,6 @@ package main.enigma;
 import main.tools.Constants;
 
 public class Rotor {
-    private static final int ALPHABET_MAX = 26;
     private String encoding;
     private int[] wiring;
     private int[] wiringReversed;
@@ -36,8 +35,9 @@ public class Rotor {
             throw new MissingEncodingException();
         }
 
-        int encryptionShiftForward = characterIndex + (rotationPosition + ringSetting) % ALPHABET_MAX;
-        int encryptionShiftBackward = characterIndex + (rotationPosition - ringSetting) + ALPHABET_MAX % ALPHABET_MAX;
+        int encryptionShiftForward = characterIndex + (rotationPosition + ringSetting) % Constants.ALPHABET_LENGTH;
+        int encryptionShiftBackward = characterIndex - (rotationPosition + ringSetting)
+                + Constants.ALPHABET_LENGTH % Constants.ALPHABET_LENGTH;
 
         switch (dir) {
             case FORWARD:
@@ -108,6 +108,6 @@ public class Rotor {
      */
     public void rotate() {
         // Check for when rotation is max, rotate the next rotor
-        rotationPosition = (rotationPosition + 1) % ALPHABET_MAX;
+        rotationPosition = (rotationPosition + 1) % Constants.ALPHABET_LENGTH;
     }
 }
