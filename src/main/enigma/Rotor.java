@@ -35,18 +35,21 @@ public class Rotor {
             throw new MissingEncodingException();
         }
 
-        int encryptionShiftForward = characterIndex + (rotationPosition + ringSetting) % Constants.ALPHABET_LENGTH;
-        int encryptionShiftBackward = characterIndex - (rotationPosition + ringSetting)
-                + Constants.ALPHABET_LENGTH % Constants.ALPHABET_LENGTH;
-
         switch (dir) {
             case FORWARD:
-                return wiring[encryptionShiftForward];
+                return calculateCypherCharacter(characterIndex, wiring);
             case BACKWARD:
-                return wiringReversed[encryptionShiftBackward];
+                return calculateCypherCharacter(characterIndex, wiringReversed);
             default:
                 return 0;
         }
+    }
+
+    private int calculateCypherCharacter(int characterIndex, int[] wiringConfiguration) {
+        int rotorConfigurationShift = rotationPosition - ringSetting;
+        return (wiringConfiguration[(characterIndex + rotorConfigurationShift + Constants.ALPHABET_LENGTH)
+                % Constants.ALPHABET_LENGTH] - rotorConfigurationShift
+                + Constants.ALPHABET_LENGTH) % Constants.ALPHABET_LENGTH;
     }
 
     /**
