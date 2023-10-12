@@ -32,6 +32,8 @@ public class Plugboard {
         }
         wiring[firstCharacter] = secondCharacter;
         wiring[secondCharacter] = firstCharacter;
+        cablesUsed = cablesUsed + 1;
+
     }
 
     public void removeCable(int firstCharacter, int secondCharacter) throws PlugboardConnectionDoesNotExistException {
@@ -39,6 +41,7 @@ public class Plugboard {
             // Remove wiring only if the two letters are connected
             wiring[firstCharacter] = firstCharacter;
             wiring[secondCharacter] = secondCharacter;
+            cablesUsed = cablesUsed - 1;
             return;
         }
         throw new PlugboardConnectionDoesNotExistException();
