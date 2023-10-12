@@ -14,6 +14,10 @@ public class Plugboard {
         initialiseWiring();
     }
 
+    public int encrypt(int characterIndex) {
+        return wiring[characterIndex];
+    }
+
     // Initially, map each character to its self
     private void initialiseWiring() {
         wiring = new int[Constants.ALPHABET_LENGTH];
