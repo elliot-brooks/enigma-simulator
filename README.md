@@ -1,4 +1,7 @@
-# enigma-simulator
-A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the German forces during WW2
+# Enigma Simulator
+A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the German forces during WW2. This is a **Java** based project and contains build tools supported only for **Windows**
 
-I completed this project as my Third Year Project at Manchester University
+
+**Created by**
+
+@elliot-brooks
