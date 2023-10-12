@@ -7,15 +7,15 @@ public class Reflector {
     private String encoding;
     private int[] wiring;
 
-    public Reflector(String name, String encoding, int[] wiring) {
+    Reflector(String name, String encoding) throws InvalidReflectorEncodingException {
         this.name = name;
         this.encoding = encoding;
         this.wiring = configureWiring(encoding);
     }
 
-    private int[] configureWiring(String encoding) {
+    private int[] configureWiring(String encoding) throws InvalidReflectorEncodingException {
         if (!validateEncoding(encoding)) {
-            return null;
+            throw new InvalidReflectorEncodingException();
         }
         char[] charArray = encoding.toCharArray();
         wiring = new int[charArray.length];
@@ -25,6 +25,12 @@ public class Reflector {
         return wiring;
     }
 
+    /**
+     * Enigma Reflectors had a flaw that meant any letter x could not map to x. This
+     * ensures that this criteria is met
+     * 
+     * @return
+     */
     private boolean validateEncoding(String encoding) {
         char[] charArray = encoding.toCharArray();
         if (charArray.length != Constants.ALPHABET_LENGTH) {

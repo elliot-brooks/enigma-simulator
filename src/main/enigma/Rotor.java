@@ -11,11 +11,13 @@ public class Rotor {
     private int turnoverPosition;
     private String name;
 
-    public Rotor(String name, String encoding, int rotation) {
+    Rotor(String name, String encoding, int ringSetting, int rotation, int turnoverPosition) {
         this.name = name;
         this.encoding = encoding;
         configureWiring(encoding);
         this.rotationPosition = rotation;
+        this.ringSetting = ringSetting;
+        this.turnoverPosition = turnoverPosition;
     }
 
     /**
