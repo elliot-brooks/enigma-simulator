@@ -8,7 +8,7 @@ public class Rotor {
     private int[] wiringReversed;
     private int rotationPosition;
     private int ringSetting;
-    private int notchPosition;
+    private int turnoverPosition;
     private String name;
 
     public Rotor(String name, String encoding, int rotation) {
@@ -94,8 +94,8 @@ public class Rotor {
         return rotationPosition;
     }
 
-    public boolean isNotchAtPosition() {
-        return this.rotationPosition == this.notchPosition;
+    public boolean isAtTurnoverPosition() {
+        return this.rotationPosition == this.turnoverPosition;
     }
 
     public String getName() {
