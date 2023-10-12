@@ -1,6 +1,5 @@
 package main.enigma;
 
-import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,24 +25,23 @@ public class Plugboard {
         }
     }
 
-    public void addCable(int firstCharacter, int secondCharacter) {
+    public void addCable(int firstCharacter, int secondCharacter)
+            throws PlugboardConnectionAlreadyEstablishedException {
         if (isCharacterWired(firstCharacter) || isCharacterWired(secondCharacter)) {
-            // TODO : Throw error for adding cables which are already taken
-            return;
+            throw new PlugboardConnectionAlreadyEstablishedException();
         }
         wiring[firstCharacter] = secondCharacter;
         wiring[secondCharacter] = firstCharacter;
     }
 
-    public void removeCable(int firstCharacter, int secondCharacter) {
+    public void removeCable(int firstCharacter, int secondCharacter) throws PlugboardConnectionDoesNotExistException {
         if (isCharacterPairWired(firstCharacter, secondCharacter)) {
             // Remove wiring only if the two letters are connected
             wiring[firstCharacter] = firstCharacter;
             wiring[secondCharacter] = secondCharacter;
             return;
         }
-        // TODO : Throw error for removing non-existant cable
-        return;
+        throw new PlugboardConnectionDoesNotExistException();
     }
 
     private boolean isCharacterWired(int characterIndex) {
