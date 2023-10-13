@@ -38,8 +38,18 @@ public class RotorFactory {
     }
 
     public static Rotor buildCustomRotor(String name, String encoding, int ringSetting, int startPosition,
-            int turnoverPosition) {
+            int turnoverPosition) throws InvalidRotorEncodingException {
+        if (!validateEncoding(encoding)) {
+            throw new InvalidRotorEncodingException();
+        }
         return new Rotor(name, encoding, ringSetting, startPosition, turnoverPosition);
+    }
+
+    private static boolean validateEncoding(String encoding) {
+        if (encoding.length() != encoding.chars().distinct().count() && encoding.length() != 26) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -41,6 +41,11 @@ public class ReflectorFactory {
      * @return
      */
     private static boolean validateEncoding(String encoding) {
+
+        if (encoding.length() != encoding.chars().distinct().count() && encoding.length() != 26) {
+            return false;
+        }
+
         char[] charArray = encoding.toCharArray();
         if (charArray.length != Constants.ALPHABET_LENGTH) {
             return false;
