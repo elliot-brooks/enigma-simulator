@@ -108,4 +108,12 @@ public class Rotor {
         // Check for when rotation is max, rotate the next rotor
         rotationPosition = (rotationPosition + 1) % Constants.ALPHABET_LENGTH;
     }
+
+    public int getRingSetting() {
+        return ringSetting;
+    }
+
+    public String getEncoding() {
+        return encoding;
+    }
 }

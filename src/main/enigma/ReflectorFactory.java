@@ -1,5 +1,7 @@
 package main.enigma;
 
+import main.tools.Constants;
+
 public class ReflectorFactory {
 
     public static final String A_REFLECTOR = "UKW-A";
@@ -11,7 +13,7 @@ public class ReflectorFactory {
     private static final String C_ENCODING = "FVPJIAOYEDRZXWGCTKUQSBNMHL";
     private static final String REVERSED_ENCODING = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
 
-    public static Reflector buildPresetReflector(String name) throws InvalidReflectorEncodingException {
+    public static Reflector buildPresetReflector(String name) {
         switch (name) {
             case A_REFLECTOR:
                 return new Reflector(name, A_ENCODING);
@@ -26,6 +28,31 @@ public class ReflectorFactory {
 
     public static Reflector buildCustomReflector(String name, String encoding)
             throws InvalidReflectorEncodingException {
+        if (!validateEncoding(encoding)) {
+            throw new InvalidReflectorEncodingException();
+        }
         return new Reflector(name, encoding);
     }
+
+    /**
+     * Enigma Reflectors had a flaw that meant any letter x could not map to x. This
+     * ensures that this criteria is met
+     * 
+     * @return
+     */
+    private static boolean validateEncoding(String encoding) {
+        char[] charArray = encoding.toCharArray();
+        if (charArray.length != Constants.ALPHABET_LENGTH) {
+            return false;
+        }
+
+        // Check for the case where A -> A (enigma machines could not do this)
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] - Constants.JAVA_A_VALUE == i) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
