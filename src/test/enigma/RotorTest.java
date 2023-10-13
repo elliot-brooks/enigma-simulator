@@ -9,7 +9,7 @@ import main.enigma.InvalidReflectorEncodingException;
 import main.enigma.MissingEncodingException;
 import main.enigma.Rotor;
 import main.enigma.RotorFactory;
-import main.enigma.TranslationDirection;
+import main.enigma.Direction;
 import main.tools.Tools;
 
 public class RotorTest {
@@ -33,7 +33,7 @@ public class RotorTest {
         StringBuilder sb = new StringBuilder();
         for (int i : inputText) {
             firstRotor.rotate();
-            int newChar = firstRotor.encrypt(i, TranslationDirection.FORWARD);
+            int newChar = firstRotor.encrypt(i, Direction.FORWARD);
             sb.append(Tools.convertIndexToCharacter(newChar));
         }
         assertEquals(expectedOutput, sb.toString());
@@ -47,7 +47,7 @@ public class RotorTest {
         StringBuilder sb = new StringBuilder();
         for (int i : inputText) {
             firstRotor.rotate();
-            int newChar = firstRotor.encrypt(i, TranslationDirection.BACKWARD);
+            int newChar = firstRotor.encrypt(i, Direction.BACKWARD);
             sb.append(Tools.convertIndexToCharacter(newChar));
         }
         assertEquals(expectedOutput, sb.toString());

@@ -1,5 +1,5 @@
 package main.enigma;
 
-public enum TranslationDirection {
+public enum Direction {
     FORWARD, BACKWARD;
 }

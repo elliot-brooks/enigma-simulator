@@ -31,7 +31,7 @@ public class Rotor {
      * @return The cypher text
      * @throws MissingEncodingException When encoding is null
      */
-    public int encrypt(int characterIndex, TranslationDirection dir)
+    public int encrypt(int characterIndex, Direction dir)
             throws MissingEncodingException {
         if (encoding == null) {
             throw new MissingEncodingException();
