@@ -37,11 +37,16 @@ public class Rotor {
             throw new MissingEncodingException();
         }
 
+        int rotorShift = rotationPosition - ringSetting;
+
         switch (dir) {
             case FORWARD:
-                return (wiring[(characterIndex + rotationPosition + 26) % 26] + ringSetting + 26) % 26;
+                return (wiring[(characterIndex + rotorShift + Constants.ALPHABET_LENGTH) % Constants.ALPHABET_LENGTH]
+                        - rotorShift + Constants.ALPHABET_LENGTH) % Constants.ALPHABET_LENGTH;
             case BACKWARD:
-                return (wiringReversed[(characterIndex - ringSetting + 26) % 26] - rotationPosition + 26) % 26;
+                return (wiringReversed[(characterIndex + rotorShift + Constants.ALPHABET_LENGTH)
+                        % Constants.ALPHABET_LENGTH]
+                        - rotorShift + Constants.ALPHABET_LENGTH) % Constants.ALPHABET_LENGTH;
             default:
                 return 0;
         }
@@ -111,6 +116,10 @@ public class Rotor {
 
     public int getRingSetting() {
         return ringSetting;
+    }
+
+    public void setRingSetting(int setting) {
+        ringSetting = setting;
     }
 
     public String getEncoding() {

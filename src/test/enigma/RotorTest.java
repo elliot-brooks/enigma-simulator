@@ -29,7 +29,7 @@ public class RotorTest {
     @Test
     public void testEncryptionForward() throws MissingEncodingException {
         int[] inputText = { 0, 0, 0, 0 };
-        String expectedOutput = "KMFL";
+        String expectedOutput = "JKCH";
         StringBuilder sb = new StringBuilder();
         for (int i : inputText) {
             firstRotor.rotate();
@@ -41,7 +41,7 @@ public class RotorTest {
 
     @Test
     public void testEncryptionBackwards() throws MissingEncodingException {
-        int[] inputText = { 10, 12, 5, 11 };
+        int[] inputText = { 9, 10, 2, 7 };
         firstRotor.setRotationPosition(0);
         String expectedOutput = "AAAA";
         StringBuilder sb = new StringBuilder();

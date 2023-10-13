@@ -3,4 +3,5 @@ javac .\src\test\enigma\*.java  --source-path .\src\ -d .\bin\ --class-path .\li
 java --enable-preview -cp .\bin\;.\lib\junit-4.13.2.jar;.\lib\hamcrest-core-1.3.jar org.junit.runner.JUnitCore^
  test.enigma.PlugboardTest^
  test.enigma.ReflectorTest^
- test.enigma.RotorTest
+ test.enigma.RotorTest^
+ test.enigma.EnigmaTest

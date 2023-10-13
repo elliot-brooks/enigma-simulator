@@ -1,7 +1,10 @@
 package main.cli;
 
+import main.enigma.Enigma;
+
 public class EnigmaSimulator {
     public static void main(String[] args) {
-        System.out.println("Enigma Simulator!");
+        Enigma machine = Enigma.createDefaultEnigma();
+        System.out.println(machine.getCurrentSettings());
     }
 }
