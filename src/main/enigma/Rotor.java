@@ -87,7 +87,7 @@ public class Rotor {
     }
 
     public void setRotationPosition(int newRotation) {
-        rotationPosition = newRotation;
+        rotationPosition = (newRotation + 26) % 26;
     }
 
     public int getRotationPosition() {
@@ -119,7 +119,7 @@ public class Rotor {
     }
 
     public void setRingSetting(int setting) {
-        ringSetting = setting;
+        ringSetting = (setting + 26) % 26;
     }
 
     public String getEncoding() {

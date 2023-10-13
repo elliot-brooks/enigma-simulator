@@ -43,6 +43,11 @@ public class Enigma {
 
         Reflector defaultReflector = ReflectorFactory.buildPresetReflector(ReflectorFactory.B_REFLECTOR);
         Plugboard plugboard = new Plugboard();
+        try {
+            plugboard.addCable(0, 1);
+        } catch (PlugboardConnectionAlreadyEstablishedException e) {
+            // Do nothing
+        }
         Enigma instance = new Enigma(defaultRotors, plugboard, defaultReflector);
         return instance;
     }
@@ -114,12 +119,89 @@ public class Enigma {
         return sb.toString();
     }
 
+    public void setRotor(int position, Rotor newRotor) {
+        rotors.set(position, newRotor);
+    }
+
+    public void configureRotorRingSetting(int position, int ringSetting) {
+        rotors.get(position).setRingSetting(ringSetting);
+    }
+
+    public void configureRotorRingSettings(int[] ringSettings) {
+        for (int i : ringSettings) {
+            rotors.get(i).setRingSetting(ringSettings[i]);
+        }
+    }
+
+    public void configureRotorRotation(int position, int rotation) {
+        rotors.get(rotation).setRotationPosition(rotation);
+    }
+
+    public void configureRotorRotations(int[] rotations) {
+        for (int i : rotations) {
+            rotors.get(i).setRotationPosition(rotations[i]);
+        }
+    }
+
     public void resetMachine() {
         for (Rotor rotor : rotors) {
             rotor.setRotationPosition(0);
             rotor.setRingSetting(0);
         }
-        // TODO : reset plugboard
+        plugboard = new Plugboard();
+    }
+
+    /**
+     * Turns 'AB' into [0, 1]
+     * 
+     * @param cablePairing
+     * @return
+     */
+    private int[] parseCablePairing(String cablePairing) {
+        char[] charArray = cablePairing.toCharArray();
+        int[] parsedPairing = new int[2];
+
+        for (int i = 0; i < charArray.length; i++) {
+            parsedPairing[i] = charArray[i] - Constants.JAVA_A_VALUE;
+        }
+        return parsedPairing;
+    }
+
+    public void addCables(List<String> cablePairings) {
+        for (String string : cablePairings) {
+            try {
+                addCable(string);
+            } catch (PlugboardConnectionAlreadyEstablishedException e) {
+                // Ignore
+            }
+        }
+    }
+
+    public void removeCables(List<String> cablePairings) {
+        for (String string : cablePairings) {
+            try {
+                removeCable(string);
+            } catch (PlugboardConnectionDoesNotExistException e) {
+                // Ignore
+            }
+        }
+    }
+
+    public void addCable(String cablePairing) throws PlugboardConnectionAlreadyEstablishedException {
+        if (!cablePairing.matches("[A-Z]+") || cablePairing.length() != 2) {
+            return;
+        }
+
+        int[] parsedPairing = parseCablePairing(cablePairing);
+        plugboard.addCable(parsedPairing[0], parsedPairing[1]);
+    }
+
+    public void removeCable(String cablePairing) throws PlugboardConnectionDoesNotExistException {
+        if (!cablePairing.matches("[A-Z]+") || cablePairing.length() != 2) {
+            return;
+        }
+        int[] parsedPairing = parseCablePairing(cablePairing);
+        plugboard.removeCable(parsedPairing[0], parsedPairing[1]);
     }
 
 }

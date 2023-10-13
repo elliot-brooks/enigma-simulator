@@ -72,7 +72,9 @@ public class Plugboard {
     public List<String> getPairedCharacters() {
         List<String> pairedList = new ArrayList<>();
         for (int i = 0; i < wiring.length; i++) {
-            pairedList.add(formatCharacterPair(i));
+            if (isCharacterWired(i)) {
+                pairedList.add(formatCharacterPair(i));
+            }
         }
         return pairedList;
     }

@@ -13,7 +13,7 @@ public class EnigmaTest {
     public void enigmaSettingsTest() {
         Enigma machine = Enigma.createDefaultEnigma();
         assertEquals(
-                "Plugboard : [AA, BB, CC, DD, EE, FF, GG, HH, II, JJ, KK, LL, MM, NN, OO, PP, QQ, RR, SS, TT, UU, VV, WW, XX, YY, ZZ]\n"
+                "Plugboard : [AB, BA]\n"
                         + //
                         "Reflector : UKW-B (YRUHQSLDPXNGOKMIEBFZCWVJAT)\n" + //
                         "Right Rotor : III\n" + //
@@ -36,7 +36,18 @@ public class EnigmaTest {
     public void defaultEncryptionTest() throws MissingEncodingException {
         Enigma machine = Enigma.createDefaultEnigma();
 
-        assertEquals("BDZGO", machine.encrypt("AAAAA"));
+        assertEquals("ADZGO", machine.encrypt("BBBBB"));
+    }
+
+    @Test
+    public void decryptionTest() throws MissingEncodingException {
+        String input_text = "SECRET";
+        Enigma machine1 = Enigma.createDefaultEnigma();
+        Enigma machine2 = Enigma.createDefaultEnigma();
+
+        String cybpherText = machine1.encrypt(input_text);
+        assertEquals(input_text, machine2.encrypt(cybpherText));
+
     }
 
 }
