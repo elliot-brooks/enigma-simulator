@@ -39,19 +39,12 @@ public class Rotor {
 
         switch (dir) {
             case FORWARD:
-                return calculateCypherCharacter(characterIndex, wiring);
+                return (wiring[(characterIndex + rotationPosition + 26) % 26] + ringSetting + 26) % 26;
             case BACKWARD:
-                return calculateCypherCharacter(characterIndex, wiringReversed);
+                return (wiringReversed[(characterIndex - ringSetting + 26) % 26] - rotationPosition + 26) % 26;
             default:
                 return 0;
         }
-    }
-
-    private int calculateCypherCharacter(int characterIndex, int[] wiringConfiguration) {
-        int rotorConfigurationShift = rotationPosition - ringSetting;
-        return (wiringConfiguration[(characterIndex + rotorConfigurationShift + Constants.ALPHABET_LENGTH)
-                % Constants.ALPHABET_LENGTH] - rotorConfigurationShift
-                + Constants.ALPHABET_LENGTH) % Constants.ALPHABET_LENGTH;
     }
 
     /**

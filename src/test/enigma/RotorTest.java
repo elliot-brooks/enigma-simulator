@@ -18,7 +18,7 @@ public class RotorTest {
 
     @Before
     public void setup() throws InvalidReflectorEncodingException {
-        firstRotor = RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 2, 0);
+        firstRotor = RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 0, 0);
     }
 
     /**
@@ -29,7 +29,7 @@ public class RotorTest {
     @Test
     public void testEncryptionForward() throws MissingEncodingException {
         int[] inputText = { 0, 0, 0, 0 };
-        String expectedOutput = "KEJK";
+        String expectedOutput = "KMFL";
         StringBuilder sb = new StringBuilder();
         for (int i : inputText) {
             firstRotor.rotate();
@@ -41,7 +41,7 @@ public class RotorTest {
 
     @Test
     public void testEncryptionBackwards() throws MissingEncodingException {
-        int[] inputText = { 10, 4, 9, 10 };
+        int[] inputText = { 10, 12, 5, 11 };
         firstRotor.setRotationPosition(0);
         String expectedOutput = "AAAA";
         StringBuilder sb = new StringBuilder();
