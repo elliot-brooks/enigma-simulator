@@ -1,0 +1,7 @@
+<rotor_bank>
+    <rotor>
+        <name>MyCustomRotor</name>
+        <encoding>ZYXWVUTSRQPONMLKJIHGFEDCBA</encoding>
+        <turnover_position>5</turnover_position>
+    </rotor>
+</rotor_bank>

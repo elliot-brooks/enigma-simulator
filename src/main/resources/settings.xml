@@ -1,26 +1,21 @@
 <enigma>
     <plugboard encoding="AB CD EF GH"></plugboard>
     <rotor>
-        <type>CUSTOM</type>
         <name>MyRotor</name>
-        <encoding>EKMFLGDQVZNTOWYHXUSPAIBRCJ</encoding>
         <ring_setting>0</ring_setting>
         <start_position>4</start_position>
     </rotor>
     <rotor>
-        <type>PRESET</type>
         <name>V</name>
         <ring_setting>1</ring_setting>
         <start_position>10</start_position>
     </rotor>
     <rotor>
-        <type>PRESET</type>
         <name>IV</name>
         <ring_setting>4</ring_setting>
         <start_position>9</start_position>
     </rotor>
     <reflector>
-        <type>PRESET</type>
         <name>UKW-B</name>
     </reflector>
 </enigma>

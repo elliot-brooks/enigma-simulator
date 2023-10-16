@@ -20,9 +20,7 @@
     <xs:element name="rotor">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="type" type="xs:string"/>
                 <xs:element name="name" type="xs:string"/>
-                <xs:element name="encoding" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="ring_setting" type="xs:integer"/>
                 <xs:element name="start_position" type="xs:integer"/>
             </xs:sequence>
@@ -32,9 +30,7 @@
     <xs:element name="reflector">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="type" type="xs:string"/>
                 <xs:element name="name" type="xs:string"/>
-                <xs:element name="encoding" type="xs:string" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
