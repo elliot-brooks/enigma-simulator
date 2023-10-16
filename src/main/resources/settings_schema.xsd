@@ -5,7 +5,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="plugboard"/>
-                <xs:element ref="rotor" maxOccurs="unbounded"/>
+                <xs:element ref="rotor" maxOccurs="3"/>
                 <xs:element ref="reflector"/>
             </xs:sequence>
         </xs:complexType>
