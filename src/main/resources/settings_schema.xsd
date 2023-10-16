@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="enigma">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="plugboard"/>
+                <xs:element ref="rotor" maxOccurs="unbounded"/>
+                <xs:element ref="reflector"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="plugboard">
+        <xs:complexType>
+            <xs:attribute name="encoding" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rotor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="type" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="encoding" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="ring_setting" type="xs:integer"/>
+                <xs:element name="start_position" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="reflector">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="type" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="encoding" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
