@@ -1,5 +1,7 @@
 package main.enigma;
 
+import main.enigma.exceptions.InvalidRotorEncodingException;
+
 public class RotorFactory {
     public static final String I_ROTOR = "I";
     public static final String II_ROTOR = "II";

@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.enigma.InvalidReflectorEncodingException;
-import main.enigma.MissingEncodingException;
 import main.enigma.Rotor;
 import main.enigma.RotorFactory;
+import main.enigma.exceptions.InvalidReflectorEncodingException;
+import main.enigma.exceptions.MissingEncodingException;
 import main.enigma.Direction;
 import main.tools.Tools;
 

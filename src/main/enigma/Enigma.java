@@ -1,10 +1,12 @@
 package main.enigma;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import main.enigma.exceptions.MissingEncodingException;
+import main.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
+import main.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 import main.tools.Constants;
 import main.tools.Tools;
 
@@ -50,11 +52,6 @@ public class Enigma {
         }
         Enigma instance = new Enigma(defaultRotors, plugboard, defaultReflector);
         return instance;
-    }
-
-    // TODO : Implemenmt a method for parsing a file
-    public static Enigma parseEnigmaFromFile(File file) {
-        return null;
     }
 
     public String getCurrentSettings() {
@@ -111,6 +108,7 @@ public class Enigma {
     }
 
     public String encrypt(String message) throws MissingEncodingException {
+        message = message.toUpperCase();
         char[] charArray = message.toCharArray();
         StringBuilder sb = new StringBuilder();
         for (char c : charArray) {

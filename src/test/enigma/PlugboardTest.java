@@ -6,8 +6,8 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import main.enigma.Plugboard;
-import main.enigma.PlugboardConnectionAlreadyEstablishedException;
-import main.enigma.PlugboardConnectionDoesNotExistException;
+import main.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
+import main.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 import main.tools.Constants;
 
 public class PlugboardTest {

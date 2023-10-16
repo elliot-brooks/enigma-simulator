@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.enigma.InvalidReflectorEncodingException;
 import main.enigma.Reflector;
 import main.enigma.ReflectorFactory;
+import main.enigma.exceptions.InvalidReflectorEncodingException;
 import main.tools.Tools;
 
 public class ReflectorTest {

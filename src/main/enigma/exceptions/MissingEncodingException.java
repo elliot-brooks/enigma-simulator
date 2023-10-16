@@ -1,4 +1,4 @@
-package main.enigma;
+package main.enigma.exceptions;
 
 import main.tools.Constants;
 

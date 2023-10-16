@@ -1,5 +1,6 @@
 package main.enigma;
 
+import main.enigma.exceptions.MissingEncodingException;
 import main.tools.Constants;
 
 public class Rotor {

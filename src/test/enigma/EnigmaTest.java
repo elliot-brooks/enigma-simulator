@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import main.enigma.Enigma;
-import main.enigma.MissingEncodingException;
+import main.enigma.exceptions.MissingEncodingException;
 
 public class EnigmaTest {
 

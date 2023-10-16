@@ -1,5 +1,6 @@
 package main.enigma;
 
+import main.enigma.exceptions.InvalidReflectorEncodingException;
 import main.tools.Constants;
 
 public class ReflectorFactory {

@@ -3,6 +3,8 @@ package main.enigma;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
+import main.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 import main.tools.Constants;
 
 public class Plugboard {
