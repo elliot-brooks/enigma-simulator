@@ -87,7 +87,7 @@ public class Enigma {
     }
 
     public char encrypt(char character) {
-        if (Character.isLetter(character)) {
+        if (!Character.isLetter(character)) {
             return character;
         }
         rotate();
