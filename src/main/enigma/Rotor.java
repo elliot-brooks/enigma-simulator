@@ -1,6 +1,5 @@
 package main.enigma;
 
-import main.enigma.exceptions.MissingEncodingException;
 import main.tools.Constants;
 
 public class Rotor {
@@ -30,14 +29,8 @@ public class Rotor {
      * @param dir            - The direction of the encryption i.e. which side the
      *                       of the rotor the signal passes through
      * @return The cypher text
-     * @throws MissingEncodingException When encoding is null
      */
-    public int encrypt(int characterIndex, Direction dir)
-            throws MissingEncodingException {
-        if (encoding == null) {
-            throw new MissingEncodingException();
-        }
-
+    public int encrypt(int characterIndex, Direction dir) {
         int rotorShift = rotationPosition - ringSetting;
 
         switch (dir) {

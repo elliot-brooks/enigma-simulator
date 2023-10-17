@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import main.enigma.Enigma;
-import main.enigma.exceptions.MissingEncodingException;
 
 public class EnigmaTest {
 
@@ -33,15 +32,15 @@ public class EnigmaTest {
     }
 
     @Test
-    public void defaultEncryptionTest() throws MissingEncodingException {
+    public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
         assertEquals("ADZGO", machine.encrypt("BBBBB"));
     }
 
     @Test
-    public void decryptionTest() throws MissingEncodingException {
-        String input_text = "SECRET";
+    public void decryptionTest() {
+        String input_text = "ABCDEFGHIJKLMNOPQRSTUVWXYZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBZZZZZ";
         Enigma machine1 = Enigma.createDefaultEnigma();
         Enigma machine2 = Enigma.createDefaultEnigma();
 

@@ -4,10 +4,9 @@ import org.xml.sax.SAXException;
 
 import main.enigma.ComponentCache;
 import main.enigma.Enigma;
-import main.enigma.exceptions.MissingEncodingException;
 
 public class EnigmaSimulator {
-    public static void main(String[] args) throws MissingEncodingException {
+    public static void main(String[] args) {
         try {
             ComponentCache cache = new ComponentCache();
             cache.initialise();

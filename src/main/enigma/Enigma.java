@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.enigma.exceptions.MissingEncodingException;
 import main.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
 import main.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 import main.tools.Constants;
@@ -87,8 +86,8 @@ public class Enigma {
         rotors.get(ROTOR_SLOT_1).rotate();
     }
 
-    public char encrypt(char character) throws MissingEncodingException {
-        if (character == ' ') {
+    public char encrypt(char character) {
+        if (Character.isLetter(character)) {
             return character;
         }
         rotate();
@@ -107,7 +106,7 @@ public class Enigma {
 
     }
 
-    public String encrypt(String message) throws MissingEncodingException {
+    public String encrypt(String message) {
         message = message.toUpperCase();
         char[] charArray = message.toCharArray();
         StringBuilder sb = new StringBuilder();

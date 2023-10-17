@@ -8,7 +8,6 @@ import org.junit.Test;
 import main.enigma.Rotor;
 import main.enigma.RotorFactory;
 import main.enigma.exceptions.InvalidReflectorEncodingException;
-import main.enigma.exceptions.MissingEncodingException;
 import main.enigma.Direction;
 import main.tools.Tools;
 
@@ -27,7 +26,7 @@ public class RotorTest {
      * @throws MissingEncodingException
      */
     @Test
-    public void testEncryptionForward() throws MissingEncodingException {
+    public void testEncryptionForward() {
         int[] inputText = { 0, 0, 0, 0 };
         String expectedOutput = "JKCH";
         StringBuilder sb = new StringBuilder();
@@ -40,7 +39,7 @@ public class RotorTest {
     }
 
     @Test
-    public void testEncryptionBackwards() throws MissingEncodingException {
+    public void testEncryptionBackwards() {
         int[] inputText = { 9, 10, 2, 7 };
         firstRotor.setRotationPosition(0);
         String expectedOutput = "AAAA";
