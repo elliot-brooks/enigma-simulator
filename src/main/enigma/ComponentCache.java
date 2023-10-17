@@ -1,31 +1,56 @@
 package main.enigma;
 
+import java.io.IOException;
 import java.util.HashMap;
 
-public class ComponentCache {
-    private static HashMap<String, Rotor> rotorCache;
-    private static HashMap<String, Reflector> reflectorCache;
+import javax.xml.parsers.ParserConfigurationException;
 
-    public static void initialise() {
+import org.xml.sax.SAXException;
+
+import main.parsers.ReflectorBankParser;
+import main.parsers.RotorBankParser;
+
+public class ComponentCache {
+    private HashMap<String, Rotor> rotorCache;
+    private HashMap<String, Reflector> reflectorCache;
+
+    public void initialise() throws SAXException {
         rotorCache = new HashMap<>();
         reflectorCache = new HashMap<>();
-        // TODO : Create all pre-built rotors/reflectors here and add to cache
-        // TODO : Implement parsing of xml files here and store all information found
+        // Add preset rotors
+        rotorCache.put("I", RotorFactory.buildPresetRotor("I", 0, 0));
+        rotorCache.put("II", RotorFactory.buildPresetRotor("II", 0, 0));
+        rotorCache.put("III", RotorFactory.buildPresetRotor("III", 0, 0));
+        rotorCache.put("IV", RotorFactory.buildPresetRotor("IV", 0, 0));
+        rotorCache.put("V", RotorFactory.buildPresetRotor("V", 0, 0));
+        // Add preset reflectors
+        reflectorCache.put("UKW-A", ReflectorFactory.buildPresetReflector("UKW-A"));
+        reflectorCache.put("UKW-B", ReflectorFactory.buildPresetReflector("UKW-B"));
+        reflectorCache.put("UKW-C", ReflectorFactory.buildPresetReflector("UKW-C"));
+
+        // Add custom rotors + reflectors
+        try {
+            rotorCache.putAll(RotorBankParser.parse());
+            reflectorCache.putAll(ReflectorBankParser.parse());
+        } catch (SAXException | IOException | ParserConfigurationException e) {
+            throw new SAXException(e.getLocalizedMessage());
+        }
+
     }
 
-    public static Rotor getRotor(String rotorName) {
+    public Rotor getRotor(String rotorName) {
         return rotorCache.get(rotorName);
     }
 
-    public static Reflector getReflector(String reflectorName) {
+    public Reflector getReflector(String reflectorName) {
         return reflectorCache.get(reflectorName);
     }
 
-    public static void addReflector(String name, Reflector reflector) {
+    public void addReflector(String name, Reflector reflector) {
         reflectorCache.putIfAbsent(name, reflector);
     }
 
-    public static void addRotor(String name, Rotor rotor) {
+    public void addRotor(String name, Rotor rotor) {
         rotorCache.putIfAbsent(name, rotor);
     }
 
