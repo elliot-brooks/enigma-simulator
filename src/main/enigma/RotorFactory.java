@@ -7,7 +7,7 @@ public class RotorFactory {
     public static final String II_ROTOR = "II";
     public static final String III_ROTOR = "III";
     public static final String IV_ROTOR = "IV";
-    private static final String V_ROTOR = "V";
+    public static final String V_ROTOR = "V";
 
     public static final int I_TURNOVER = 16; // Notch at Y, turnover at Q
     public static final int II_TURNOVER = 4; // Notch at M, turnover at E

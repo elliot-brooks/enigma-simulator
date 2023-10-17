@@ -27,8 +27,7 @@ public class Plugboard {
         }
     }
 
-    public void addCable(int firstCharacter, int secondCharacter)
-            throws PlugboardConnectionAlreadyEstablishedException {
+    public void addCable(int firstCharacter, int secondCharacter) throws PlugboardConnectionAlreadyEstablishedException {
         if (isCharacterWired(firstCharacter) || isCharacterWired(secondCharacter)) {
             throw new PlugboardConnectionAlreadyEstablishedException();
         }

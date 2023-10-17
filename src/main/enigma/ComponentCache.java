@@ -18,16 +18,15 @@ public class ComponentCache {
         rotorCache = new HashMap<>();
         reflectorCache = new HashMap<>();
         // Add preset rotors
-        rotorCache.put("I", RotorFactory.buildPresetRotor("I", 0, 0));
-        rotorCache.put("II", RotorFactory.buildPresetRotor("II", 0, 0));
-        rotorCache.put("III", RotorFactory.buildPresetRotor("III", 0, 0));
-        rotorCache.put("IV", RotorFactory.buildPresetRotor("IV", 0, 0));
-        rotorCache.put("V", RotorFactory.buildPresetRotor("V", 0, 0));
+        rotorCache.put(RotorFactory.I_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 0, 0));
+        rotorCache.put(RotorFactory.II_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.II_ROTOR, 0, 0));
+        rotorCache.put(RotorFactory.III_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0));
+        rotorCache.put(RotorFactory.IV_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.IV_ROTOR, 0, 0));
+        rotorCache.put(RotorFactory.V_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.V_ROTOR, 0, 0));
         // Add preset reflectors
-        reflectorCache.put("UKW-A", ReflectorFactory.buildPresetReflector("UKW-A"));
-        reflectorCache.put("UKW-B", ReflectorFactory.buildPresetReflector("UKW-B"));
-        reflectorCache.put("UKW-C", ReflectorFactory.buildPresetReflector("UKW-C"));
-
+        reflectorCache.put(ReflectorFactory.A_REFLECTOR, ReflectorFactory.buildPresetReflector(ReflectorFactory.A_REFLECTOR));
+        reflectorCache.put(ReflectorFactory.B_REFLECTOR, ReflectorFactory.buildPresetReflector(ReflectorFactory.B_REFLECTOR));
+        reflectorCache.put(ReflectorFactory.C_REFLECTOR, ReflectorFactory.buildPresetReflector(ReflectorFactory.C_REFLECTOR));
         // Add custom rotors + reflectors
         try {
             rotorCache.putAll(RotorBankParser.parse());
