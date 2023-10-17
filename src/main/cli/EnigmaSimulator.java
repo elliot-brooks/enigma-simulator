@@ -13,8 +13,9 @@ public class EnigmaSimulator {
         } catch (SAXException e) {
             e.printStackTrace();
         }
+        String message = "H3LLO world!!";
         Enigma machine = Enigma.createDefaultEnigma();
         System.out.println(machine.getCurrentSettings() + '\n');
-        System.out.println(machine.encrypt("Hello World"));
+        System.out.println(message + " = \n" + machine.encrypt(message));
     }
 }
