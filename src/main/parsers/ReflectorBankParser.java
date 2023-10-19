@@ -17,8 +17,7 @@ public class ReflectorBankParser {
     private static final String NAME_TAG = "name";
     private static final String ENCODING_TAG = "encoding";
 
-    public static HashMap<String, Reflector> parse()
-            throws SAXException, IOException, ParserConfigurationException {
+    public static HashMap<String, Reflector> parse() throws SAXException, IOException, ParserConfigurationException {
         HashMap<String, Reflector> reflectorMap = new HashMap<>();
         File reflectorBankFile = new File(REFLECTOR_BANK_PATH_REL);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

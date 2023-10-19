@@ -1,8 +1,8 @@
 <enigma>
     <plugboard encoding="AB CD EF GH"></plugboard>
     <rotor>
-        <name>MyRotor</name>
-        <ring_setting>0</ring_setting>
+        <name>MyCustomRotor</name>
+        <ring_setting>10</ring_setting>
         <start_position>4</start_position>
     </rotor>
     <rotor>

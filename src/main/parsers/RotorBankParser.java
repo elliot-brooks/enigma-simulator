@@ -24,8 +24,7 @@ public class RotorBankParser {
     private static final String ENCODING_TAG = "encoding";
     private static final String TURNOVER_TAG = "turnover_position";
 
-    public static HashMap<String, Rotor> parse()
-            throws SAXException, IOException, ParserConfigurationException {
+    public static HashMap<String, Rotor> parse() throws SAXException, IOException, ParserConfigurationException {
         HashMap<String, Rotor> reflectorMap = new HashMap<>();
         File rotorBankFile = new File(ROTOR_BANK_PATH_REL);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -33,6 +33,18 @@ public class Enigma {
         return instance;
     }
 
+    public void setRotors(List<Rotor> rotors) {
+        this.rotors = rotors;
+    }
+
+    public void setPlugboard(Plugboard plugboard) {
+        this.plugboard = plugboard;
+    }
+
+    public void setReflector(Reflector reflector) {
+        this.reflector = reflector;
+    }
+
     public static Enigma createDefaultEnigma() {
         List<Rotor> defaultRotors = new ArrayList<>();
         Rotor rightRotor = RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0);
