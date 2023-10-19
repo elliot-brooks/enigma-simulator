@@ -56,11 +56,6 @@ public class Enigma {
 
         Reflector defaultReflector = ReflectorFactory.buildPresetReflector(ReflectorFactory.B_REFLECTOR);
         Plugboard plugboard = new Plugboard();
-        try {
-            plugboard.addCable(0, 1);
-        } catch (PlugboardConnectionAlreadyEstablishedException e) {
-            // Do nothing
-        }
         Enigma instance = new Enigma(defaultRotors, plugboard, defaultReflector);
         return instance;
     }
@@ -137,7 +132,7 @@ public class Enigma {
     }
 
     public void configureRotorRingSettings(int[] ringSettings) {
-        for (int i : ringSettings) {
+        for (int i = 0; i < ringSettings.length; i++) {
             rotors.get(i).setRingSetting(ringSettings[i]);
         }
     }
@@ -147,7 +142,7 @@ public class Enigma {
     }
 
     public void configureRotorRotations(int[] rotations) {
-        for (int i : rotations) {
+        for (int i = 0; i < rotations.length; i++) {
             rotors.get(i).setRotationPosition(rotations[i]);
         }
     }

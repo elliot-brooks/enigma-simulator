@@ -1,21 +1,22 @@
 <enigma>
-    <plugboard encoding="AB CD EF GH"></plugboard>
+    <plugboard encoding="AM FI NV PS TU WZ"></plugboard>
     <rotor>
-        <name>MyCustomRotor</name>
-        <ring_setting>10</ring_setting>
-        <start_position>4</start_position>
+        <name>III</name>
+        <ring_setting>21</ring_setting>
+        <start_position>11</start_position>
     </rotor>
     <rotor>
-        <name>V</name>
-        <ring_setting>1</ring_setting>
-        <start_position>10</start_position>
+        <name>I</name>
+        <ring_setting>12</ring_setting>
+        <start_position>1</start_position>
     </rotor>
     <rotor>
-        <name>IV</name>
-        <ring_setting>4</ring_setting>
-        <start_position>9</start_position>
+        <name>II</name>
+        <ring_setting>23</ring_setting>
+        <start_position>0</start_position>
     </rotor>
     <reflector>
-        <name>UKW-B</name>
+        <name>UKW-A</name>
     </reflector>
 </enigma>
+

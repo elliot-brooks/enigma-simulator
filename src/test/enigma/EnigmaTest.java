@@ -12,7 +12,7 @@ public class EnigmaTest {
     public void enigmaSettingsTest() {
         Enigma machine = Enigma.createDefaultEnigma();
         assertEquals(
-                "Plugboard : [AB, BA]\n"
+                "Plugboard : []\n"
                         + //
                         "Reflector : UKW-B (YRUHQSLDPXNGOKMIEBFZCWVJAT)\n" + //
                         "Right Rotor : III\n" + //
@@ -35,7 +35,7 @@ public class EnigmaTest {
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
-        assertEquals("ADZGO", machine.encrypt("BBBBB"));
+        assertEquals("BDZGO", machine.encrypt("AAAAA"));
     }
 
     @Test
@@ -49,4 +49,12 @@ public class EnigmaTest {
 
     }
 
+    @Test
+    public void doubleStepTest() {
+        String input_text = "QQQQQQ";
+        Enigma machine = Enigma.createDefaultEnigma();
+        machine.configureRotorRotations(new int[] {19, 3, 16});
+        assertEquals("LIOTLD", machine.encrypt(input_text));
+        
+    }
 }
