@@ -72,7 +72,7 @@ public class Enigma {
         sb.append("Reflector : " + reflector.getName() + " (" + reflector.getEncoding() + ")\n");
         for (int rotorSlot = 0; rotorSlot < rotors.size(); rotorSlot++) {
             sb.append(rotorMap.get(rotorSlot) + rotors.get(rotorSlot).getName() + "\n");
-            sb.append("    Current Rotation : " + rotors.get(rotorSlot).getRotationPosition() + "\n");
+            sb.append("    Current Rotation : " + Tools.convertIndexToCharacter(rotors.get(rotorSlot).getRotationPosition()) + "\n");
             sb.append("    Ring Setting : " + rotors.get(rotorSlot).getRingSetting() + "\n");
             sb.append("    Encoding : " + rotors.get(rotorSlot).getEncoding() + "\n");
         }

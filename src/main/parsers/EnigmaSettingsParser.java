@@ -22,6 +22,7 @@ import main.enigma.Reflector;
 import main.enigma.Rotor;
 import main.parsers.exceptions.MissingReflectorException;
 import main.parsers.exceptions.MissingRotorException;
+import main.tools.Tools;
 
 public class EnigmaSettingsParser {
     private static final String ROTOR_TAG = "rotor";
@@ -64,14 +65,14 @@ public class EnigmaSettingsParser {
                 Element rotorElement = (Element) rotorNode;
                 String rotorName = rotorElement.getElementsByTagName(NAME_TAG).item(0).getTextContent();
                 int rotorRingSetting = Integer.parseInt(rotorElement.getElementsByTagName(RING_SETTING_TAG).item(0).getTextContent());
-                int rotorStartPosition = Integer.parseInt(rotorElement.getElementsByTagName(START_POSITION_TAG).item(0).getTextContent());
+                char rotorStartPosition = rotorElement.getElementsByTagName(START_POSITION_TAG).item(0).getTextContent().charAt(0);
                 Rotor rotor;
                 rotor = cache.getRotor(rotorName);
                 if (rotor == null) {
                     throw new MissingRotorException(rotorName);
                 }
                 rotor.setRingSetting(rotorRingSetting);
-                rotor.setRotationPosition(rotorStartPosition);
+                rotor.setRotationPosition(Tools.convertCharToIndex(rotorStartPosition));
                 this.rotors.add(rotor);
             }
         }

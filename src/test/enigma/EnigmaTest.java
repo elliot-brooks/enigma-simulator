@@ -16,15 +16,15 @@ public class EnigmaTest {
                         + //
                         "Reflector : UKW-B (YRUHQSLDPXNGOKMIEBFZCWVJAT)\n" + //
                         "Right Rotor : III\n" + //
-                        "    Current Rotation : 0\n" + //
+                        "    Current Rotation : A\n" + //
                         "    Ring Setting : 0\n" + //
                         "    Encoding : BDFHJLCPRTXVZNYEIWGAKMUSQO\n" + //
                         "Middle Rotor : II\n" + //
-                        "    Current Rotation : 0\n" + //
+                        "    Current Rotation : A\n" + //
                         "    Ring Setting : 0\n" + //
                         "    Encoding : AJDKSIRUXBLHWTMCQGZNPYFVOE\n" + //
                         "Left Rotor : I\n" + //
-                        "    Current Rotation : 0\n" + //
+                        "    Current Rotation : A\n" + //
                         "    Ring Setting : 0\n" + //
                         "    Encoding : EKMFLGDQVZNTOWYHXUSPAIBRCJ\n" + //
                         "",

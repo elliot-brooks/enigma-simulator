@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 import main.enigma.Rotor;
 import main.enigma.RotorFactory;
 import main.enigma.exceptions.InvalidRotorEncodingException;
+import main.tools.Tools;
 
 public class RotorBankParser {
     private static final String ROTOR_BANK_PATH_REL = "src/main/resources/rotor_bank.xml";
@@ -41,11 +42,10 @@ public class RotorBankParser {
                 Element rotorElement = (Element) currentNode;
                 String rotorName = rotorElement.getElementsByTagName(NAME_TAG).item(0).getTextContent();
                 String rotorEncoding = rotorElement.getElementsByTagName(ENCODING_TAG).item(0).getTextContent();
-                int rotorTurnover = Integer
-                        .parseInt(rotorElement.getElementsByTagName(TURNOVER_TAG).item(0).getTextContent());
+                char rotorTurnover = rotorElement.getElementsByTagName(TURNOVER_TAG).item(0).getTextContent().charAt(0);
                 Rotor rotor;
                 try {
-                    rotor = RotorFactory.buildCustomRotor(rotorName, rotorEncoding, 0, 0, rotorTurnover);
+                    rotor = RotorFactory.buildCustomRotor(rotorName, rotorEncoding, 0, 0, Tools.convertCharToIndex(rotorTurnover));
                 } catch (InvalidRotorEncodingException e) {
                     continue;
                 }
