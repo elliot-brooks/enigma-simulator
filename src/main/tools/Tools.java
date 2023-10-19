@@ -8,7 +8,7 @@ public class Tools {
 
     public static int convertCharToIndex(char c) {
         char correctedCase = Character.toUpperCase(c);
-        return c - Constants.JAVA_A_VALUE;
+        return correctedCase - Constants.JAVA_A_VALUE;
     }
 
     public static int correctUserIntegerInput(int normalInteger) {
