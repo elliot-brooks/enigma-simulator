@@ -48,6 +48,9 @@ public class RotorFactory {
     }
 
     private static boolean validateEncoding(String encoding) {
+        if (encoding == null) {
+            return false;
+        }
         if (encoding.length() != encoding.chars().distinct().count() && encoding.length() != 26) {
             return false;
         }
