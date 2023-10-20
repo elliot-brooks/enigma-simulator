@@ -10,7 +10,7 @@ The program can be compiled by using
 //Linux/MacOS
 ./compile_all.sh
 ```
-### Command Line Interfact
+### Command Line Interface
 You can configure the enigma machine settings by using `src/main/resources/enigma_settings.xml`
 
 The program can be ran using 
