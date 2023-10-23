@@ -50,9 +50,9 @@ TO BE CONTINUED...
 - $V$ Rotor
 
 ## Included Reflector Configurations
-- UKW-A Reflector
-- UKW-B Reflector
-- UKW-C Reflector
+- **UKW-A** Reflector
+- **UKW-B** Reflector
+- **UKW-C** Reflector
 ---
 **Created by**
 
