@@ -72,7 +72,8 @@ public class Enigma {
         sb.append("Reflector : " + reflector.getName() + " (" + reflector.getEncoding() + ")\n");
         for (int rotorSlot = 0; rotorSlot < rotors.size(); rotorSlot++) {
             sb.append(rotorMap.get(rotorSlot) + rotors.get(rotorSlot).getName() + "\n");
-            sb.append("    Current Rotation : " + Tools.convertIndexToCharacter(rotors.get(rotorSlot).getRotationPosition()) + "\n");
+            sb.append("    Current Rotation : "
+                    + Tools.convertIndexToCharacter(rotors.get(rotorSlot).getRotationPosition()) + "\n");
             sb.append("    Ring Setting : " + rotors.get(rotorSlot).getRingSetting() + "\n");
             sb.append("    Encoding : " + rotors.get(rotorSlot).getEncoding() + "\n");
         }
@@ -82,11 +83,13 @@ public class Enigma {
 
     private void rotate() {
         // Double stepping
+        boolean doubleStepped = false;
         if (rotors.get(ROTOR_SLOT_2).isAtTurnoverPosition()) {
             rotors.get(ROTOR_SLOT_2).rotate();
             rotors.get(ROTOR_SLOT_3).rotate();
+            doubleStepped = true;
         }
-        if (rotors.get(ROTOR_SLOT_1).isAtTurnoverPosition()) {
+        if (rotors.get(ROTOR_SLOT_1).isAtTurnoverPosition() && !doubleStepped) {
             rotors.get(ROTOR_SLOT_2).rotate();
         }
 
