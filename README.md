@@ -4,10 +4,10 @@ A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the 
 ## How to run the program
 The program can be compiled by using
 ```
-//Windows
+// Windows
 ./compile_all.bat
 
-//Linux/MacOS
+// Linux/MacOS
 ./compile_all.sh
 ```
 ### Command Line Interface
@@ -15,10 +15,10 @@ You can configure the enigma machine settings by using `src/main/resources/enigm
 
 The program can be ran using 
 ```
-//Windows
+// Windows
 ./run_cli.bat
 
-//Linux/MacOS
+// Linux/MacOS
 ./run_cli.sh
 ```
 ### GUI
