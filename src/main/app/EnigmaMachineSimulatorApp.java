@@ -5,10 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.enigma.Enigma;
 
-public class TestApp extends Application{
+public class EnigmaMachineSimulatorApp extends Application{
     @Override
     public void start(Stage stage){
+        Enigma enigmamac = Enigma.createDefaultEnigma();
         String javaVersion = System.getProperty("java.version");
         String javafxVersion = System.getProperty("javafx.version");
         Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
