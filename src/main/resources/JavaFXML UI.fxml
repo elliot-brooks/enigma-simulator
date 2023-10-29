@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<Scene fill="#eeeeee" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="640.0" prefWidth="640.0">
+      <children>
+         <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <HBox alignment="CENTER" prefHeight="164.0" prefWidth="769.0">
+                  <children>
+                     <TitledPane animated="false" collapsible="false" prefHeight="226.0" prefWidth="208.0" text="Reflector">
+                        <content>
+                           <BorderPane prefHeight="129.0" prefWidth="227.0">
+                              <center>
+                                 <ChoiceBox prefWidth="150.0" BorderPane.alignment="CENTER" />
+                              </center>
+                           </BorderPane>
+                        </content>
+                     </TitledPane>
+                     <TitledPane animated="false" collapsible="false" prefHeight="150.0" prefWidth="489.0" text="Rotors">
+                        <content>
+                           <VBox prefHeight="129.0" prefWidth="489.0">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <ChoiceBox prefWidth="150.0" />
+                                       <ChoiceBox prefWidth="150.0" />
+                                       <ChoiceBox prefWidth="150.0" />
+                                    </children>
+                                 </HBox>
+                                 <Label text="Rotation" />
+                                 <HBox prefHeight="12.0" prefWidth="349.0">
+                                    <children>
+                                       <Spinner />
+                                       <Spinner />
+                                       <Spinner />
+                                    </children>
+                                 </HBox>
+                                 <Label text="Ring Setting" />
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Spinner />
+                                       <Spinner />
+                                       <Spinner />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </content>
+                     </TitledPane>
+                  </children>
+               </HBox>
+               <TitledPane animated="false" collapsible="false" text="Plugboard">
+                  <content>
+                     <BorderPane prefHeight="0.0" prefWidth="638.0">
+                        <center>
+                           <TextField BorderPane.alignment="CENTER" />
+                        </center>
+                     </BorderPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" collapsible="false" text="Input">
+                  <content>
+                     <BorderPane prefHeight="50.0" prefWidth="638.0">
+                        <bottom>
+                           <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="619.0" BorderPane.alignment="CENTER">
+                              <children>
+                                 <Button graphicTextGap="100.0" mnemonicParsing="false" text="Clear">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </Button>
+                                 <Button mnemonicParsing="false" text="Submit">
+                                    <HBox.margin>
+                                       <Insets right="10.0" />
+                                    </HBox.margin>
+                                 </Button>
+                                 <CheckBox mnemonicParsing="false" text="Show Logging" />
+                              </children>
+                           </HBox>
+                        </bottom>
+                        <top>
+                           <TextField BorderPane.alignment="CENTER" />
+                        </top>
+                     </BorderPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" collapsible="false" prefHeight="159.0" prefWidth="640.0" text="Message">
+                  <content>
+                     <BorderPane prefHeight="24.0" prefWidth="638.0">
+                        <center>
+                           <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT" />
+                        </center>
+                        <bottom>
+                           <Button mnemonicParsing="false" text="Clear" BorderPane.alignment="TOP_LEFT" />
+                        </bottom>
+                     </BorderPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" text="Log">
+                  <content>
+                     <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <center>
+                           <TextArea prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
+                        </center>
+                     </BorderPane>
+                  </content>
+               </TitledPane>
+            </children>
+         </VBox>
+      </children></AnchorPane>
+</Scene>
