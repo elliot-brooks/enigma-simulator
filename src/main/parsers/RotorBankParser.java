@@ -20,7 +20,7 @@ import main.enigma.exceptions.InvalidRotorEncodingException;
 import main.tools.Tools;
 
 public class RotorBankParser {
-    private static final String ROTOR_BANK_PATH_REL = "src/main/resources/rotor_bank.xml";
+    private static final String ROTOR_BANK_PATH_REL = "config/rotor_bank.xml";
     private static final String NAME_TAG = "name";
     private static final String ENCODING_TAG = "encoding";
     private static final String TURNOVER_TAG = "turnover_position";

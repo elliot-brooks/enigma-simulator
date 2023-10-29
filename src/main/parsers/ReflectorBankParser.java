@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class ReflectorBankParser {
-    private static final String REFLECTOR_BANK_PATH_REL = "src/main/resources/reflector_bank.xml";
+    private static final String REFLECTOR_BANK_PATH_REL = "config/reflector_bank.xml";
     private static final String NAME_TAG = "name";
     private static final String ENCODING_TAG = "encoding";
 
