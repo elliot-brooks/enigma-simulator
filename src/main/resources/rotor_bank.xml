@@ -1,7 +1,0 @@
-<rotor_bank>
-    <rotor>
-        <name>MyCustomRotor</name>
-        <encoding>ZYXWVUTSRQPONMLKJIHGFEDCBA</encoding>
-        <turnover_position>E</turnover_position>
-    </rotor>
-</rotor_bank>

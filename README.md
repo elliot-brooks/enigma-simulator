@@ -11,7 +11,7 @@ The program can be compiled by using
 ./compile_all.sh
 ```
 ### Command Line Interface
-You can configure the enigma machine settings by using `src/main/resources/enigma_settings.xml`
+You can configure the enigma machine settings by using `config/enigma_settings.xml`
 
 The program can be ran using 
 ```
@@ -25,7 +25,7 @@ The program can be ran using
 TO BE CONTINUED...
 
 ### Creating custom components
-`src/main/resources` contains `rotor_bank.xml` and `reflector_bank.xml`. These files can be used to create custom rotors and reflectors which can be referenced by name in the CLI or GUI. Below shows some examples of custom components.
+`config` contains `rotor_bank.xml` and `reflector_bank.xml`. These files can be used to create custom rotors and reflectors which can be referenced by name in the CLI or GUI. Below shows some examples of custom components.
 
 ```
 <rotor>
