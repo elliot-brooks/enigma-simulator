@@ -7,7 +7,7 @@ The program can be compiled by using
 // Windows
 ./build_tools/Windows/compile_all.bat
 
-// Linux/MacOS
+// MacOS
 ./build_tools/MacOS/compile_all.sh
 ```
 ### Command Line Interface
@@ -18,11 +18,18 @@ The program can be ran using
 // Windows
 ./build_tools/Windows/run_cli.bat
 
-// Linux/MacOS
+// MacOS
 ./build_tools/MacOS/run_cli.sh
 ```
 ### GUI
-TO BE CONTINUED...
+The GUI can be ran using
+```
+// Windows
+./build_tools/Windows/run_app_windows.bat
+
+// MacOS
+./build_tools/MacOS/run_app_mac.sh
+```
 
 ### Creating custom components
 `config` contains `rotor_bank.xml` and `reflector_bank.xml`. These files can be used to create custom rotors and reflectors which can be referenced by name in the CLI or GUI. Below shows some examples of custom components.
