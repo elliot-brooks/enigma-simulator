@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "java",
             "name": "Current File",
@@ -12,18 +13,15 @@
         },
         {
             "type": "java",
-            "name": "EnigmaAppWindows",
+            "name": "Launch App",
             "request": "launch",
-            "mainClass": "main.app.TestApp",
-            "projectName": "enigma-simulator_d109f8f2",
-            "vmArgs": "--module-path .\\lib\\openjfx-21.0.1_windows-x64_bin-sdk\\javafx-sdk-21.0.1\\lib --add-modules javafx.controls"
+            "mainClass": "com.enigma_machine.app.EnigmaMachineSimulatorApp",
         },
         {
             "type": "java",
-            "name": "EnigmaSimulator",
+            "name": "Launch CLI",
             "request": "launch",
-            "mainClass": "main.cli.EnigmaSimulator",
-            "projectName": "enigma-simulator_d109f8f2"
+            "mainClass": "com.enigma_machine.cli.EnigmaSimulator",
         }
     ]
 }

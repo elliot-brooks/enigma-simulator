@@ -1,3 +1,5 @@
 bin/*
 docs/planning/*
 sources.txt
+enigma_machine_simulator/target
+enigma_machine_simulator/dependency-reduced-pom.xml
