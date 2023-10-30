@@ -15,13 +15,16 @@
             "type": "java",
             "name": "Launch App",
             "request": "launch",
-            "mainClass": "com.enigma_machine.app.EnigmaMachineSimulatorApp",
+            "cwd" : "${workspaceFolder}/enigma_machine_simulator",
+            "mainClass": "com.enigma_machine.launcher.AppLauncher",
+            "args": "gui"
         },
         {
             "type": "java",
             "name": "Launch CLI",
             "request": "launch",
-            "mainClass": "com.enigma_machine.cli.EnigmaSimulator",
+            "cwd" : "${workspaceFolder}/enigma_machine_simulator",
+            "mainClass": "com.enigma_machine.cli.EnigmaSimulator"
         }
     ]
 }
