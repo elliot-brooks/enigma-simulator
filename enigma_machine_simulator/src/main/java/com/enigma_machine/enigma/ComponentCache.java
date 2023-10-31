@@ -1,7 +1,9 @@
 package com.enigma_machine.enigma;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -54,6 +56,22 @@ public class ComponentCache {
 
     public void addRotor(String name, Rotor rotor) {
         rotorCache.putIfAbsent(name, rotor);
+    }
+
+    public List<String> getRotorNames() {
+        List<String> rotorNames = new ArrayList<>();
+        for (String str : rotorCache.keySet()) {
+            rotorNames.add(str);
+        }
+        return rotorNames;
+    }
+
+    public List<String> getReflectorNames() {
+        List<String> reflectorNames = new ArrayList<>();
+        for (String str : reflectorCache.keySet()) {
+            reflectorNames.add(str);
+        }
+        return reflectorNames;
     }
 
 }
