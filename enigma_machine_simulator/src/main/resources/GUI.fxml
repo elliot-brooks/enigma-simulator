@@ -101,7 +101,7 @@
                <content>
                   <BorderPane prefHeight="24.0" prefWidth="638.0">
                      <center>
-                        <TextArea fx:id="message_text" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT" />
+                        <TextArea fx:id="message_text" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT" />
                      </center>
                      <bottom>
                         <Button fx:id="clear_message_btn" mnemonicParsing="false" text="Clear" BorderPane.alignment="TOP_LEFT" />
@@ -113,7 +113,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <TextArea fx:id="log_text_area" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
+                        <TextArea fx:id="log_text_area" editable="false" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </content>
