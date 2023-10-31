@@ -14,9 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0"
-   xmlns="http://javafx.com/javafx/21"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enigma_machine.app.Controller">
+<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -79,12 +77,12 @@
                      <bottom>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="619.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="clear_input_btn" graphicTextGap="100.0" mnemonicParsing="false" onAction="#clearInputText" text="Clear">
+                              <Button fx:id="clear_input_btn" graphicTextGap="100.0" mnemonicParsing="false" text="Clear">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="submit_text_btn" mnemonicParsing="false" onAction="#submitInputText" text="Submit">
+                              <Button fx:id="submit_text_btn" mnemonicParsing="false" text="Submit">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -103,10 +101,10 @@
                <content>
                   <BorderPane prefHeight="24.0" prefWidth="638.0">
                      <center>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT" />
+                        <TextArea fx:id="message_text" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT" />
                      </center>
                      <bottom>
-                        <Button fx:id="clear_message_btn" mnemonicParsing="false" onAction="#clearMessageText" text="Clear" BorderPane.alignment="TOP_LEFT" />
+                        <Button fx:id="clear_message_btn" mnemonicParsing="false" text="Clear" BorderPane.alignment="TOP_LEFT" />
                      </bottom>
                   </BorderPane>
                </content>
@@ -115,7 +113,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <TextArea fx:id="log_text_field" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
+                        <TextArea fx:id="log_text_area" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </content>
