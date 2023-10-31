@@ -74,7 +74,7 @@ public class Enigma {
             sb.append(rotorMap.get(rotorSlot) + rotors.get(rotorSlot).getName() + "\n");
             sb.append("    Current Rotation : "
                     + Tools.convertIndexToCharacter(rotors.get(rotorSlot).getRotationPosition()) + "\n");
-            sb.append("    Ring Setting : " + rotors.get(rotorSlot).getRingSetting() + "\n");
+            sb.append("    Ring Setting : " + Tools.plusOneInteger(rotors.get(rotorSlot).getRingSetting()) + "\n");
             sb.append("    Encoding : " + rotors.get(rotorSlot).getEncoding() + "\n");
         }
 

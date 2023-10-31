@@ -74,7 +74,7 @@ public class EnigmaSettingsParser {
                 if (rotor == null) {
                     throw new MissingRotorException(rotorName);
                 }
-                rotor.setRingSetting(rotorRingSetting);
+                rotor.setRingSetting(Tools.minusOneInteger(rotorRingSetting));
                 rotor.setRotationPosition(Tools.convertCharToIndex(rotorStartPosition));
                 this.rotors.add(rotor);
             }

@@ -11,8 +11,12 @@ public class Tools {
         return correctedCase - Constants.JAVA_A_VALUE;
     }
 
-    public static int correctUserIntegerInput(int normalInteger) {
+    public static int minusOneInteger(int normalInteger) {
         return normalInteger - 1;
+    }
+
+    public static int plusOneInteger(int integer) {
+        return integer + 1;
     }
 
 }
