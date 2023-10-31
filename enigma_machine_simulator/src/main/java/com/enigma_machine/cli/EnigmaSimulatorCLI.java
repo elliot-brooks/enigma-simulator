@@ -13,8 +13,8 @@ import com.enigma_machine.parsers.EnigmaSettingsParser;
 import com.enigma_machine.parsers.exceptions.MissingReflectorException;
 import com.enigma_machine.parsers.exceptions.MissingRotorException;
 
-public class EnigmaSimulator {
-    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException,
+public class EnigmaSimulatorCLI {
+    public static void launchCLI() throws ParserConfigurationException, SAXException, IOException,
             MissingRotorException, MissingReflectorException {
         ComponentCache cache = new ComponentCache();
         cache.initialise();

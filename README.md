@@ -14,13 +14,13 @@ You can configure the enigma machine settings by using `config/enigma_settings.x
 The program can be ran using 
 ```
 cd enigma_machine_simulator
-java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.App cli
+java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.Launcher cli
 ```
 ### GUI
 The GUI can be ran using
 ```
 cd enigma_machine_simulator
-java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.AppLauncher gui
+java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.Launcher gui
 ```
 
 ### Creating custom components

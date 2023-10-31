@@ -6,12 +6,12 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.enigma_machine.app.EnigmaMachineSimulatorApp;
-import com.enigma_machine.cli.EnigmaSimulator;
+import com.enigma_machine.app.EnigmaSimulatorApp;
+import com.enigma_machine.cli.EnigmaSimulatorCLI;
 import com.enigma_machine.parsers.exceptions.MissingReflectorException;
 import com.enigma_machine.parsers.exceptions.MissingRotorException;
 
-public class AppLauncher {
+public class Launcher {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException,
             MissingRotorException, MissingReflectorException {
         if (args.length != 1) {
@@ -19,10 +19,10 @@ public class AppLauncher {
             return;
         }
         if (args[0].equals("cli")) {
-            EnigmaSimulator.main(args);
+            EnigmaSimulatorCLI.launchCLI();
         }
         if (args[0].equals("gui")) {
-            EnigmaMachineSimulatorApp.main(args);
+            EnigmaSimulatorApp.launchApp();
         }
     }
 }

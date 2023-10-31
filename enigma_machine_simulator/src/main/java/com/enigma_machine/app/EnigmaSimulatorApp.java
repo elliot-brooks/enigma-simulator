@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EnigmaMachineSimulatorApp extends Application {
+public class EnigmaSimulatorApp extends Application {
     @FXML
     public Button clear_input_btn;
     @FXML
@@ -92,7 +92,7 @@ public class EnigmaMachineSimulatorApp extends Application {
         // TODO : Event when clicking clear
     }
 
-    public static void main(String[] args) {
+    public static void launchApp() {
         launch();
     }
 }

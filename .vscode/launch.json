@@ -15,7 +15,7 @@
       "name": "Launch App",
       "request": "launch",
       "cwd": "${workspaceFolder}/enigma_machine_simulator",
-      "mainClass": "com.enigma_machine.launcher.AppLauncher",
+      "mainClass": "com.enigma_machine.launcher.Launcher",
       "args": "gui"
     },
     {
@@ -23,7 +23,8 @@
       "name": "Launch CLI",
       "request": "launch",
       "cwd": "${workspaceFolder}/enigma_machine_simulator",
-      "mainClass": "com.enigma_machine.cli.EnigmaSimulator"
+      "mainClass": "com.enigma_machine.launcher.Launcher",
+      "args": "cli"
     }
   ]
 }
