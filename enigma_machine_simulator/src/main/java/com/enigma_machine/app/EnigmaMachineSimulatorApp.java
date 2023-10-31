@@ -1,18 +1,20 @@
 package com.enigma_machine.app;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class EnigmaMachineSimulatorApp extends Application {
     @Override
-    public void start(Stage stage) {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
+    public void start(Stage stage) throws IOException {
+        String dir = System.getProperty("user.dir");
+        AnchorPane root = FXMLLoader.load(new URL("file:" + dir + "/src/main/resources/GUI.fxml"));
+        Scene scene = new Scene(root, 640, 640);
         stage.setScene(scene);
         stage.show();
     }
