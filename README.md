@@ -4,31 +4,23 @@ A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the 
 ## How to run the program
 The program can be compiled by using
 ```
-// Windows
-./build_tools/Windows/compile_all.bat
+cd enigma_machine_simulator
+mvn package
 
-// MacOS
-./build_tools/MacOS/compile_all.sh
 ```
 ### Command Line Interface
 You can configure the enigma machine settings by using `config/enigma_settings.xml`
 
 The program can be ran using 
 ```
-// Windows
-./build_tools/Windows/run_cli.bat
-
-// MacOS
-./build_tools/MacOS/run_cli.sh
+cd enigma_machine_simulator
+java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.App cli
 ```
 ### GUI
 The GUI can be ran using
 ```
-// Windows
-./build_tools/Windows/run_app_windows.bat
-
-// MacOS
-./build_tools/MacOS/run_app_mac.sh
+cd enigma_machine_simulator
+java -cp target/enigma_machine_simulator-1.0-SNAPSHOT.jar com.enigma_machine.launcher.AppLauncher gui
 ```
 
 ### Creating custom components

@@ -1,29 +1,29 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "EnigmaAppWindows",
-            "request": "launch",
-            "mainClass": "main.app.TestApp",
-            "projectName": "enigma-simulator_d109f8f2",
-            "vmArgs": "--module-path .\\lib\\openjfx-21.0.1_windows-x64_bin-sdk\\javafx-sdk-21.0.1\\lib --add-modules javafx.controls"
-        },
-        {
-            "type": "java",
-            "name": "EnigmaSimulator",
-            "request": "launch",
-            "mainClass": "main.cli.EnigmaSimulator",
-            "projectName": "enigma-simulator_d109f8f2"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch App",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/enigma_machine_simulator",
+      "mainClass": "com.enigma_machine.launcher.AppLauncher",
+      "args": "gui"
+    },
+    {
+      "type": "java",
+      "name": "Launch CLI",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/enigma_machine_simulator",
+      "mainClass": "com.enigma_machine.cli.EnigmaSimulator"
+    }
+  ]
 }
