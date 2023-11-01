@@ -22,7 +22,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.enigma_machine.launcher.AppLauncher</mainClass>
+                                    <mainClass>com.enigma_machine.launcher.Launcher</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
