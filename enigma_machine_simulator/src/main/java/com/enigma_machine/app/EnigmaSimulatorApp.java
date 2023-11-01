@@ -1,7 +1,7 @@
 package com.enigma_machine.app;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import org.xml.sax.SAXException;
 
@@ -17,7 +17,8 @@ public class EnigmaSimulatorApp extends Application {
     public void start(Stage stage) throws IOException, SAXException {
 
         String dir = System.getProperty("user.dir");
-        FXMLLoader loader = new FXMLLoader(new URL("file:" + dir + "/src/main/resources/GUI.fxml"));
+        File fxmlFile = new File(dir + "/src/main/resources/GUI.fxml");
+        FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
         EnigmaController enigmaController = new EnigmaController();
 
         loader.setController(enigmaController);
