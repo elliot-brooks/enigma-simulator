@@ -6,7 +6,6 @@ The program can be compiled by using
 ```
 cd enigma_machine_simulator
 mvn package
-
 ```
 ### Command Line Interface
 You can configure the enigma machine settings by using `config/enigma_settings.xml`
