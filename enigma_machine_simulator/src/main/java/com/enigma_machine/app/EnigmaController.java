@@ -1,12 +1,18 @@
 package com.enigma_machine.app;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.xml.sax.SAXException;
 
 import com.enigma_machine.enigma.ComponentCache;
+import com.enigma_machine.enigma.Enigma;
+import com.enigma_machine.enigma.Plugboard;
+import com.enigma_machine.enigma.Reflector;
+import com.enigma_machine.enigma.Rotor;
 import com.enigma_machine.tools.Constants;
+import com.enigma_machine.tools.Tools;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +31,7 @@ public class EnigmaController {
     @FXML
     public Button clear_input_btn;
     @FXML
-    public Button submit_input_btn;
+    public Button submit_text_btn;
     @FXML
     public Button clear_message_btn;
     @FXML
@@ -58,6 +64,7 @@ public class EnigmaController {
     public TextArea log_text_area;
     @FXML
     public CheckBox log_toggle_box;
+    public Enigma enigmaModel;
 
     @FXML
     public void init() throws SAXException {
@@ -111,18 +118,66 @@ public class EnigmaController {
 
     @FXML
     public void initButtons() {
-        // TODO : Init all buttons
+        submit_text_btn.setOnAction(ActionEvent -> {
+            submitInputText();
+        });
+
+        clear_input_btn.setOnAction(ActionEvent -> {
+            clearInputText();
+        });
+
+        clear_message_btn.setOnAction(ActionEvent -> {
+            clearMessageText();
+        });
+    }
+
+    private void updateController() {
+        // TODO : Reflect the state of the model in the controller
+    }
+
+    private void updateModel() {
+        // Build Rotors
+        List<Rotor> rotors = new ArrayList<>();
+        Rotor leftRotor = cache.getRotor(left_rotor_choice.getValue());
+        leftRotor.setRingSetting(Tools.minusOneInteger(left_rotor_ring.getValue()));
+        leftRotor.setRotationPosition(Tools.convertCharToIndex(left_rotor_rotation.getValue()));
+
+        Rotor middleRotor = cache.getRotor(middle_rotor_choice.getValue());
+        middleRotor.setRingSetting(Tools.minusOneInteger(middle_rotor_ring.getValue()));
+        middleRotor.setRotationPosition(Tools.convertCharToIndex(middle_rotor_rotation.getValue()));
+
+        Rotor rightRotor = cache.getRotor(right_rotor_choice.getValue());
+        rightRotor.setRingSetting(Tools.minusOneInteger(right_rotor_ring.getValue()));
+        rightRotor.setRotationPosition(Tools.convertCharToIndex(right_rotor_rotation.getValue()));
+        
+        rotors.add(rightRotor);
+        rotors.add(middleRotor);
+        rotors.add(leftRotor);
+        // Build Reflector
+        Reflector reflector = cache.getReflector(reflector_choice.getValue());
+        // Build Plugobard
+        Plugboard plugboard = new Plugboard();
+        List<String> plugboardPairings = new ArrayList<>();
+        for (String string : plugboard_config.getText().split(" ")) {
+            plugboardPairings.add(string);
+        }
+        // Build enigma
+        enigmaModel = Enigma.createCustomEnigma(rotors, plugboard, reflector);
+        enigmaModel.addCables(plugboardPairings);
     }
 
     public void submitInputText() {
-        // TODO : Event when clicking submit
+        updateModel();
+        String cypherText = enigmaModel.encrypt(input_text.getText());
+        message_text.setText(cypherText);
+        // TODO : If logging enabled, update the controller to match the model
     }
 
     public void clearInputText() {
-        // TODO : Event when clicking clear
+        input_text.clear();
     }
 
     public void clearMessageText() {
-        // TODO : Event when clicking clear
+        message_text.clear();
     }
 }

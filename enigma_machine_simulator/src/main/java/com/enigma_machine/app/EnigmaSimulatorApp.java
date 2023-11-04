@@ -20,7 +20,6 @@ public class EnigmaSimulatorApp extends Application {
         File fxmlFile = new File(dir + "/src/main/resources/GUI.fxml");
         FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());
         EnigmaController enigmaController = new EnigmaController();
-
         loader.setController(enigmaController);
         AnchorPane root = loader.load();
         enigmaController.init();

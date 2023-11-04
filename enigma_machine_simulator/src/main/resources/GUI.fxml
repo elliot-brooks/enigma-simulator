@@ -109,7 +109,7 @@
                   </BorderPane>
                </content>
             </TitledPane>
-            <TitledPane animated="false" text="Log">
+            <TitledPane fx:id="log_title_pane" animated="false" text="Log">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
