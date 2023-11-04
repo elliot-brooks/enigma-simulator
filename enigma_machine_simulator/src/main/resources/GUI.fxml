@@ -109,9 +109,9 @@
                   </BorderPane>
                </content>
             </TitledPane>
-            <TitledPane fx:id="log_title_pane" animated="false" text="Log">
+            <TitledPane fx:id="log_title_pane" animated="false" prefHeight="2000.0" text="Log">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                      <center>
                         <TextArea fx:id="log_text_area" editable="false" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
                      </center>
