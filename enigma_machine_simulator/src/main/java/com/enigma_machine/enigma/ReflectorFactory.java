@@ -2,6 +2,7 @@ package com.enigma_machine.enigma;
 
 import com.enigma_machine.enigma.exceptions.InvalidReflectorEncodingException;
 import com.enigma_machine.tools.Constants;
+import com.enigma_machine.tools.Tools;
 
 public class ReflectorFactory {
 
@@ -46,17 +47,15 @@ public class ReflectorFactory {
         if (encoding == null) {
             return false;
         }
-
-        if (encoding.length() != encoding.chars().distinct().count() && encoding.length() != 26) {
+        if (encoding.length() != 26) {
             return false;
         }
-
-        char[] charArray = encoding.toCharArray();
-        if (charArray.length != Constants.ALPHABET_LENGTH) {
+        if (Tools.hasDuplicateLetters(encoding)) {
             return false;
         }
-
+        
         // Check for the case where A -> A (enigma machines could not do this)
+        char[] charArray = encoding.toCharArray();
         for (int i = 0; i < charArray.length; i++) {
             if (charArray[i] - Constants.JAVA_A_VALUE == i) {
                 return false;

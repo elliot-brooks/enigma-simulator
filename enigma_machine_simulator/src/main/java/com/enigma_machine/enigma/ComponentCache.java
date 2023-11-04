@@ -20,17 +20,17 @@ public class ComponentCache {
         rotorCache = new HashMap<>();
         reflectorCache = new HashMap<>();
         // Add preset rotors
-        rotorCache.put(RotorFactory.I_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 0, 0));
-        rotorCache.put(RotorFactory.II_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.II_ROTOR, 0, 0));
-        rotorCache.put(RotorFactory.III_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0));
-        rotorCache.put(RotorFactory.IV_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.IV_ROTOR, 0, 0));
-        rotorCache.put(RotorFactory.V_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.V_ROTOR, 0, 0));
+        this.addRotor(RotorFactory.I_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 0, 0));
+        this.addRotor(RotorFactory.II_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.II_ROTOR, 0, 0));
+        this.addRotor(RotorFactory.III_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0));
+        this.addRotor(RotorFactory.IV_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.IV_ROTOR, 0, 0));
+        this.addRotor(RotorFactory.V_ROTOR, RotorFactory.buildPresetRotor(RotorFactory.V_ROTOR, 0, 0));
         // Add preset reflectors
-        reflectorCache.put(ReflectorFactory.A_REFLECTOR,
+        this.addReflector(ReflectorFactory.A_REFLECTOR,
                 ReflectorFactory.buildPresetReflector(ReflectorFactory.A_REFLECTOR));
-        reflectorCache.put(ReflectorFactory.B_REFLECTOR,
+        this.addReflector(ReflectorFactory.B_REFLECTOR,
                 ReflectorFactory.buildPresetReflector(ReflectorFactory.B_REFLECTOR));
-        reflectorCache.put(ReflectorFactory.C_REFLECTOR,
+        this.addReflector(ReflectorFactory.C_REFLECTOR,
                 ReflectorFactory.buildPresetReflector(ReflectorFactory.C_REFLECTOR));
         // Add custom rotors + reflectors
         try {

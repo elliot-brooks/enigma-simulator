@@ -81,6 +81,20 @@ public class Plugboard {
         return pairedList;
     }
 
+    public String getEncoding() {
+        List<String> pairs = getPairedCharacters();
+        if (pairs.size() == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < pairs.size() - 1; i++ ) {
+            sb.append(pairs.get(i) + " ");
+        }
+        sb.append(pairs.get(pairs.size() - 1));
+
+        return sb.toString();
+    }
+
     public int getCablesUsed() {
         return cablesUsed;
     }

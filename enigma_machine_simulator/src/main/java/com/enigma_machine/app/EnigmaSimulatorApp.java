@@ -15,7 +15,7 @@ public class EnigmaSimulatorApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SAXException {
-
+        stage.setResizable(false);
         String dir = System.getProperty("user.dir");
         File fxmlFile = new File(dir + "/src/main/resources/GUI.fxml");
         FXMLLoader loader = new FXMLLoader(fxmlFile.toURI().toURL());

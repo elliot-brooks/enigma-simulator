@@ -1,6 +1,11 @@
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import org.junit.Test;
 
@@ -40,6 +45,16 @@ public class PlugboardTest {
         for (int i = 0; i < 26; i++) {
             assertEquals(i, plugboardUnderTest.encrypt(i));
         }
+    }
+
+    @Test
+    public void getPairedCharacterTest() throws PlugboardConnectionAlreadyEstablishedException {
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("AE");
+        expectedResult.add("EA");
+        plugboardUnderTest = new Plugboard();
+        plugboardUnderTest.addCable(aIndex, eIndex);
+        assertArrayEquals(expectedResult.toArray(), plugboardUnderTest.getPairedCharacters().toArray());
     }
 
 }

@@ -45,6 +45,18 @@ public class Enigma {
         this.reflector = reflector;
     }
 
+    public Plugboard getPlugboard() {
+        return plugboard;
+    }
+
+    public List<Rotor> getRotors() {
+        return rotors;
+    }
+
+    public Reflector getReflector() {
+        return reflector;
+    }
+
     public static Enigma createDefaultEnigma() {
         List<Rotor> defaultRotors = new ArrayList<>();
         Rotor rightRotor = RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0);
@@ -68,7 +80,7 @@ public class Enigma {
 
         StringBuilder sb = new StringBuilder();
         sb.append("Plugboard : ");
-        sb.append(plugboard.getPairedCharacters() + "\n");
+        sb.append("[" + plugboard.getEncoding() + "]\n");
         sb.append("Reflector : " + reflector.getName() + " (" + reflector.getEncoding() + ")\n");
         for (int rotorSlot = 0; rotorSlot < rotors.size(); rotorSlot++) {
             sb.append(rotorMap.get(rotorSlot) + rotors.get(rotorSlot).getName() + "\n");
@@ -141,7 +153,7 @@ public class Enigma {
     }
 
     public void configureRotorRotation(int position, int rotation) {
-        rotors.get(rotation).setRotationPosition(rotation);
+        rotors.get(position).setRotationPosition(rotation);
     }
 
     public void configureRotorRotations(int[] rotations) {

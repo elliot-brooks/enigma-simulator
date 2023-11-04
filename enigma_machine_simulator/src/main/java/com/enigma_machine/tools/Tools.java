@@ -1,5 +1,8 @@
 package com.enigma_machine.tools;
 
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 public class Tools {
 
     public static char convertIndexToCharacter(int characterIndex) {
@@ -17,6 +20,10 @@ public class Tools {
 
     public static int plusOneInteger(int integer) {
         return integer + 1;
+    }
+
+    public static boolean hasDuplicateLetters(String s) {
+        return s.chars().filter(e-> Collections.frequency(s.chars().boxed().collect(Collectors.toList()), e) > 1).count() > 1 ? true: false;
     }
 
 }

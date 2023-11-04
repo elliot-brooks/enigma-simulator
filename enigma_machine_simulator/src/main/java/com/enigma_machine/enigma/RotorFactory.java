@@ -1,6 +1,7 @@
 package com.enigma_machine.enigma;
 
 import com.enigma_machine.enigma.exceptions.InvalidRotorEncodingException;
+import com.enigma_machine.tools.Tools;
 
 public class RotorFactory {
     public static final String I_ROTOR = "I";
@@ -51,7 +52,10 @@ public class RotorFactory {
         if (encoding == null) {
             return false;
         }
-        if (encoding.length() != encoding.chars().distinct().count() && encoding.length() != 26) {
+        if (encoding.length() != 26) {
+            return false;
+        }
+        if (Tools.hasDuplicateLetters(encoding)) {
             return false;
         }
         return true;

@@ -1,6 +1,9 @@
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.enigma_machine.enigma.Enigma;
@@ -31,6 +34,30 @@ public class EnigmaTest {
     }
 
     @Test
+    public void configurationTest() {
+        Enigma machine = Enigma.createDefaultEnigma();
+        
+        List<String> plugboardPairings = new ArrayList<>();
+        plugboardPairings.add("AB");
+        plugboardPairings.add("YZ");
+        machine.addCables(plugboardPairings);
+        assertEquals("AB BA YZ ZY", machine.getPlugboard().getEncoding());
+
+        machine.configureRotorRingSetting(0, 5);
+        assertEquals(5, machine.getRotors().get(0).getRingSetting());
+
+        machine.configureRotorRotation(0, 5);
+        assertEquals(5, machine.getRotors().get(0).getRotationPosition());
+
+        machine.resetMachine();
+        assertEquals(0, machine.getRotors().get(0).getRingSetting());
+        assertEquals(0, machine.getRotors().get(0).getRotationPosition());
+        assertEquals("", machine.getPlugboard().getEncoding());
+
+        
+    }
+
+    @Test
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
@@ -54,6 +81,6 @@ public class EnigmaTest {
         Enigma machine = Enigma.createDefaultEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
         assertEquals("LIOTLD", machine.encrypt(input_text));
-
     }
+    
 }
