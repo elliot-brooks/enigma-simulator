@@ -60,17 +60,30 @@ public class ComponentCache {
 
     public List<String> getRotorNames() {
         List<String> rotorNames = new ArrayList<>();
-        for (String str : rotorCache.keySet()) {
-            rotorNames.add(str);
+        rotorNames.add(rotorCache.get(RotorFactory.I_ROTOR).getName());
+        rotorNames.add(rotorCache.get(RotorFactory.II_ROTOR).getName());
+        rotorNames.add(rotorCache.get(RotorFactory.III_ROTOR).getName());
+        rotorNames.add(rotorCache.get(RotorFactory.IV_ROTOR).getName());
+        rotorNames.add(rotorCache.get(RotorFactory.V_ROTOR).getName());
+        for (String string : rotorCache.keySet()) {
+            if (!rotorNames.contains(string)) {
+                rotorNames.add(string);
+            }
         }
         return rotorNames;
     }
 
     public List<String> getReflectorNames() {
         List<String> reflectorNames = new ArrayList<>();
-        for (String str : reflectorCache.keySet()) {
-            reflectorNames.add(str);
+        reflectorNames.add(reflectorCache.get(ReflectorFactory.A_REFLECTOR).getName());
+        reflectorNames.add(reflectorCache.get(ReflectorFactory.B_REFLECTOR).getName());
+        reflectorNames.add(reflectorCache.get(ReflectorFactory.C_REFLECTOR).getName());
+        for (String string : reflectorCache.keySet()) {
+            if (!reflectorNames.contains(string)) {
+                reflectorNames.add(string);
+            }
         }
+
         return reflectorNames;
     }
 

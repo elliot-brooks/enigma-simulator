@@ -80,7 +80,6 @@ public class EnigmaController {
     @FXML
     public void initReflectors() {
         ObservableList<String> obsList = FXCollections.observableArrayList(cache.getReflectorNames());
-        FXCollections.sort(obsList);
         reflector_choice.setItems(obsList);
         reflector_choice.getSelectionModel().selectFirst();
     }
@@ -88,7 +87,6 @@ public class EnigmaController {
     @FXML
     public void initRotors() {
         ObservableList<String> obsList = FXCollections.observableArrayList(cache.getRotorNames());
-        FXCollections.sort(obsList);
         // Set items
         left_rotor_choice.setItems(obsList);
         middle_rotor_choice.setItems(obsList);
