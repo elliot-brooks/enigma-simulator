@@ -14,7 +14,6 @@ import com.enigma_machine.enigma.Rotor;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.ListSpinnerValueFactory;
-import javafx.stage.Stage;
 
 public class EnigmaController {
     public ComponentCache cache = new ComponentCache();
@@ -134,10 +132,6 @@ public class EnigmaController {
         clear_message_btn.setOnAction(ActionEvent -> {
             clearMessageText();
         });
-    }
-
-    private void updateController() {
-        // TODO : Reflect the state of the model in the controller
     }
 
     private void updateModel() {
