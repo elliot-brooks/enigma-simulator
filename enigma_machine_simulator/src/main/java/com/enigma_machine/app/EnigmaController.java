@@ -167,7 +167,7 @@ public class EnigmaController {
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText());
         message_text.setText(cypherText);
-        // TODO : If logging enabled, update the controller to match the model
+        // TODO : If logging enabled, output to the log
     }
 
     public void clearInputText() {
