@@ -30,6 +30,6 @@ public class EnigmaSimulatorCLI {
         String message = reader.nextLine();
         reader.close();
 
-        System.out.println(message + " = \n" + machine.encrypt(message));
+        System.out.println(message + " = \n" + machine.encrypt(message, false));
     }
 }

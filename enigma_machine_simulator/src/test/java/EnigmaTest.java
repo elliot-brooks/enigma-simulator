@@ -18,15 +18,15 @@ public class EnigmaTest {
                         + //
                         "Reflector : UKW-B (YRUHQSLDPXNGOKMIEBFZCWVJAT)\n" + //
                         "Right Rotor : III\n" + //
-                        "    Current Rotation : A\n" + //
+                        "    Rotation : A\n" + //
                         "    Ring Setting : 1\n" + //
                         "    Encoding : BDFHJLCPRTXVZNYEIWGAKMUSQO\n" + //
                         "Middle Rotor : II\n" + //
-                        "    Current Rotation : A\n" + //
+                        "    Rotation : A\n" + //
                         "    Ring Setting : 1\n" + //
                         "    Encoding : AJDKSIRUXBLHWTMCQGZNPYFVOE\n" + //
                         "Left Rotor : I\n" + //
-                        "    Current Rotation : A\n" + //
+                        "    Rotation : A\n" + //
                         "    Ring Setting : 1\n" + //
                         "    Encoding : EKMFLGDQVZNTOWYHXUSPAIBRCJ\n" + //
                         "",
@@ -61,7 +61,7 @@ public class EnigmaTest {
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
-        assertEquals("BDZGO", machine.encrypt("AAAAA"));
+        assertEquals("BDZGO", machine.encrypt("AAAAA", false));
     }
 
     @Test
@@ -70,8 +70,8 @@ public class EnigmaTest {
         Enigma machine1 = Enigma.createDefaultEnigma();
         Enigma machine2 = Enigma.createDefaultEnigma();
 
-        String cybpherText = machine1.encrypt(input_text);
-        assertEquals(input_text, machine2.encrypt(cybpherText));
+        String cybpherText = machine1.encrypt(input_text, false);
+        assertEquals(input_text, machine2.encrypt(cybpherText, false));
 
     }
 
@@ -80,7 +80,7 @@ public class EnigmaTest {
         String input_text = "QQQQQQ";
         Enigma machine = Enigma.createDefaultEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
-        assertEquals("LIOTLD", machine.encrypt(input_text));
+        assertEquals("LIOTLD", machine.encrypt(input_text, false));
     }
     
 }

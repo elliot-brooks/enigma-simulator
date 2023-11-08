@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
+import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 
@@ -84,7 +85,7 @@ public class Enigma {
         sb.append("Reflector : " + reflector.getName() + " (" + reflector.getEncoding() + ")\n");
         for (int rotorSlot = 0; rotorSlot < rotors.size(); rotorSlot++) {
             sb.append(rotorMap.get(rotorSlot) + rotors.get(rotorSlot).getName() + "\n");
-            sb.append("    Current Rotation : "
+            sb.append("    Rotation : "
                     + Tools.convertIndexToCharacter(rotors.get(rotorSlot).getRotationPosition()) + "\n");
             sb.append("    Ring Setting : " + Tools.plusOneInteger(rotors.get(rotorSlot).getRingSetting()) + "\n");
             sb.append("    Encoding : " + rotors.get(rotorSlot).getEncoding() + "\n");
@@ -108,7 +109,7 @@ public class Enigma {
         rotors.get(ROTOR_SLOT_1).rotate();
     }
 
-    public char encrypt(char character) {
+    private char encrypt(char character) {
         if (!Character.isLetter(character)) {
             return character;
         }
@@ -128,12 +129,58 @@ public class Enigma {
 
     }
 
-    public String encrypt(String message) {
+    private char loggedEncryption(char character) {
+        if (!Character.isLetter(character)) {
+            return character;
+        }
+
+        EnigmaLogger.appendLine("--INPUT CHARACTER [" + character + "]--");
+        String encryptionPath = character + " -> ";
+        String currentMessageKey = "Current Rotations : ";
+        rotate();
+        int characterIndex = character - Constants.JAVA_A_VALUE;
+        int newChar;
+        newChar = plugboard.encrypt(characterIndex);
+        encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
+        for (int i = 0; i < rotors.size(); i++) {
+            newChar = rotors.get(i).encrypt(newChar, Direction.FORWARD);
+            encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
+        }
+        newChar = reflector.encrypt(newChar);
+        encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
+        for (int i = rotors.size(); i-- > 0;) {
+            currentMessageKey += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition());
+            newChar = rotors.get(i).encrypt(newChar, Direction.BACKWARD);
+            encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
+        }
+        newChar = plugboard.encrypt(newChar);
+        encryptionPath += Tools.convertIndexToCharacter(newChar);
+        EnigmaLogger.appendLine(currentMessageKey);
+        EnigmaLogger.appendLine(encryptionPath);
+        return Tools.convertIndexToCharacter(newChar);
+    }
+
+    public String encrypt(String message, boolean loggingEnabled) {
+        EnigmaLogger.clearLog();
+        if (loggingEnabled) {
+            EnigmaLogger.appendLine("INITIAL SETTINGS");
+            EnigmaLogger.appendLine(getCurrentSettings());
+        }
         message = message.toUpperCase();
         char[] charArray = message.toCharArray();
         StringBuilder sb = new StringBuilder();
         for (char c : charArray) {
-            sb.append(encrypt(c));
+            if (!loggingEnabled) {
+                sb.append(encrypt(c));
+            }
+            else {
+                sb.append(loggedEncryption(c));
+            }
+            
+        }
+        if (loggingEnabled) {
+            EnigmaLogger.appendLine("\nFINAL SETTINGS");
+            EnigmaLogger.appendLine(getCurrentSettings());
         }
         return sb.toString();
     }

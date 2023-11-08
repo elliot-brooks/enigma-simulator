@@ -11,6 +11,7 @@ import com.enigma_machine.enigma.Enigma;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.Reflector;
 import com.enigma_machine.enigma.Rotor;
+import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 
@@ -164,10 +165,11 @@ public class EnigmaController {
     }
 
     public void submitInputText() {
+        boolean logging = log_toggle_box.isSelected();
         updateModel();
-        String cypherText = enigmaModel.encrypt(input_text.getText());
+        String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
         message_text.setText(cypherText);
-        // TODO : If logging enabled, output to the log
+        log_text_area.setText(EnigmaLogger.getLog());
     }
 
     public void clearInputText() {
