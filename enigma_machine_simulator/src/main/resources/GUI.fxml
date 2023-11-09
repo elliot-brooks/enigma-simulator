@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -14,7 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="820.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="820.0" prefWidth="820.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -87,7 +90,12 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <CheckBox fx:id="log_toggle_box" mnemonicParsing="false" text="Show Logging" />
+                              <CheckBox fx:id="log_toggle_box" mnemonicParsing="false" text="Show Logging">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="visualisation_check_box" mnemonicParsing="false" text="Visualise" />
                            </children>
                         </HBox>
                      </bottom>
@@ -107,7 +115,8 @@
                         <Button fx:id="clear_message_btn" mnemonicParsing="false" text="Clear" BorderPane.alignment="TOP_LEFT">
                            <BorderPane.margin>
                               <Insets top="2.0" />
-                           </BorderPane.margin></Button>
+                           </BorderPane.margin>
+                        </Button>
                      </bottom>
                   </BorderPane>
                </content>
@@ -118,6 +127,31 @@
                      <center>
                         <TextArea fx:id="log_text_area" editable="false" prefHeight="125.0" prefWidth="619.0" BorderPane.alignment="CENTER" />
                      </center>
+                  </BorderPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" prefHeight="386.0" prefWidth="820.0" text="Visualisation">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Canvas fx:id="visualisation_canvas" height="200.0" width="800.0" BorderPane.alignment="CENTER" />
+                     </center>
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="804.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="previous_visualisation_button" mnemonicParsing="false" text="&lt;-">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="next_visualisation_button" mnemonicParsing="false" text="-&gt;">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
                   </BorderPane>
                </content>
             </TitledPane>

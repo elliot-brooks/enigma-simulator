@@ -18,6 +18,8 @@ import com.enigma_machine.tools.Tools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -27,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.ListSpinnerValueFactory;
+import javafx.scene.paint.Color;
 
 public class EnigmaController {
     public ComponentCache cache = new ComponentCache();
@@ -68,7 +71,12 @@ public class EnigmaController {
     public CheckBox log_toggle_box;
     @FXML
     public TitledPane log_title_pane;
+    @FXML
+    public CheckBox visualisation_check_box;
+    @FXML
+    public Canvas visualisation_canvas;
     public Enigma enigmaModel;
+    
 
     @FXML
     public void init() throws SAXException {
@@ -115,7 +123,6 @@ public class EnigmaController {
         left_rotor_ring.setValueFactory(left_rotor_ring_values);
         middle_rotor_ring.setValueFactory(middle_rotor_ring_values);
         right_rotor_ring.setValueFactory(right_rotor_ring_values);
-
     }
 
     @FXML
@@ -131,6 +138,52 @@ public class EnigmaController {
         clear_message_btn.setOnAction(ActionEvent -> {
             clearMessageText();
         });
+    }
+
+    @FXML
+    private void drawVisualisation(boolean clear) {
+        final int DOT_SIZE = 5;
+        final int Y_OFFSET = 8;        
+        final int BOX_WIDTH = 50;
+        final int PLUGBOARD_BOX_X = 700;
+        final int RIGHT_ROTOR_X = 500;
+        final int MIDDLE_ROTOR_X = 375;
+        final int LEFT_ROTOR_X = 250;
+        final int REFLECTOR_X = 50;
+        
+        GraphicsContext gc = visualisation_canvas.getGraphicsContext2D();
+        // 800
+        double width = gc.getCanvas().getWidth();
+        // 200
+        double height = gc.getCanvas().getHeight();
+        if (clear) {
+            gc.clearRect(0, 0, width, height);
+            return;
+        }
+        // Draw Rectangles
+        gc.setFill(Color.rgb(204, 204, 255));
+        gc.fillRect(PLUGBOARD_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
+        gc.fillRect(RIGHT_ROTOR_X, Y_OFFSET, BOX_WIDTH, 182);
+        gc.fillRect(MIDDLE_ROTOR_X, Y_OFFSET, BOX_WIDTH, 182);
+        gc.fillRect(LEFT_ROTOR_X, Y_OFFSET, BOX_WIDTH, 182);
+        gc.fillRect(REFLECTOR_X, Y_OFFSET, BOX_WIDTH, 182);
+        gc.setFill(Color.BLACK);
+        for (int i = 0; i < 26; i++) {
+            // PLUGBOARD
+            gc.fillOval(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            // ROTORS
+            gc.fillOval(RIGHT_ROTOR_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(RIGHT_ROTOR_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(MIDDLE_ROTOR_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(MIDDLE_ROTOR_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(LEFT_ROTOR_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            gc.fillOval(LEFT_ROTOR_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+
+            // REFLECTOR
+            gc.fillOval(REFLECTOR_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+        }
+        
     }
 
     private void updateModel() {
@@ -170,6 +223,8 @@ public class EnigmaController {
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
         message_text.setText(cypherText);
         log_text_area.setText(EnigmaLogger.getLog());
+        drawVisualisation(!visualisation_check_box.isSelected());
+
     }
 
     public void clearInputText() {
