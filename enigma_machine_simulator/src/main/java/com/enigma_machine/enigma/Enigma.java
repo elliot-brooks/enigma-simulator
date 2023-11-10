@@ -109,7 +109,7 @@ public class Enigma {
         rotors.get(ROTOR_SLOT_1).rotate();
     }
 
-    private char encrypt(char character) {
+    public char encrypt(char character) {
         if (!Character.isLetter(character)) {
             return character;
         }
