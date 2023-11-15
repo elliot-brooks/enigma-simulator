@@ -19,7 +19,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -29,7 +28,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.ListSpinnerValueFactory;
-import javafx.scene.paint.Color;
 
 public class EnigmaController {
     public ComponentCache cache = new ComponentCache();
@@ -76,6 +74,7 @@ public class EnigmaController {
     @FXML
     public Canvas visualisation_canvas;
     public Enigma enigmaModel;
+    public EnigmaVisualiser visualiser;
     
 
     @FXML
@@ -84,6 +83,7 @@ public class EnigmaController {
         initReflectors();
         initRotors();
         initButtons();
+        visualiser = new EnigmaVisualiser(visualisation_canvas);
     }
 
     @FXML
@@ -141,57 +141,6 @@ public class EnigmaController {
 
     }
 
-    @FXML
-    private void clearVisualisation() {
-        GraphicsContext gc = visualisation_canvas.getGraphicsContext2D();
-        // 800
-        double width = gc.getCanvas().getWidth();
-        // 200
-        double height = gc.getCanvas().getHeight();
-        gc.clearRect(0, 0, width, height);
-        return;
-    }
-
-    @FXML
-    private void displayCharacterVisualisation(int character) {
-        clearVisualisation();
-        final int DOT_SIZE = 5;
-        final int Y_OFFSET = 8;        
-        final int BOX_WIDTH = 50;
-        final int PLUGBOARD_BOX_X = 700;
-        final int RIGHT_ROTOR_BOX_X = 500;
-        final int MIDDLE_ROTOR_BOX_X = 375;
-        final int LEFT_ROTOR_BOX_X = 250;
-        final int REFLECTOR_BOX_X = 50;
-        
-        GraphicsContext gc = visualisation_canvas.getGraphicsContext2D();
-        
-        // Draw Rectangles
-        gc.setFill(Color.rgb(204, 204, 255));
-        gc.fillRect(PLUGBOARD_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
-        gc.fillRect(RIGHT_ROTOR_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
-        gc.fillRect(MIDDLE_ROTOR_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
-        gc.fillRect(LEFT_ROTOR_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
-        gc.fillRect(REFLECTOR_BOX_X, Y_OFFSET, BOX_WIDTH, 182);
-        gc.setFill(Color.BLACK);
-        // Generate Rectangles
-        for (int i = 0; i < 26; i++) {
-            // PLUGBOARD
-            gc.fillOval(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            // ROTORS
-            gc.fillOval(RIGHT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(LEFT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            gc.fillOval(LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            // REFLECTOR
-            gc.fillOval(REFLECTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (i * 7) + DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-        }
-        
-    }
-
     private void updateModel() {
         // Build Rotors
         List<Rotor> rotors = new ArrayList<>();
@@ -231,10 +180,10 @@ public class EnigmaController {
         log_text_area.setText(EnigmaLogger.getLog());
         // Draw first letter here if visulisation
         if (visualisation_check_box.isSelected()) {
-            displayCharacterVisualisation(0);
+            visualiser.drawWiringDiagram();
         }
         else {
-            clearVisualisation();
+            visualiser.clearVisualisation();
         }
     }
 
