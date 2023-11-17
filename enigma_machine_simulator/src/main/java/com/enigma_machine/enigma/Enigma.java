@@ -109,7 +109,7 @@ public class Enigma {
         rotors.get(ROTOR_SLOT_1).rotate();
     }
 
-    public char encrypt(char character) {
+    private char encrypt(char character) {
         if (!Character.isLetter(character)) {
             return character;
         }
@@ -135,6 +135,7 @@ public class Enigma {
         }
 
         EnigmaLogger.appendLine("--INPUT CHARACTER [" + character + "]--");
+        EnigmaLogger.addRotation(getCurrentRotation());
         String encryptionPath = character + " -> ";
         String currentMessageKey = "Current Rotations : ";
         rotate();
@@ -157,11 +158,12 @@ public class Enigma {
         encryptionPath += Tools.convertIndexToCharacter(newChar);
         EnigmaLogger.appendLine(currentMessageKey);
         EnigmaLogger.appendLine(encryptionPath);
+        EnigmaLogger.addEncrryptionStep(encryptionPath);
         return Tools.convertIndexToCharacter(newChar);
     }
 
     public String encrypt(String message, boolean loggingEnabled) {
-        EnigmaLogger.clearLog();
+        EnigmaLogger.resetLogger();
         if (loggingEnabled) {
             EnigmaLogger.appendLine("INITIAL SETTINGS");
             EnigmaLogger.appendLine(getCurrentSettings());
@@ -181,6 +183,9 @@ public class Enigma {
         if (loggingEnabled) {
             EnigmaLogger.appendLine("\nFINAL SETTINGS");
             EnigmaLogger.appendLine(getCurrentSettings());
+            EnigmaLogger.setRingSetting(getRingSettings());
+            EnigmaLogger.setPlaintext(message);
+            EnigmaLogger.setCyphertext(sb.toString());
         }
         return sb.toString();
     }
@@ -260,6 +265,22 @@ public class Enigma {
 
         int[] parsedPairing = parseCablePairing(cablePairing);
         plugboard.addCable(parsedPairing[0], parsedPairing[1]);
+    }
+
+    public int[] getCurrentRotation() {
+        int[] rotations = new int[3];
+        rotations[0] = rotors.get(ROTOR_SLOT_1).getRotationPosition();
+        rotations[1] = rotors.get(ROTOR_SLOT_2).getRotationPosition();
+        rotations[2] = rotors.get(ROTOR_SLOT_3).getRotationPosition();
+        return rotations;
+    }
+
+    public int[] getRingSettings() {
+        int[] ringSettings = new int[3];
+        ringSettings[0] = rotors.get(ROTOR_SLOT_1).getRingSetting();
+        ringSettings[1] = rotors.get(ROTOR_SLOT_2).getRingSetting();
+        ringSettings[2] = rotors.get(ROTOR_SLOT_3).getRingSetting();
+        return ringSettings;
     }
 
     public void removeCable(String cablePairing) throws PlugboardConnectionDoesNotExistException {

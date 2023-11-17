@@ -111,7 +111,6 @@ public class EnigmaController {
         ListSpinnerValueFactory<Character> left_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> middle_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> right_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
-
         left_rotor_rotation.setValueFactory(left_rotor_values);
         middle_rotor_rotation.setValueFactory(middle_rotor_values);
         right_rotor_rotation.setValueFactory(right_rotor_values);
