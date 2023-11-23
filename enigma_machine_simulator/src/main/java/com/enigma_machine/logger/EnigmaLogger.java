@@ -11,7 +11,9 @@ public class EnigmaLogger {
     private static String cyphertext = "";
     private static int[] ringSettings;
     private static List<int[]> rotations = new ArrayList<>();
+    private static List<String> rotationStrings = new ArrayList<>();
     private static List<String> encryptionSteps = new ArrayList<>();
+    private static boolean hasLogged = false;
 
     public static void appendLine(String s) {
         logString = logString + s + "\n";
@@ -23,7 +25,17 @@ public class EnigmaLogger {
         cyphertext = "";
         encryptionSteps = new ArrayList<>();
         rotations = new ArrayList<>();
+        rotationStrings = new ArrayList<>();
         ringSettings = new int[0];
+        hasLogged = false;
+    }
+
+    public static boolean hasLogged() {
+        return hasLogged;
+    }
+
+    public static void setLogged(boolean logged) {
+        hasLogged = logged;
     }
 
     public static String getLog() {
@@ -52,6 +64,14 @@ public class EnigmaLogger {
 
     public static void addRotation(int[] rotationSettings) {
         rotations.add(rotationSettings);
+    }
+
+    public static void addRotationString(String rotation) {
+        rotationStrings.add(rotation);
+    }
+
+    public static String getRotationString(int index) {
+        return rotationStrings.get(index);
     }
 
     public static int[] getEncryptionStepArray(int index) {

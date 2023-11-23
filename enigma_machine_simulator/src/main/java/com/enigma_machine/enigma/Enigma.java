@@ -133,7 +133,7 @@ public class Enigma {
         if (!Character.isLetter(character)) {
             return character;
         }
-
+        EnigmaLogger.setLogged(true);
         EnigmaLogger.appendLine("--INPUT CHARACTER [" + character + "]--");
         EnigmaLogger.addRotation(getCurrentRotation());
         String encryptionPath = character + " -> ";
@@ -149,11 +149,14 @@ public class Enigma {
         }
         newChar = reflector.encrypt(newChar);
         encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
+        String rotationString = "";
         for (int i = rotors.size(); i-- > 0;) {
-            currentMessageKey += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition());
+            rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
             newChar = rotors.get(i).encrypt(newChar, Direction.BACKWARD);
             encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
         }
+        EnigmaLogger.addRotationString(rotationString);
+        currentMessageKey += rotationString;
         newChar = plugboard.encrypt(newChar);
         encryptionPath += Tools.convertIndexToCharacter(newChar);
         EnigmaLogger.appendLine(currentMessageKey);

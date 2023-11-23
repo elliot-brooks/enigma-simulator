@@ -22,6 +22,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -70,11 +71,18 @@ public class EnigmaController {
     @FXML
     public TitledPane log_title_pane;
     @FXML
-    public CheckBox visualisation_check_box;
-    @FXML
     public Canvas visualisation_canvas;
+    @FXML
+    public Button next_visualisation_button;
+    @FXML
+    public Button previous_visualisation_button;
+    @FXML
+    public Label encryption_step_label;
+    @FXML
+    public Label current_rotation_label;
     public Enigma enigmaModel;
     public EnigmaVisualiser visualiser;
+    public int visualiserIndex = 0;
     
 
     @FXML
@@ -84,6 +92,18 @@ public class EnigmaController {
         initRotors();
         initButtons();
         visualiser = new EnigmaVisualiser(visualisation_canvas);
+    }
+
+    public void incrementIndex() {
+        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1) {
+            visualiserIndex++;
+        }
+    }
+
+    public void decrementIndex() {
+        if (visualiserIndex > 0) {
+            visualiserIndex--;
+        }
     }
 
     @FXML
@@ -136,6 +156,25 @@ public class EnigmaController {
 
         clear_message_btn.setOnAction(ActionEvent -> {
             clearMessageText();
+
+        });
+
+        next_visualisation_button.setOnAction(ActionEvent -> {
+            incrementIndex();
+            if (EnigmaLogger.hasLogged()) {
+                visualiser.drawWiringDiagram(visualiserIndex);
+                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            }
+        });
+
+        previous_visualisation_button.setOnAction(ActionEvent -> {
+            decrementIndex();
+            if (EnigmaLogger.hasLogged()) {
+                visualiser.drawWiringDiagram(visualiserIndex);
+                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            }
         });
 
     }
@@ -175,22 +214,36 @@ public class EnigmaController {
         boolean logging = log_toggle_box.isSelected();
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
+        visualiserIndex = 0;
         message_text.setText(cypherText);
-        log_text_area.setText(EnigmaLogger.getLog());
-        // Draw first letter here if visulisation
-        if (visualisation_check_box.isSelected()) {
-            visualiser.drawWiringDiagram();
-        }
-        else {
+        if (logging) {
+            visualiser.drawWiringDiagram(visualiserIndex);
+            encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+            current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            log_text_area.setText(EnigmaLogger.getLog());
+        } else {
             visualiser.clearVisualisation();
+            EnigmaLogger.resetLogger();
+            log_text_area.setText("");
         }
+        
+    }
+
+    public void clearLogging() {
+        visualiser.clearVisualisation();
+        EnigmaLogger.resetLogger();
+        log_text_area.setText("");
+        encryption_step_label.setText("");
+        current_rotation_label.setText("");
     }
 
     public void clearInputText() {
         input_text.clear();
+        clearLogging();
     }
 
     public void clearMessageText() {
         message_text.clear();
+        clearLogging();
     }
 }
