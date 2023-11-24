@@ -162,21 +162,30 @@ public class EnigmaController {
         next_visualisation_button.setOnAction(ActionEvent -> {
             incrementIndex();
             if (EnigmaLogger.hasLogged()) {
-                visualiser.drawWiringDiagram(visualiserIndex);
-                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+                updateVisualiser();
             }
         });
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
             decrementIndex();
             if (EnigmaLogger.hasLogged()) {
-                visualiser.drawWiringDiagram(visualiserIndex);
-                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+                updateVisualiser();
             }
         });
 
+    }
+
+    private void updateVisualiser() {
+        boolean verbose = true;
+        if (verbose) {
+            visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)));
+        }
+        else {
+            visualiser.drawWiringDiagram(visualiserIndex, null);
+        }
+
+        encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+        current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
     }
 
     private void updateModel() {
@@ -217,14 +226,10 @@ public class EnigmaController {
         visualiserIndex = 0;
         message_text.setText(cypherText);
         if (logging) {
-            visualiser.drawWiringDiagram(visualiserIndex);
-            encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-            current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            updateVisualiser();
             log_text_area.setText(EnigmaLogger.getLog());
         } else {
-            visualiser.clearVisualisation();
-            EnigmaLogger.resetLogger();
-            log_text_area.setText("");
+            clearLogging();
         }
         
     }

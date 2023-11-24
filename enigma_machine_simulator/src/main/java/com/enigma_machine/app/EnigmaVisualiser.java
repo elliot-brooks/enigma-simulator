@@ -1,5 +1,7 @@
 package com.enigma_machine.app;
 
+import java.util.List;
+
 import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 
@@ -62,6 +64,24 @@ public class EnigmaVisualiser {
         }
     }
 
+    private void drawOtherConnections(List<String> otherConnections) {
+        for (String encryptionPath : otherConnections) {
+            int[] wiringPath = getWiringPath(encryptionPath);
+            gc.setStroke(new Color(0.5, 0.5, 0.5, 0.5));
+            // Draw forward encryption
+            gc.strokeLine(PLUGBOARD_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(RIGHT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(MIDDLE_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(LEFT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE);
+            //gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH - REFLECTOR_STUB_LENGTH, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE - 1*DOT_SIZE/3, REFLECTOR_BOX_X + BOX_WIDTH - REFLECTOR_STUB_LENGTH, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
+            // Draw backward encryption
+            gc.strokeLine(LEFT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(MIDDLE_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(RIGHT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE);
+            gc.strokeLine(PLUGBOARD_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE);
+        }
+    }
+
     private void drawActiveWire(int visualiserIndex) {
         String encryptionPath = EnigmaLogger.getEncryptionStep(visualiserIndex);
         int[] wiringPath = getWiringPath(encryptionPath);
@@ -82,31 +102,20 @@ public class EnigmaVisualiser {
         // Re-draw stubs
         gc.strokeLine(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE);
-        // Draw input text
-        gc.setFont(new Font(null, FONT_SIZE));
-
-        gc.fillText(EnigmaLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
-        gc.fillText(EnigmaLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[9] * DOT_GAP) + 2*DOT_SIZE);
-
-        // Connect plugboard and rotor1
         gc.strokeLine(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE);
-        // Connect rotor1 to rotor 2
         gc.strokeLine(RIGHT_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(RIGHT_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE);
-
-        // Connect rotor2 to rotor3
         gc.strokeLine(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE);
-
-        // Connect rotor3 to reflector
         gc.strokeLine(LEFT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(LEFT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE);
-
-        // Draw in-reflector stubs
         gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - REFLECTOR_STUB_LENGTH, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - REFLECTOR_STUB_LENGTH, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE);
-
+        // Draw Texts
+        gc.setFont(new Font(null, FONT_SIZE));
+        gc.fillText(EnigmaLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
+        gc.fillText(EnigmaLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[9] * DOT_GAP) + 2*DOT_SIZE);
 
 
     }
@@ -133,10 +142,13 @@ public class EnigmaVisualiser {
         }
     }
 
-    public void drawWiringDiagram(int visualiserIndex) {
+    public void drawWiringDiagram(int visualiserIndex, List<String> otherConnections) {
         clearVisualisation();
         drawRectangles();
         drawStubs();
+        if (otherConnections != null) {
+            drawOtherConnections(otherConnections);
+        }
         drawActiveWire(visualiserIndex);
         drawDots();        
     }
