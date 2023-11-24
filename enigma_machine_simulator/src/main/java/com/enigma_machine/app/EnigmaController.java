@@ -18,9 +18,11 @@ import com.enigma_machine.tools.Tools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -68,7 +70,20 @@ public class EnigmaController {
     public CheckBox log_toggle_box;
     @FXML
     public TitledPane log_title_pane;
+    @FXML
+    public Canvas visualisation_canvas;
+    @FXML
+    public Button next_visualisation_button;
+    @FXML
+    public Button previous_visualisation_button;
+    @FXML
+    public Label encryption_step_label;
+    @FXML
+    public Label current_rotation_label;
     public Enigma enigmaModel;
+    public EnigmaVisualiser visualiser;
+    public int visualiserIndex = 0;
+    
 
     @FXML
     public void init() throws SAXException {
@@ -76,6 +91,19 @@ public class EnigmaController {
         initReflectors();
         initRotors();
         initButtons();
+        visualiser = new EnigmaVisualiser(visualisation_canvas);
+    }
+
+    public void incrementIndex() {
+        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1) {
+            visualiserIndex++;
+        }
+    }
+
+    public void decrementIndex() {
+        if (visualiserIndex > 0) {
+            visualiserIndex--;
+        }
     }
 
     @FXML
@@ -103,7 +131,6 @@ public class EnigmaController {
         ListSpinnerValueFactory<Character> left_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> middle_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> right_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
-
         left_rotor_rotation.setValueFactory(left_rotor_values);
         middle_rotor_rotation.setValueFactory(middle_rotor_values);
         right_rotor_rotation.setValueFactory(right_rotor_values);
@@ -115,7 +142,6 @@ public class EnigmaController {
         left_rotor_ring.setValueFactory(left_rotor_ring_values);
         middle_rotor_ring.setValueFactory(middle_rotor_ring_values);
         right_rotor_ring.setValueFactory(right_rotor_ring_values);
-
     }
 
     @FXML
@@ -130,7 +156,27 @@ public class EnigmaController {
 
         clear_message_btn.setOnAction(ActionEvent -> {
             clearMessageText();
+
         });
+
+        next_visualisation_button.setOnAction(ActionEvent -> {
+            incrementIndex();
+            if (EnigmaLogger.hasLogged()) {
+                visualiser.drawWiringDiagram(visualiserIndex);
+                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            }
+        });
+
+        previous_visualisation_button.setOnAction(ActionEvent -> {
+            decrementIndex();
+            if (EnigmaLogger.hasLogged()) {
+                visualiser.drawWiringDiagram(visualiserIndex);
+                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            }
+        });
+
     }
 
     private void updateModel() {
@@ -168,15 +214,36 @@ public class EnigmaController {
         boolean logging = log_toggle_box.isSelected();
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
+        visualiserIndex = 0;
         message_text.setText(cypherText);
-        log_text_area.setText(EnigmaLogger.getLog());
+        if (logging) {
+            visualiser.drawWiringDiagram(visualiserIndex);
+            encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+            current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            log_text_area.setText(EnigmaLogger.getLog());
+        } else {
+            visualiser.clearVisualisation();
+            EnigmaLogger.resetLogger();
+            log_text_area.setText("");
+        }
+        
+    }
+
+    public void clearLogging() {
+        visualiser.clearVisualisation();
+        EnigmaLogger.resetLogger();
+        log_text_area.setText("");
+        encryption_step_label.setText("");
+        current_rotation_label.setText("");
     }
 
     public void clearInputText() {
         input_text.clear();
+        clearLogging();
     }
 
     public void clearMessageText() {
         message_text.clear();
+        clearLogging();
     }
 }
