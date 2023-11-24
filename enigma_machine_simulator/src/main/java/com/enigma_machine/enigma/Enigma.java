@@ -166,6 +166,13 @@ public class Enigma {
 
     private char loggedEncryption(char character) {
         if (!Character.isLetter(character)) {
+            EnigmaLogger.addEncryptionStep(character + " -> " + character);
+            EnigmaLogger.addRotation(getCurrentRotation());
+            String rotationString = "";
+            for (int i = rotors.size(); i-- > 0;) {
+                rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
+            }
+            EnigmaLogger.addRotationString(rotationString);
             return character;
         }
         EnigmaLogger.setLogged(true);
@@ -196,7 +203,7 @@ public class Enigma {
         encryptionPath += Tools.convertIndexToCharacter(newChar);
         EnigmaLogger.appendLine(currentMessageKey);
         EnigmaLogger.appendLine(encryptionPath);
-        EnigmaLogger.addEncrryptionStep(encryptionPath);
+        EnigmaLogger.addEncryptionStep(encryptionPath);
         return Tools.convertIndexToCharacter(newChar);
     }
 

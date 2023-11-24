@@ -15,15 +15,15 @@ public class EnigmaVisualiser {
     private GraphicsContext gc;
 
     static final int Y_OFFSET = 8;  
-    static final int DOT_SIZE = 5;
+    static final int DOT_SIZE = 4;
     static final int DOT_GAP = 7;
     static final int BOX_WIDTH = 50;
     static final int BOX_HEIGHT = 182;
-    static final int PLUGBOARD_BOX_X = 700;
-    static final int RIGHT_ROTOR_BOX_X = 500;
-    static final int MIDDLE_ROTOR_BOX_X = 375;
-    static final int LEFT_ROTOR_BOX_X = 250;
-    static final int REFLECTOR_BOX_X = 50;
+    static final int PLUGBOARD_BOX_X = 675;
+    static final int RIGHT_ROTOR_BOX_X = 475;
+    static final int MIDDLE_ROTOR_BOX_X = 350;
+    static final int LEFT_ROTOR_BOX_X = 225;
+    static final int REFLECTOR_BOX_X = 25;
     static final int INPUT_STUB_LENGTH = 30;
     static final int REFLECTOR_STUB_LENGTH = 25;
     static final int FONT_SIZE = 10;
@@ -37,6 +37,15 @@ public class EnigmaVisualiser {
     }
 
     private void drawRectangles() {
+        // Draw background box to act as a border
+        gc.setFill(Color.BLACK);
+        final int border_width = 1;
+        gc.fillRect(PLUGBOARD_BOX_X-border_width, Y_OFFSET-border_width, BOX_WIDTH+2*border_width, BOX_HEIGHT+2*border_width);
+        gc.fillRect(RIGHT_ROTOR_BOX_X-border_width, Y_OFFSET-border_width, BOX_WIDTH+2*border_width, BOX_HEIGHT+2*border_width);
+        gc.fillRect(MIDDLE_ROTOR_BOX_X-border_width, Y_OFFSET-border_width, BOX_WIDTH+2*border_width, BOX_HEIGHT+2*border_width);
+        gc.fillRect(LEFT_ROTOR_BOX_X-border_width, Y_OFFSET-border_width, BOX_WIDTH+2*border_width, BOX_HEIGHT+2*border_width);
+        gc.fillRect(REFLECTOR_BOX_X-border_width, Y_OFFSET-border_width, BOX_WIDTH+2*border_width, BOX_HEIGHT+2*border_width);
+        // Draw boxes
         gc.setFill(Color.rgb(204, 204, 255));
         gc.fillRect(PLUGBOARD_BOX_X, Y_OFFSET, BOX_WIDTH, BOX_HEIGHT);
         gc.fillRect(RIGHT_ROTOR_BOX_X, Y_OFFSET, BOX_WIDTH, BOX_HEIGHT);

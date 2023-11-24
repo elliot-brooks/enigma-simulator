@@ -80,6 +80,8 @@ public class EnigmaController {
     public Label encryption_step_label;
     @FXML
     public Label current_rotation_label;
+    @FXML
+    public CheckBox verbose_logging_toggle;
     public Enigma enigmaModel;
     public EnigmaVisualiser visualiser;
     public int visualiserIndex = 0;
@@ -176,14 +178,16 @@ public class EnigmaController {
     }
 
     private void updateVisualiser() {
-        boolean verbose = true;
-        if (verbose) {
-            visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)));
+        boolean verbose = verbose_logging_toggle.isSelected();
+        visualiser.clearVisualisation();
+        if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+            if (verbose) {
+                visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)));
+            }
+            else {
+                visualiser.drawWiringDiagram(visualiserIndex, null);
+            }
         }
-        else {
-            visualiser.drawWiringDiagram(visualiserIndex, null);
-        }
-
         encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
         current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
     }
@@ -220,6 +224,10 @@ public class EnigmaController {
     }
 
     public void submitInputText() {
+        if (input_text.getText().isEmpty()) {
+            clearLogging();
+            return;
+        }
         boolean logging = log_toggle_box.isSelected();
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
