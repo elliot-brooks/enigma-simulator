@@ -41,4 +41,8 @@ public class Reflector {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int[] getWiring() {
+        return wiring;
+    }
 }

@@ -182,10 +182,10 @@ public class EnigmaController {
         visualiser.clearVisualisation();
         if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
             if (verbose) {
-                visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)));
+                visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)), enigmaModel.getReflector().getWiring());
             }
             else {
-                visualiser.drawWiringDiagram(visualiserIndex, null);
+                visualiser.drawWiringDiagram(visualiserIndex, null, enigmaModel.getReflector().getWiring());
             }
         }
         encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
