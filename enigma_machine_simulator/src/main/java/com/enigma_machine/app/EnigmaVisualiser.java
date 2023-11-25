@@ -134,10 +134,16 @@ public class EnigmaVisualiser {
     private void initRailHeightMap(int[] wiring) {
         railHeightMap = new HashMap<>();
         for (int character = 0; character < wiring.length; character++) {
-            int height = (character + 2) * 3;
+            int height = calculateRailHeight(character);
             railHeightMap.putIfAbsent(character, height);
             railHeightMap.putIfAbsent(wiring[character], height);
         }
+    }
+
+    private int calculateRailHeight(int character) {
+        final int INITIAL_SPACING = 2;
+        final int RAIL_SPACING = 5;
+        return ((character % 14) + INITIAL_SPACING) * RAIL_SPACING;
     }
 
     private void drawReflectorWires(int[] wiring) {
