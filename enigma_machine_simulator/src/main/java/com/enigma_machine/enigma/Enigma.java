@@ -129,13 +129,54 @@ public class Enigma {
 
     }
 
+    /**
+     * Returns all possible encryption paths for a given rotation
+     */
+    public List<String> getAllPossiblePaths(int[] rotations) {
+        int[] currentRotation = getCurrentRotation();
+        this.configureRotorRotations(rotations);
+        List<String> possibleEncryptionPaths = new ArrayList<String>();
+        for (int index = 0; index < Constants.ALPHABET_LENGTH; index++) {
+            int charIndex = index;
+            String encryptionPath = "";
+            encryptionPath += Tools.convertIndexToCharacter(charIndex) + " -> ";
+            charIndex = plugboard.encrypt(charIndex);
+            encryptionPath += Tools.convertIndexToCharacter(charIndex) + " -> ";
+            for (int i = 0; i < rotors.size(); i++) {
+                charIndex = rotors.get(i).encrypt(charIndex, Direction.FORWARD);
+                encryptionPath += Tools.convertIndexToCharacter(charIndex) + " -> ";
+            }
+            charIndex = reflector.encrypt(charIndex);
+            encryptionPath += Tools.convertIndexToCharacter(charIndex) + " -> ";
+            for (int i = rotors.size(); i-- > 0;) {
+                charIndex = rotors.get(i).encrypt(charIndex, Direction.BACKWARD);
+                encryptionPath += Tools.convertIndexToCharacter(charIndex) + " -> ";
+            }
+            charIndex = plugboard.encrypt(charIndex);
+            encryptionPath += Tools.convertIndexToCharacter(charIndex);
+            possibleEncryptionPaths.add(encryptionPath);
+        }
+        this.configureRotorRotations(currentRotation);
+        return possibleEncryptionPaths;
+    }
+
+    public List<String> getAllCurrentPossiblePaths() {
+        return getAllPossiblePaths(getCurrentRotation());
+    }
+
     private char loggedEncryption(char character) {
         if (!Character.isLetter(character)) {
+            EnigmaLogger.addEncryptionStep(character + " -> " + character);
+            EnigmaLogger.addRotation(getCurrentRotation());
+            String rotationString = "";
+            for (int i = rotors.size(); i-- > 0;) {
+                rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
+            }
+            EnigmaLogger.addRotationString(rotationString);
             return character;
         }
         EnigmaLogger.setLogged(true);
         EnigmaLogger.appendLine("--INPUT CHARACTER [" + character + "]--");
-        EnigmaLogger.addRotation(getCurrentRotation());
         String encryptionPath = character + " -> ";
         String currentMessageKey = "Current Rotations : ";
         rotate();
@@ -156,12 +197,13 @@ public class Enigma {
             encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
         }
         EnigmaLogger.addRotationString(rotationString);
+        EnigmaLogger.addRotation(getCurrentRotation());
         currentMessageKey += rotationString;
         newChar = plugboard.encrypt(newChar);
         encryptionPath += Tools.convertIndexToCharacter(newChar);
         EnigmaLogger.appendLine(currentMessageKey);
         EnigmaLogger.appendLine(encryptionPath);
-        EnigmaLogger.addEncrryptionStep(encryptionPath);
+        EnigmaLogger.addEncryptionStep(encryptionPath);
         return Tools.convertIndexToCharacter(newChar);
     }
 

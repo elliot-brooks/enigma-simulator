@@ -1,6 +1,8 @@
 # Enigma Simulator
 A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the German forces during WW2. This is a **Java** based project.
 
+![alt](docs/images/Enigma-wiring-diagram.png)
+
 ## How to run the program
 The program can be compiled by using
 ```

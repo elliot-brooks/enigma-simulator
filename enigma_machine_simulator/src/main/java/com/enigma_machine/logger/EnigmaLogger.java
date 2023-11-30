@@ -50,7 +50,7 @@ public class EnigmaLogger {
         cyphertext = newCyphertext;
     }
 
-    public static void addEncrryptionStep(String step) {
+    public static void addEncryptionStep(String step) {
         encryptionSteps.add(step);
     }
 

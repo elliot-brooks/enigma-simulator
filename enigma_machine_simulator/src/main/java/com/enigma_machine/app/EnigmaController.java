@@ -80,6 +80,8 @@ public class EnigmaController {
     public Label encryption_step_label;
     @FXML
     public Label current_rotation_label;
+    @FXML
+    public CheckBox verbose_logging_toggle;
     public Enigma enigmaModel;
     public EnigmaVisualiser visualiser;
     public int visualiserIndex = 0;
@@ -162,21 +164,32 @@ public class EnigmaController {
         next_visualisation_button.setOnAction(ActionEvent -> {
             incrementIndex();
             if (EnigmaLogger.hasLogged()) {
-                visualiser.drawWiringDiagram(visualiserIndex);
-                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+                updateVisualiser();
             }
         });
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
             decrementIndex();
             if (EnigmaLogger.hasLogged()) {
-                visualiser.drawWiringDiagram(visualiserIndex);
-                encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-                current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+                updateVisualiser();
             }
         });
 
+    }
+
+    private void updateVisualiser() {
+        boolean verbose = verbose_logging_toggle.isSelected();
+        visualiser.clearVisualisation();
+        if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+            if (verbose) {
+                visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)), enigmaModel.getReflector().getWiring());
+            }
+            else {
+                visualiser.drawWiringDiagram(visualiserIndex, null, enigmaModel.getReflector().getWiring());
+            }
+        }
+        encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+        current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
     }
 
     private void updateModel() {
@@ -211,20 +224,20 @@ public class EnigmaController {
     }
 
     public void submitInputText() {
+        if (input_text.getText().isEmpty()) {
+            clearLogging();
+            return;
+        }
         boolean logging = log_toggle_box.isSelected();
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
         visualiserIndex = 0;
         message_text.setText(cypherText);
         if (logging) {
-            visualiser.drawWiringDiagram(visualiserIndex);
-            encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-            current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+            updateVisualiser();
             log_text_area.setText(EnigmaLogger.getLog());
         } else {
-            visualiser.clearVisualisation();
-            EnigmaLogger.resetLogger();
-            log_text_area.setText("");
+            clearLogging();
         }
         
     }
