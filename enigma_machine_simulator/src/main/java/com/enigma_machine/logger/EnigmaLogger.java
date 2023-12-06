@@ -14,6 +14,8 @@ public class EnigmaLogger {
     private static List<String> rotationStrings = new ArrayList<>();
     private static List<String> encryptionSteps = new ArrayList<>();
     private static boolean hasLogged = false;
+    private static List<String> rotorNames = new ArrayList<>();
+    private static String reflectorName = "";
 
     public static void appendLine(String s) {
         logString = logString + s + "\n";
@@ -28,6 +30,8 @@ public class EnigmaLogger {
         rotationStrings = new ArrayList<>();
         ringSettings = new int[0];
         hasLogged = false;
+        rotorNames = new ArrayList<>();
+        reflectorName = "";
     }
 
     public static boolean hasLogged() {
@@ -102,4 +106,19 @@ public class EnigmaLogger {
         return ringSettings;
     }
 
+    public static String getRotorName(int index) {
+        return rotorNames.get(index);
+    }
+
+    public static void addRotorName(String name) {
+        rotorNames.add(name);
+    }
+
+    public static String getReflectorName() {
+        return reflectorName;
+    }
+
+    public static void setReflectorName(String name) {
+        reflectorName = name;
+    }
 }

@@ -10,6 +10,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class EnigmaVisualiser {
 
@@ -186,7 +187,21 @@ public class EnigmaVisualiser {
             drawReflectorWires(reflectorWiring);
         }
         drawActiveWire(visualiserIndex);
-        drawDots();        
+        drawText();
+        drawDots();
+    }
+
+    private void drawText() {
+        gc.setFill(Color.BLACK);
+        gc.setTextAlign(TextAlignment.CENTER);
+        final int LABEL_SIZE = 11;
+        final double LABEL_HEIGHT = CANVAS_HEIGHT - 5;
+        gc.setFont(new Font(null, LABEL_SIZE));
+        gc.fillText("Plugboard", PLUGBOARD_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaLogger.getRotorName(0), RIGHT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaLogger.getRotorName(1), MIDDLE_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaLogger.getRotorName(2), LEFT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaLogger.getReflectorName(), REFLECTOR_BOX_X + 12, LABEL_HEIGHT);
     }
 
     private int[] getWiringPath(String encryptionPath) {

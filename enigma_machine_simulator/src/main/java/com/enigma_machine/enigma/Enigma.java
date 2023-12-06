@@ -212,6 +212,10 @@ public class Enigma {
         if (loggingEnabled) {
             EnigmaLogger.appendLine("INITIAL SETTINGS");
             EnigmaLogger.appendLine(getCurrentSettings());
+            EnigmaLogger.setReflectorName(reflector.getName());
+            for (int i = 0; i < rotors.size(); i++ ) {
+                EnigmaLogger.addRotorName(rotors.get(i).getName());
+            }
         }
         message = message.toUpperCase();
         char[] charArray = message.toCharArray();
