@@ -15,7 +15,7 @@ public class Enigma {
      * Important to note that rotor[0] represents the right-most rotor in the enigma
      * machine i.e. the first rotor the current will pass through
      */
-    private List<Rotor> rotors;
+    private List<Rotor> rotors = new ArrayList<>();
     private Plugboard plugboard;
     private Reflector reflector;
 
@@ -23,8 +23,8 @@ public class Enigma {
     private static final int ROTOR_SLOT_2 = 1;
     private static final int ROTOR_SLOT_3 = 2;
 
-    private Enigma(List<Rotor> rotors, Plugboard plugobard, Reflector reflector) {
-        this.rotors = rotors;
+    private Enigma(List<Rotor> rotorsIn, Plugboard plugobard, Reflector reflector) {
+        this.rotors = rotorsIn;
         this.plugboard = plugobard;
         this.reflector = reflector;
     }

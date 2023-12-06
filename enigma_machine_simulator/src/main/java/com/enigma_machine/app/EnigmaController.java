@@ -158,7 +158,6 @@ public class EnigmaController {
 
         clear_message_btn.setOnAction(ActionEvent -> {
             clearMessageText();
-
         });
 
         next_visualisation_button.setOnAction(ActionEvent -> {
@@ -195,15 +194,15 @@ public class EnigmaController {
     private void updateModel() {
         // Build Rotors
         List<Rotor> rotors = new ArrayList<>();
-        Rotor leftRotor = cache.getRotor(left_rotor_choice.getValue());
+        Rotor leftRotor = new Rotor(cache.getRotor(left_rotor_choice.getValue()));
         leftRotor.setRingSetting(Tools.minusOneInteger(left_rotor_ring.getValue()));
         leftRotor.setRotationPosition(Tools.convertCharToIndex(left_rotor_rotation.getValue()));
 
-        Rotor middleRotor = cache.getRotor(middle_rotor_choice.getValue());
+        Rotor middleRotor = new Rotor(cache.getRotor(middle_rotor_choice.getValue()));
         middleRotor.setRingSetting(Tools.minusOneInteger(middle_rotor_ring.getValue()));
         middleRotor.setRotationPosition(Tools.convertCharToIndex(middle_rotor_rotation.getValue()));
 
-        Rotor rightRotor = cache.getRotor(right_rotor_choice.getValue());
+        Rotor rightRotor = new Rotor(cache.getRotor(right_rotor_choice.getValue()));
         rightRotor.setRingSetting(Tools.minusOneInteger(right_rotor_ring.getValue()));
         rightRotor.setRotationPosition(Tools.convertCharToIndex(right_rotor_rotation.getValue()));
         

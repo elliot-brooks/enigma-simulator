@@ -20,6 +20,15 @@ public class Rotor {
         this.turnoverPosition = turnoverPosition;
     }
 
+    public Rotor(Rotor oldRotor) {
+        this.name = oldRotor.name;
+        this.encoding = oldRotor.encoding;
+        configureWiring(encoding);
+        this.rotationPosition = oldRotor.rotationPosition;
+        this.ringSetting = oldRotor.ringSetting;
+        this.turnoverPosition = oldRotor.turnoverPosition;
+    }
+
     /**
      * Takes a given character and direction and simulates the passing of current
      * through the rotor to give return an integer representing the encrypted
