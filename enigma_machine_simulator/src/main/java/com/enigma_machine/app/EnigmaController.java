@@ -17,6 +17,7 @@ import com.enigma_machine.tools.Tools;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -169,6 +170,12 @@ public class EnigmaController {
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
             decrementIndex();
+            if (EnigmaLogger.hasLogged()) {
+                updateVisualiser();
+            }
+        });
+
+        verbose_logging_toggle.setOnAction(ActionEvent -> {
             if (EnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
