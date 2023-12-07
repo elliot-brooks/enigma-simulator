@@ -1,11 +1,10 @@
 package com.enigma_machine.app;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.xml.sax.SAXException;
-
 import com.enigma_machine.enigma.ComponentCache;
 import com.enigma_machine.enigma.Enigma;
 import com.enigma_machine.enigma.Plugboard;
@@ -14,17 +13,18 @@ import com.enigma_machine.enigma.Rotor;
 import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
-
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -83,10 +83,17 @@ public class EnigmaController {
     public Label current_rotation_label;
     @FXML
     public CheckBox verbose_logging_toggle;
+    @FXML
+    public CheckBox step_check_box;
+    @FXML
+    public Slider speed_slider;
+    @FXML
+    public TabPane log_tab_pane;
+
     public Enigma enigmaModel;
+    public boolean threadInterrupt = false;
     public EnigmaVisualiser visualiser;
     public int visualiserIndex = 0;
-    
 
     @FXML
     public void init() throws SAXException {
@@ -151,10 +158,13 @@ public class EnigmaController {
     public void initButtons() {
         submit_text_btn.setOnAction(ActionEvent -> {
             submitInputText();
+            
         });
 
         clear_input_btn.setOnAction(ActionEvent -> {
             clearInputText();
+            
+
         });
 
         clear_message_btn.setOnAction(ActionEvent -> {
@@ -166,6 +176,7 @@ public class EnigmaController {
             if (EnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
+            
         });
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
@@ -173,12 +184,23 @@ public class EnigmaController {
             if (EnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
+            
         });
 
         verbose_logging_toggle.setOnAction(ActionEvent -> {
             if (EnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
+            
+        });
+
+        log_toggle_box.setOnAction(ActionEvent -> {
+            if (!log_toggle_box.isSelected()) {
+                step_check_box.setSelected(false);
+            }
+            step_check_box.setDisable(!log_toggle_box.isSelected());
+            speed_slider.setDisable(!log_toggle_box.isSelected());
+            
         });
 
     }
@@ -229,6 +251,13 @@ public class EnigmaController {
         enigmaModel.addCables(plugboardPairings);
     }
 
+    private void stepView() {
+        // Update rotations to match the model
+        right_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(2));
+        middle_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(1));
+        left_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(0));
+    }
+
     public void submitInputText() {
         if (input_text.getText().isEmpty()) {
             clearLogging();
@@ -238,14 +267,58 @@ public class EnigmaController {
         updateModel();
         String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
         visualiserIndex = 0;
-        message_text.setText(cypherText);
-        if (logging) {
-            updateVisualiser();
-            log_text_area.setText(EnigmaLogger.getLog());
-        } else {
-            clearLogging();
+        if (step_check_box.isSelected()) {
+            log_tab_pane.getSelectionModel().select(1);
+            stepThrough();
         }
-        
+        else {
+            message_text.setText(cypherText);
+            if (logging) {
+                updateVisualiser();
+                log_text_area.setText(EnigmaLogger.getLog());
+            } else {
+                clearLogging();
+            }
+        }
+    }
+
+    private void disableButtons() {
+        submit_text_btn.setDisable(true);
+        clear_input_btn.setDisable(true);
+        clear_message_btn.setDisable(true);
+        next_visualisation_button.setDisable(true);
+        previous_visualisation_button.setDisable(true);
+    }
+
+    private void enableButtons() {
+        submit_text_btn.setDisable(false);
+        clear_input_btn.setDisable(false);
+        clear_message_btn.setDisable(false);
+        next_visualisation_button.setDisable(false);
+        previous_visualisation_button.setDisable(false);
+    }
+
+    private void stepThrough() {
+        Thread thread = new Thread(() -> {
+            try {
+                disableButtons();
+                for (int i = 0; i < EnigmaLogger.getPlaintext().length(); i++) {
+                    if (threadInterrupt) {
+                        break;
+                    }
+                    String cypherSubstring = EnigmaLogger.getCyphertext().substring(0, i + 1);
+                    Platform.runLater(() -> updateVisualiser());
+                    Platform.runLater(() -> message_text.setText(cypherSubstring));
+                    Platform.runLater(() -> stepView());
+                    Thread.sleep(Duration.ofSeconds(Double.valueOf(speed_slider.getValue()).longValue()));
+                    incrementIndex();
+                }
+                enableButtons();
+            } catch (Exception exc) {
+                System.out.println("THREAD ERROR");
+            }
+        });
+        thread.start(); 
     }
 
     public void clearLogging() {
@@ -258,6 +331,7 @@ public class EnigmaController {
 
     public void clearInputText() {
         input_text.clear();
+        message_text.clear();
         clearLogging();
     }
 

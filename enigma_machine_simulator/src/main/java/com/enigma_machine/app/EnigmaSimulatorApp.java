@@ -25,6 +25,7 @@ public class EnigmaSimulatorApp extends Application {
         enigmaController.init();
         Scene scene = new Scene(root, 820, 820);
         stage.setScene(scene);
+        stage.setTitle("E N I G M A  S I M U L A T O R");
         stage.show();
     }
 

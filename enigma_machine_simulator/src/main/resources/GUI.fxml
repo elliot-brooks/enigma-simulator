@@ -96,7 +96,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </CheckBox>
-                              <CheckBox fx:id="step_check_box" mnemonicParsing="false" text="Step-through">
+                              <CheckBox fx:id="step_check_box" disable="true" mnemonicParsing="false" text="Step-through">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -104,7 +104,7 @@
                               <VBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="160.0">
                                  <children>
                                     <Label text="Step Speed" VBox.vgrow="ALWAYS" />
-                                    <Slider fx:id="speed_slider" blockIncrement="0.0" majorTickUnit="0.5" max="3.0" min="0.5" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.75" />
+                                    <Slider fx:id="speed_slider" blockIncrement="0.0" disable="true" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -132,7 +132,7 @@
                   </BorderPane>
                </content>
             </TitledPane>
-            <TabPane prefHeight="333.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="log_tab_pane" prefHeight="333.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Log">
                      <content>
