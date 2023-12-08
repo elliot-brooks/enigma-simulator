@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="820.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="835.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,7 +33,7 @@
                         </BorderPane>
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="163.0" prefWidth="745.0" text="Rotors">
+                  <TitledPane animated="false" collapsible="false" prefHeight="164.0" prefWidth="732.0" text="Rotors">
                      <content>
                         <VBox prefHeight="0.0" prefWidth="617.0">
                            <children>
@@ -104,7 +104,7 @@
                               <VBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="160.0">
                                  <children>
                                     <Label text="Step Speed" VBox.vgrow="ALWAYS" />
-                                    <Slider fx:id="speed_slider" blockIncrement="0.0" disable="true" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
+                                    <Slider fx:id="speed_slider" blockIncrement="0.0" disable="true" majorTickUnit="0.5" max="3.0" min="0.5" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -132,7 +132,7 @@
                   </BorderPane>
                </content>
             </TitledPane>
-            <TabPane fx:id="log_tab_pane" prefHeight="333.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="log_tab_pane" prefHeight="358.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Log">
                      <content>
@@ -158,7 +158,7 @@
                               </Canvas>
                            </center>
                            <bottom>
-                              <HBox alignment="CENTER" prefHeight="37.0" prefWidth="820.0" BorderPane.alignment="CENTER">
+                              <HBox alignment="CENTER" prefHeight="51.0" prefWidth="820.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Button fx:id="previous_visualisation_button" mnemonicParsing="false" text="&lt;">
                                        <HBox.margin>
@@ -175,7 +175,7 @@
                               </HBox>
                            </bottom>
                            <top>
-                              <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="820.0" BorderPane.alignment="CENTER">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Label text="Encryption : " />
                                     <Label fx:id="encryption_step_label" />

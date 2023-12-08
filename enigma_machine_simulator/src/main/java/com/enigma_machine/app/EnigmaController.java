@@ -270,6 +270,7 @@ public class EnigmaController {
         if (step_check_box.isSelected()) {
             log_tab_pane.getSelectionModel().select(1);
             stepThrough();
+            log_text_area.setText(EnigmaLogger.getLog());
         }
         else {
             message_text.setText(cypherText);
@@ -310,7 +311,8 @@ public class EnigmaController {
                     Platform.runLater(() -> updateVisualiser());
                     Platform.runLater(() -> message_text.setText(cypherSubstring));
                     Platform.runLater(() -> stepView());
-                    Thread.sleep(Duration.ofSeconds(Double.valueOf(speed_slider.getValue()).longValue()));
+                    long sleepDuration = (long) (speed_slider.getValue() * 1000l); 
+                    Thread.sleep(sleepDuration);
                     incrementIndex();
                 }
                 enableButtons();
@@ -318,7 +320,7 @@ public class EnigmaController {
                 System.out.println("THREAD ERROR");
             }
         });
-        thread.start(); 
+        thread.start();
     }
 
     public void clearLogging() {
