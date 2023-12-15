@@ -59,6 +59,7 @@ public class EnigmaVisualiser {
     }
 
     private void drawStubs() {
+        gc.setLineWidth(1);;
         gc.setStroke(Color.BLACK);
         for (int i = 0 ; i < Constants.ALPHABET_LENGTH; i++) {
             int LINE_OFFSET_Y = Y_OFFSET + (i * DOT_GAP) + DOT_SIZE;
@@ -79,6 +80,8 @@ public class EnigmaVisualiser {
         for (String encryptionPath : otherConnections) {
             int[] wiringPath = getWiringPath(encryptionPath);
             gc.setStroke(new Color(0.5, 0.5, 0.5, 0.5));
+            gc.setLineWidth(1);
+
             // Draw forward encryption
             gc.strokeLine(PLUGBOARD_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE);
             gc.strokeLine(RIGHT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE);
@@ -96,9 +99,8 @@ public class EnigmaVisualiser {
     private void drawActiveWire(int visualiserIndex) {
         String encryptionPath = EnigmaLogger.getEncryptionStep(visualiserIndex);
         int[] wiringPath = getWiringPath(encryptionPath);
-
+        gc.setLineWidth(2);
         gc.setStroke(Color.RED);
-        gc.setFill(Color.RED);
         // Draw forward encryption
         gc.strokeLine(PLUGBOARD_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(RIGHT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE);
@@ -106,27 +108,37 @@ public class EnigmaVisualiser {
         gc.strokeLine(LEFT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH - railHeightMap.get(wiringPath[5]), Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - railHeightMap.get(wiringPath[4]), Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
         // Draw backward encryption
+        gc.setStroke(Color.ROYALBLUE);
         gc.strokeLine(LEFT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(MIDDLE_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(RIGHT_ROTOR_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(PLUGBOARD_BOX_X + 2*DOT_SIZE/3, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - 1*DOT_SIZE/3, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE);
         // Re-draw stubs
+        gc.setLineWidth(2);
+        gc.setStroke(Color.RED);
         gc.strokeLine(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[0] * DOT_GAP) + DOT_SIZE);
-        gc.strokeLine(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[1] * DOT_GAP) + DOT_SIZE);
-        gc.strokeLine(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(RIGHT_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[2] * DOT_GAP) + DOT_SIZE);
-        gc.strokeLine(RIGHT_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[3] * DOT_GAP) + DOT_SIZE);
-        gc.strokeLine(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE);
         gc.strokeLine(LEFT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
+        gc.setStroke(Color.ROYALBLUE);
         gc.strokeLine(LEFT_ROTOR_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE);
+        gc.strokeLine(MIDDLE_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE, LEFT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[6] * DOT_GAP) + DOT_SIZE);
+        gc.strokeLine(RIGHT_ROTOR_BOX_X - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE, MIDDLE_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2,  Y_OFFSET + (wiringPath[7] * DOT_GAP) + DOT_SIZE);
+        gc.strokeLine(PLUGBOARD_BOX_X - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE, RIGHT_ROTOR_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[8] * DOT_GAP) + DOT_SIZE);
+        gc.strokeLine(PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE, PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2, Y_OFFSET + (wiringPath[9] * DOT_GAP) + DOT_SIZE);
 
+        gc.setLineWidth(2);
+
+        gc.setStroke(Color.RED);
         gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH, Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - railHeightMap.get(wiringPath[4]), Y_OFFSET + (wiringPath[4] * DOT_GAP) + DOT_SIZE);
+        gc.setStroke(Color.ROYALBLUE);
         gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH, Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - railHeightMap.get(wiringPath[5]), Y_OFFSET + (wiringPath[5] * DOT_GAP) + DOT_SIZE);
         // Draw Texts
         gc.setFont(new Font(null, FONT_SIZE));
+        gc.setFill(Color.RED);
         gc.fillText(EnigmaLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
+        gc.setFill(Color.ROYALBLUE);
         gc.fillText(EnigmaLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[9] * DOT_GAP) + 2*DOT_SIZE);
 
 
@@ -148,6 +160,8 @@ public class EnigmaVisualiser {
     }
 
     private void drawReflectorWires(int[] wiring) {
+        gc.setLineWidth(1);
+
         gc.setStroke(new Color(0.5, 0.5, 0.5, 0.5));
         for (int i = 0; i < wiring.length; i++) {
             gc.strokeLine(REFLECTOR_BOX_X + BOX_WIDTH, Y_OFFSET + (i * DOT_GAP) + DOT_SIZE, REFLECTOR_BOX_X + BOX_WIDTH - railHeightMap.get(wiring[i]), Y_OFFSET + (i * DOT_GAP) + DOT_SIZE);

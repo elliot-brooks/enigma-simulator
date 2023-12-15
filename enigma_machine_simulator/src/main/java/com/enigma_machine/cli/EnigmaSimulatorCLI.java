@@ -7,8 +7,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.enigma_machine.enigma.ComponentCache;
 import com.enigma_machine.enigma.Enigma;
+import com.enigma_machine.parsers.ComponentCache;
 import com.enigma_machine.parsers.EnigmaSettingsParser;
 import com.enigma_machine.parsers.exceptions.MissingReflectorException;
 import com.enigma_machine.parsers.exceptions.MissingRotorException;

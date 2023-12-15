@@ -4,4 +4,9 @@
         <encoding>ZYXWVUTSRQPONMLKJIHGFEDCBA</encoding>
         <turnover_position>E</turnover_position>
     </rotor>
+    <rotor>
+        <name>Identity Rotor</name>
+        <encoding>ABCDEFGHIJKLMNOPQRSTUVWXYZ</encoding>
+        <turnover_position>A</turnover_position>
+    </rotor>
 </rotor_bank>

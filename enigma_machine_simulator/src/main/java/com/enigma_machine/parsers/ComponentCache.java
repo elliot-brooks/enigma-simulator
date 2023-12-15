@@ -1,4 +1,4 @@
-package com.enigma_machine.enigma;
+package com.enigma_machine.parsers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.enigma_machine.parsers.ReflectorBankParser;
-import com.enigma_machine.parsers.RotorBankParser;
+import com.enigma_machine.enigma.Reflector;
+import com.enigma_machine.enigma.ReflectorFactory;
+import com.enigma_machine.enigma.Rotor;
+import com.enigma_machine.enigma.RotorFactory;
 
 public class ComponentCache {
     private HashMap<String, Rotor> rotorCache;
