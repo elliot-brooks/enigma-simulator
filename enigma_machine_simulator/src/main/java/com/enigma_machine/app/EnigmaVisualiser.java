@@ -3,7 +3,7 @@ package com.enigma_machine.app;
 import java.util.HashMap;
 import java.util.List;
 
-import com.enigma_machine.logger.EnigmaLogger;
+import com.enigma_machine.enigma.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 
 import javafx.scene.canvas.Canvas;
@@ -203,6 +203,10 @@ public class EnigmaVisualiser {
         drawActiveWire(visualiserIndex);
         drawText();
         drawDots();
+    }
+
+    public void drawEnhancedWiringDiagram(int visualiserIndex, List<String> otherConnections) {
+        clearVisualisation();
     }
 
     private void drawText() {

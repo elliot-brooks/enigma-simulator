@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.xml.sax.SAXException;
 
+import com.enigma_machine.enigma.EnhancedEnigma;
+import com.enigma_machine.enigma.EnhancedEnigmaLogger;
 import com.enigma_machine.enigma.Enigma;
+import com.enigma_machine.enigma.EnigmaLogger;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.Reflector;
 import com.enigma_machine.enigma.Rotor;
-import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.parsers.ComponentCache;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
@@ -22,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TabPane;
@@ -89,8 +92,33 @@ public class EnigmaController {
     public Slider speed_slider;
     @FXML
     public TabPane log_tab_pane;
+    @FXML
+    public TabPane enigma_tab_pane;
+    @FXML
+    public ChoiceBox<String> enhanced_left_rotor_choice;
+    @FXML
+    public Spinner<Character> enhanced_left_rotor_rotation;
+    @FXML
+    public Spinner<Integer> enhanced_left_rotor_ring;
+    @FXML
+    public ChoiceBox<String> enhanced_middle_rotor_choice;
+    @FXML
+    public Spinner<Character> enhanced_middle_rotor_rotation;
+    @FXML
+    public Spinner<Integer> enhanced_middle_rotor_ring;
+    @FXML
+    public ChoiceBox<String> enhanced_right_rotor_choice;
+    @FXML
+    public Spinner<Character> enhanced_right_rotor_rotation;
+    @FXML
+    public Spinner<Integer> enhanced_right_rotor_ring;
+    @FXML
+    public RadioButton encode_radio_button;
+    @FXML
+    public RadioButton decode_radio_button;
 
     public Enigma enigmaModel;
+    public EnhancedEnigma enhancedEnigmaModel;
     public boolean threadInterrupt = false;
     public EnigmaVisualiser visualiser;
     public int visualiserIndex = 0;
@@ -105,7 +133,7 @@ public class EnigmaController {
     }
 
     public void incrementIndex() {
-        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1) {
+        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1 || visualiserIndex < EnhancedEnigmaLogger.getPlaintext().length() - 1) {
             visualiserIndex++;
         }
     }
@@ -130,10 +158,16 @@ public class EnigmaController {
         left_rotor_choice.setItems(obsList);
         middle_rotor_choice.setItems(obsList);
         right_rotor_choice.setItems(obsList);
+        enhanced_left_rotor_choice.setItems(obsList);
+        enhanced_middle_rotor_choice.setItems(obsList);
+        enhanced_right_rotor_choice.setItems(obsList);
         // Pick first for each
         left_rotor_choice.getSelectionModel().selectFirst();
         middle_rotor_choice.getSelectionModel().select(1);
         right_rotor_choice.getSelectionModel().select(2);
+        enhanced_left_rotor_choice.getSelectionModel().selectFirst();
+        enhanced_middle_rotor_choice.getSelectionModel().select(1);
+        enhanced_right_rotor_choice.getSelectionModel().select(2);
         // Set up rotation spinners
         List<Character> alphabet = Constants.ALPHABET.chars()
                 .mapToObj(e -> (char) e).collect(Collectors.toList());
@@ -141,30 +175,44 @@ public class EnigmaController {
         ListSpinnerValueFactory<Character> left_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> middle_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
         ListSpinnerValueFactory<Character> right_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
+        ListSpinnerValueFactory<Character> enhanced_left_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
+        ListSpinnerValueFactory<Character> enhanced_middle_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
+        ListSpinnerValueFactory<Character> enhanced_right_rotor_values = new ListSpinnerValueFactory<>(obsListAlphabet);
+
         left_rotor_rotation.setValueFactory(left_rotor_values);
         middle_rotor_rotation.setValueFactory(middle_rotor_values);
         right_rotor_rotation.setValueFactory(right_rotor_values);
+
+        enhanced_left_rotor_rotation.setValueFactory(enhanced_left_rotor_values);
+        enhanced_middle_rotor_rotation.setValueFactory(enhanced_middle_rotor_values);
+        enhanced_right_rotor_rotation.setValueFactory(enhanced_right_rotor_values);
         // Set up ring setting spinners
         IntegerSpinnerValueFactory left_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
         IntegerSpinnerValueFactory middle_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
         IntegerSpinnerValueFactory right_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
+        IntegerSpinnerValueFactory enhanced_left_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
+        IntegerSpinnerValueFactory enhanced_middle_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
+        IntegerSpinnerValueFactory enhanced_right_rotor_ring_values = new IntegerSpinnerValueFactory(1, 26);
+
 
         left_rotor_ring.setValueFactory(left_rotor_ring_values);
         middle_rotor_ring.setValueFactory(middle_rotor_ring_values);
         right_rotor_ring.setValueFactory(right_rotor_ring_values);
+
+        enhanced_left_rotor_ring.setValueFactory(enhanced_left_rotor_ring_values);
+        enhanced_middle_rotor_ring.setValueFactory(enhanced_middle_rotor_ring_values);
+        enhanced_right_rotor_ring.setValueFactory(enhanced_right_rotor_ring_values);
+
     }
 
     @FXML
     public void initButtons() {
         submit_text_btn.setOnAction(ActionEvent -> {
             submitInputText();
-            
         });
 
         clear_input_btn.setOnAction(ActionEvent -> {
             clearInputText();
-            
-
         });
 
         clear_message_btn.setOnAction(ActionEvent -> {
@@ -173,7 +221,7 @@ public class EnigmaController {
 
         next_visualisation_button.setOnAction(ActionEvent -> {
             incrementIndex();
-            if (EnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
             
@@ -181,14 +229,14 @@ public class EnigmaController {
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
             decrementIndex();
-            if (EnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
             
         });
 
         verbose_logging_toggle.setOnAction(ActionEvent -> {
-            if (EnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
                 updateVisualiser();
             }
             
@@ -200,7 +248,6 @@ public class EnigmaController {
             }
             step_check_box.setDisable(!log_toggle_box.isSelected());
             speed_slider.setDisable(!log_toggle_box.isSelected());
-            
         });
 
     }
@@ -208,16 +255,30 @@ public class EnigmaController {
     private void updateVisualiser() {
         boolean verbose = verbose_logging_toggle.isSelected();
         visualiser.clearVisualisation();
-        if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
-            if (verbose) {
-                visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)), enigmaModel.getReflector().getWiring());
+        if (enigma_tab_pane.getSelectionModel().getSelectedIndex() == 0) {
+            if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+                if (verbose) {
+                    visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)), enigmaModel.getReflector().getWiring());
+                }
+                else {
+                    visualiser.drawWiringDiagram(visualiserIndex, null, enigmaModel.getReflector().getWiring());
+                }
             }
-            else {
-                visualiser.drawWiringDiagram(visualiserIndex, null, enigmaModel.getReflector().getWiring());
-            }
+            encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
+            current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
         }
-        encryption_step_label.setText(EnigmaLogger.getEncryptionStep(visualiserIndex));
-        current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
+        else {
+            if (!(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+                if (verbose) {
+                    visualiser.drawEnhancedWiringDiagram(visualiserIndex, enhancedEnigmaModel.getAllPossiblePaths(EnhancedEnigmaLogger.getRotation(visualiserIndex), decode_radio_button.isSelected()));
+                }
+                else {
+                    visualiser.drawEnhancedWiringDiagram(visualiserIndex, null);
+                }
+            }
+            encryption_step_label.setText(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex));
+            current_rotation_label.setText(EnhancedEnigmaLogger.getRotationString(visualiserIndex));
+        }
     }
 
     private void updateModel() {
@@ -249,6 +310,33 @@ public class EnigmaController {
         // Build enigma
         enigmaModel = Enigma.createCustomEnigma(rotors, plugboard, reflector);
         enigmaModel.addCables(plugboardPairings);
+
+        // Update enhanced Model
+        List<Rotor> enhancedRotors = new ArrayList<>();
+        Rotor enhancedLeftRotor = new Rotor(cache.getRotor(enhanced_left_rotor_choice.getValue()));
+        enhancedLeftRotor.setRingSetting(Tools.minusOneInteger(enhanced_left_rotor_ring.getValue()));
+        enhancedLeftRotor.setRotationPosition(Tools.convertCharToIndex(enhanced_left_rotor_rotation.getValue()));
+
+        Rotor enhancedMiddleRotor = new Rotor(cache.getRotor(enhanced_middle_rotor_choice.getValue()));
+        enhancedMiddleRotor.setRingSetting(Tools.minusOneInteger(enhanced_middle_rotor_ring.getValue()));
+        enhancedMiddleRotor.setRotationPosition(Tools.convertCharToIndex(enhanced_middle_rotor_rotation.getValue()));
+
+        Rotor enhancedRightRotor = new Rotor(cache.getRotor(enhanced_right_rotor_choice.getValue()));
+        enhancedRightRotor.setRingSetting(Tools.minusOneInteger(enhanced_right_rotor_ring.getValue()));
+        enhancedRightRotor.setRotationPosition(Tools.convertCharToIndex(enhanced_right_rotor_rotation.getValue()));
+
+        enhancedRotors.add(enhancedRightRotor);
+        enhancedRotors.add(enhancedMiddleRotor);
+        enhancedRotors.add(enhancedLeftRotor);
+        // Build Plugobard
+        Plugboard enhancedPlugboard = new Plugboard();
+        List<String> enhancedPlugboardPairings = new ArrayList<>();
+        for (String string : plugboard_config.getText().split(" ")) {
+            enhancedPlugboardPairings.add(string);
+        }
+
+        enhancedEnigmaModel = new EnhancedEnigma(enhancedRotors, enhancedPlugboard);
+        enhancedEnigmaModel.addCables(enhancedPlugboardPairings);
     }
 
     private void stepView() {
@@ -260,23 +348,42 @@ public class EnigmaController {
 
     public void submitInputText() {
         if (input_text.getText().isEmpty()) {
-            clearLogging();
             return;
         }
+        clearLogging();
         boolean logging = log_toggle_box.isSelected();
         updateModel();
-        String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
-        visualiserIndex = 0;
-        if (step_check_box.isSelected()) {
-            log_tab_pane.getSelectionModel().select(1);
-            stepThrough();
-            log_text_area.setText(EnigmaLogger.getLog());
+
+        if (enigma_tab_pane.getSelectionModel().getSelectedIndex() == 0) {
+            String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
+            visualiserIndex = 0;
+            if (step_check_box.isSelected()) {
+                log_tab_pane.getSelectionModel().select(1);
+                stepThrough();
+                log_text_area.setText(EnigmaLogger.getLog());
+            }
+            else {
+                message_text.setText(cypherText);
+                if (logging) {
+                    updateVisualiser();
+                    log_text_area.setText(EnigmaLogger.getLog());
+                } else {
+                    clearLogging();
+                }
+            }
         }
         else {
+            String cypherText = "";
+            if (encode_radio_button.isSelected()) {
+                cypherText = enhancedEnigmaModel.encrypt(input_text.getText(), logging);
+            }
+            if (decode_radio_button.isSelected()) {
+                cypherText = enhancedEnigmaModel.decode(input_text.getText(), logging);
+            }
+            visualiserIndex = 0;
             message_text.setText(cypherText);
             if (logging) {
                 updateVisualiser();
-                log_text_area.setText(EnigmaLogger.getLog());
             } else {
                 clearLogging();
             }
@@ -326,6 +433,7 @@ public class EnigmaController {
     public void clearLogging() {
         visualiser.clearVisualisation();
         EnigmaLogger.resetLogger();
+        EnhancedEnigmaLogger.resetLogger();
         log_text_area.setText("");
         encryption_step_label.setText("");
         current_rotation_label.setText("");

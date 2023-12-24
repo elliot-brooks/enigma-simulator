@@ -1,4 +1,4 @@
-package com.enigma_machine.logger;
+package com.enigma_machine.enigma;
 
 import java.util.ArrayList;
 import java.util.List;

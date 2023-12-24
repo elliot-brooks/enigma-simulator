@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
-import com.enigma_machine.logger.EnigmaLogger;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 
@@ -19,9 +18,9 @@ public class Enigma {
     private Plugboard plugboard;
     private Reflector reflector;
 
-    private static final int ROTOR_SLOT_1 = 0;
-    private static final int ROTOR_SLOT_2 = 1;
-    private static final int ROTOR_SLOT_3 = 2;
+    public static final int ROTOR_SLOT_1 = 0;
+    public static final int ROTOR_SLOT_2 = 1;
+    public static final int ROTOR_SLOT_3 = 2;
 
     private Enigma(List<Rotor> rotorsIn, Plugboard plugobard, Reflector reflector) {
         this.rotors = rotorsIn;
