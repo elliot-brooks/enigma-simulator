@@ -1,6 +1,10 @@
 # Enigma Simulator
 A Simulation of the Enigma Machine used to encrypt/decrypt messages amongst the German forces during WW2. This is a **Java** based project.
 
+In addition to recreating the beauty of the Enigma, this project develops another model in order to improve on the flaws of the original machine which are :
+* Self-coding
+* Reciprocal coding
+
 ![alt](docs/images/Enigma-wiring-diagram.png)
 
 ## How to run the program
