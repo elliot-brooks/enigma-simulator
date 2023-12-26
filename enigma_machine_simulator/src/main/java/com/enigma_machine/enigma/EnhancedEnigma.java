@@ -18,6 +18,20 @@ public class EnhancedEnigma {
         this.plugboard = plugboard;
     }
 
+    public static EnhancedEnigma createDefaultEnhancedEnigma() {
+        List<Rotor> defaultRotors = new ArrayList<>();
+        Rotor rightRotor = RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0);
+        Rotor middleRotor = RotorFactory.buildPresetRotor(RotorFactory.II_ROTOR, 0, 0);
+        Rotor leftRotor = RotorFactory.buildPresetRotor(RotorFactory.I_ROTOR, 0, 0);
+        defaultRotors.add(rightRotor);
+        defaultRotors.add(middleRotor);
+        defaultRotors.add(leftRotor);
+
+        Plugboard plugboard = new Plugboard();
+        EnhancedEnigma instance = new EnhancedEnigma(defaultRotors, plugboard);
+        return instance;
+    }
+
     // Encryption only takes place one way.
     private char encrypt(char character) {
         if (!Character.isLetter(character)) {
@@ -63,6 +77,9 @@ public class EnhancedEnigma {
         if (loggingEnabled) {
             EnhancedEnigmaLogger.setPlaintext(message);
             EnhancedEnigmaLogger.setCyphertext(sb.toString());
+            for (int i = 0; i < rotors.size(); i++ ) {
+                EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+            }
         }
         return sb.toString();
     }
@@ -71,6 +88,9 @@ public class EnhancedEnigma {
         message = message.toUpperCase();
         char[] charArray = message.toCharArray();
         StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < rotors.size(); i++ ) {
+            EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+        }
         for (char c : charArray) {
             if (!loggingEnabled) {
                 sb.append(encrypt(c));
@@ -84,6 +104,9 @@ public class EnhancedEnigma {
         if (loggingEnabled) {
             EnhancedEnigmaLogger.setPlaintext(message);
             EnhancedEnigmaLogger.setCyphertext(sb.toString());
+            for (int i = 0; i < rotors.size(); i++ ) {
+                EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+            }
         }
         return sb.toString();
     }

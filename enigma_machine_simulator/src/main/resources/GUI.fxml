@@ -26,7 +26,7 @@
          <children>
             <TabPane fx:id="enigma_tab_pane" prefHeight="280.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Classic Enigma">
+                <Tab fx:id="classic_enigma_tab" text="Classic Enigma">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="820.0">
                            <children>
@@ -84,7 +84,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Enhanced Enigma">
+                <Tab fx:id="enhanced_enigma_tab" text="Enhanced Enigma">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="820.0">
                            <children>

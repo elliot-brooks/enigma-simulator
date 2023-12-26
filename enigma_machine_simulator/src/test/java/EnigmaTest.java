@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.enigma_machine.enigma.Enigma;
+import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 
 public class EnigmaTest {
 
@@ -34,7 +35,7 @@ public class EnigmaTest {
     }
 
     @Test
-    public void configurationTest() {
+    public void configurationTest() throws PlugboardConnectionDoesNotExistException {
         Enigma machine = Enigma.createDefaultEnigma();
         
         List<String> plugboardPairings = new ArrayList<>();
@@ -42,6 +43,9 @@ public class EnigmaTest {
         plugboardPairings.add("YZ");
         machine.addCables(plugboardPairings);
         assertEquals("AB BA YZ ZY", machine.getPlugboard().getEncoding());
+        machine.removeCable("AB");
+        assertEquals("YZ ZY", machine.getPlugboard().getEncoding());
+
 
         machine.configureRotorRingSetting(0, 5);
         assertEquals(5, machine.getRotors().get(0).getRingSetting());
@@ -61,7 +65,7 @@ public class EnigmaTest {
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
-        assertEquals("BDZGO", machine.encrypt("AAAAA", false));
+        assertEquals("BD ZGO", machine.encrypt("AA AAA", false));
     }
 
     @Test
@@ -70,8 +74,8 @@ public class EnigmaTest {
         Enigma machine1 = Enigma.createDefaultEnigma();
         Enigma machine2 = Enigma.createDefaultEnigma();
 
-        String cybpherText = machine1.encrypt(input_text, false);
-        assertEquals(input_text, machine2.encrypt(cybpherText, false));
+        String cybpherText = machine1.encrypt(input_text, true);
+        assertEquals(input_text, machine2.encrypt(cybpherText, true));
 
     }
 
@@ -80,7 +84,7 @@ public class EnigmaTest {
         String input_text = "QQQQQQ";
         Enigma machine = Enigma.createDefaultEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
-        assertEquals("LIOTLD", machine.encrypt(input_text, false));
+        assertEquals("LIOTLD", machine.encrypt(input_text, true));
     }
     
 }

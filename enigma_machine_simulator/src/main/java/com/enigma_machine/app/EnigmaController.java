@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -116,11 +117,16 @@ public class EnigmaController {
     public RadioButton encode_radio_button;
     @FXML
     public RadioButton decode_radio_button;
+    @FXML
+    public Tab classic_enigma_tab;
+    @FXML
+    public Tab enhanced_enigma_tab;
 
     public Enigma enigmaModel;
     public EnhancedEnigma enhancedEnigmaModel;
     public boolean threadInterrupt = false;
     public EnigmaVisualiser visualiser;
+    public EnhancedEnigmaVisualiser enhancedVisualiser;
     public int visualiserIndex = 0;
 
     @FXML
@@ -130,6 +136,7 @@ public class EnigmaController {
         initRotors();
         initButtons();
         visualiser = new EnigmaVisualiser(visualisation_canvas);
+        enhancedVisualiser = new EnhancedEnigmaVisualiser(visualisation_canvas);
     }
 
     public void incrementIndex() {
@@ -250,6 +257,16 @@ public class EnigmaController {
             speed_slider.setDisable(!log_toggle_box.isSelected());
         });
 
+        enhanced_enigma_tab.setOnSelectionChanged(ActionEvent -> {
+            clearMessageText();
+            clearLogging();
+        });
+
+        classic_enigma_tab.setOnSelectionChanged(ActionEvent -> {
+            clearMessageText();
+            clearLogging();
+        });
+
     }
 
     private void updateVisualiser() {
@@ -269,11 +286,12 @@ public class EnigmaController {
         }
         else {
             if (!(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+                boolean isDecoding = decode_radio_button.isSelected();
                 if (verbose) {
-                    visualiser.drawEnhancedWiringDiagram(visualiserIndex, enhancedEnigmaModel.getAllPossiblePaths(EnhancedEnigmaLogger.getRotation(visualiserIndex), decode_radio_button.isSelected()));
+                    enhancedVisualiser.drawEnhancedWiringDiagram(visualiserIndex, enhancedEnigmaModel.getAllPossiblePaths(EnhancedEnigmaLogger.getRotation(visualiserIndex), isDecoding), isDecoding);
                 }
                 else {
-                    visualiser.drawEnhancedWiringDiagram(visualiserIndex, null);
+                    enhancedVisualiser.drawEnhancedWiringDiagram(visualiserIndex, null, isDecoding);
                 }
             }
             encryption_step_label.setText(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex));
@@ -437,6 +455,7 @@ public class EnigmaController {
         log_text_area.setText("");
         encryption_step_label.setText("");
         current_rotation_label.setText("");
+        visualiserIndex = 0;
     }
 
     public void clearInputText() {

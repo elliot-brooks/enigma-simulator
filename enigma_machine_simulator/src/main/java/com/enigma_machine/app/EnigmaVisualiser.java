@@ -205,10 +205,6 @@ public class EnigmaVisualiser {
         drawDots();
     }
 
-    public void drawEnhancedWiringDiagram(int visualiserIndex, List<String> otherConnections) {
-        clearVisualisation();
-    }
-
     private void drawText() {
         gc.setFill(Color.BLACK);
         gc.setTextAlign(TextAlignment.CENTER);
