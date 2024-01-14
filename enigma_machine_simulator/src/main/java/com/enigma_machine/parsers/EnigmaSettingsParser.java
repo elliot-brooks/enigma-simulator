@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.enigma_machine.app.ComponentCache;
 import com.enigma_machine.enigma.Enigma;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.Reflector;
