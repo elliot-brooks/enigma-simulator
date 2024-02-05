@@ -38,7 +38,7 @@ public class EnhancedEnigmaTest {
     @Test
     public void defaultEncryptionTest() {
         EnhancedEnigma machine = EnhancedEnigma.createDefaultEnhancedEnigma();
-        String cypherText = machine.encrypt("HEL LO", true);
+        String cypherText = machine.encode("HEL LO", true);
         machine.resetMachine();
         assertEquals("HEL LO", machine.decode(cypherText, true));
     }
@@ -48,6 +48,6 @@ public class EnhancedEnigmaTest {
         String input_text = "QQQQQQ";
         EnhancedEnigma machine = EnhancedEnigma.createDefaultEnhancedEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
-        assertEquals("VBNWJA", machine.encrypt(input_text, true));
+        assertEquals("VBNWJA", machine.encode(input_text, true));
     }
 }

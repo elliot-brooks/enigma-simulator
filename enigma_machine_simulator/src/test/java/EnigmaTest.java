@@ -65,7 +65,7 @@ public class EnigmaTest {
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
 
-        assertEquals("BD ZGO", machine.encrypt("AA AAA", false));
+        assertEquals("BD ZGO", machine.encode("AA AAA", false));
     }
 
     @Test
@@ -74,8 +74,8 @@ public class EnigmaTest {
         Enigma machine1 = Enigma.createDefaultEnigma();
         Enigma machine2 = Enigma.createDefaultEnigma();
 
-        String cybpherText = machine1.encrypt(input_text, true);
-        assertEquals(input_text, machine2.encrypt(cybpherText, true));
+        String cybpherText = machine1.encode(input_text, true);
+        assertEquals(input_text, machine2.encode(cybpherText, true));
 
     }
 
@@ -84,7 +84,7 @@ public class EnigmaTest {
         String input_text = "QQQQQQ";
         Enigma machine = Enigma.createDefaultEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
-        assertEquals("LIOTLD", machine.encrypt(input_text, true));
+        assertEquals("LIOTLD", machine.encode(input_text, true));
     }
     
 }

@@ -274,7 +274,7 @@ public class EnigmaController {
         if (enigma_tab_pane.getSelectionModel().getSelectedIndex() == 0) {
             if (!(EnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
                 if (verbose) {
-                    visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex)), enigmaModel.getReflector().getWiring());
+                    visualiser.drawWiringDiagram(visualiserIndex, enigmaModel.getAllPossiblePaths(EnigmaLogger.getRotation(visualiserIndex), false), enigmaModel.getReflector().getWiring());
                 }
                 else {
                     visualiser.drawWiringDiagram(visualiserIndex, null, enigmaModel.getReflector().getWiring());
@@ -372,7 +372,7 @@ public class EnigmaController {
         updateModel();
 
         if (enigma_tab_pane.getSelectionModel().getSelectedIndex() == 0) {
-            String cypherText = enigmaModel.encrypt(input_text.getText(), logging);
+            String cypherText = enigmaModel.encode(input_text.getText(), logging);
             visualiserIndex = 0;
             if (step_check_box.isSelected()) {
                 log_tab_pane.getSelectionModel().select(1);
@@ -392,7 +392,7 @@ public class EnigmaController {
         else {
             String cypherText = "";
             if (encode_radio_button.isSelected()) {
-                cypherText = enhancedEnigmaModel.encrypt(input_text.getText(), logging);
+                cypherText = enhancedEnigmaModel.encode(input_text.getText(), logging);
             }
             if (decode_radio_button.isSelected()) {
                 cypherText = enhancedEnigmaModel.decode(input_text.getText(), logging);
