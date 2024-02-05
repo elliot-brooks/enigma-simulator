@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.enigma_machine.enigma.EnhancedEnigma;
+import com.enigma_machine.enigma.EnigmaPlus;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 
 public class EnhancedEnigmaTest {
     
     @Test
     public void configurationTest() throws PlugboardConnectionDoesNotExistException {
-        EnhancedEnigma machine = EnhancedEnigma.createDefaultEnhancedEnigma();
+        EnigmaPlus machine = EnigmaPlus.createDefaultEnhancedEnigma();
         
         List<String> plugboardPairings = new ArrayList<>();
         plugboardPairings.add("AB");
@@ -37,7 +37,7 @@ public class EnhancedEnigmaTest {
 
     @Test
     public void defaultEncryptionTest() {
-        EnhancedEnigma machine = EnhancedEnigma.createDefaultEnhancedEnigma();
+        EnigmaPlus machine = EnigmaPlus.createDefaultEnhancedEnigma();
         String cypherText = machine.encode("HEL LO", true);
         machine.resetMachine();
         assertEquals("HEL LO", machine.decode(cypherText, true));
@@ -46,7 +46,7 @@ public class EnhancedEnigmaTest {
     @Test
     public void doubleStepTest() {
         String input_text = "QQQQQQ";
-        EnhancedEnigma machine = EnhancedEnigma.createDefaultEnhancedEnigma();
+        EnigmaPlus machine = EnigmaPlus.createDefaultEnhancedEnigma();
         machine.configureRotorRotations(new int[] { 19, 3, 16 });
         assertEquals("VBNWJA", machine.encode(input_text, true));
     }

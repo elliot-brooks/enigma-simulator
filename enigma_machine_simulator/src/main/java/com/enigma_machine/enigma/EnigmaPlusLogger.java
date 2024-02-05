@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.enigma_machine.tools.Constants;
 
-public class EnhancedEnigmaLogger {
+public class EnigmaPlusLogger {
     private static boolean decoding = false;
     private static String logString = "";
     private static String plaintext = "";

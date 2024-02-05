@@ -3,7 +3,7 @@ package com.enigma_machine.app;
 import java.util.HashMap;
 import java.util.List;
 
-import com.enigma_machine.enigma.EnhancedEnigmaLogger;
+import com.enigma_machine.enigma.EnigmaPlusLogger;
 import com.enigma_machine.tools.Constants;
 
 import javafx.scene.canvas.Canvas;
@@ -56,7 +56,7 @@ public class EnhancedEnigmaVisualiser {
     }
 
     private void drawEncodeWire(int visualiserIndex) {
-        String encryptionPath = EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex);
+        String encryptionPath = EnigmaPlusLogger.getEncryptionStep(visualiserIndex);
         int[] wiringPath = getWiringPath(encryptionPath);
         gc.setLineWidth(2);
         gc.setStroke(Color.RED);
@@ -74,12 +74,12 @@ public class EnhancedEnigmaVisualiser {
 
         gc.setFont(new Font(null, FONT_SIZE));
         gc.setFill(Color.RED);
-        gc.fillText(EnhancedEnigmaLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
-        gc.fillText(EnhancedEnigmaLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), LEFT_ROTOR_BOX_X - DOT_SIZE/2 - INPUT_STUB_LENGTH - 5, Y_OFFSET + (wiringPath[4] * DOT_GAP) + 2*DOT_SIZE);
+        gc.fillText(EnigmaPlusLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
+        gc.fillText(EnigmaPlusLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), LEFT_ROTOR_BOX_X - DOT_SIZE/2 - INPUT_STUB_LENGTH - 5, Y_OFFSET + (wiringPath[4] * DOT_GAP) + 2*DOT_SIZE);
     }
 
     private void drawDecodeWire(int visualiserIndex) {
-        String encryptionPath = EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex);
+        String encryptionPath = EnigmaPlusLogger.getEncryptionStep(visualiserIndex);
         int[] wiringPath = getWiringPath(encryptionPath);
         gc.setLineWidth(2);
         gc.setStroke(Color.ROYALBLUE);
@@ -98,8 +98,8 @@ public class EnhancedEnigmaVisualiser {
         
         gc.setFont(new Font(null, FONT_SIZE));
         gc.setFill(Color.ROYALBLUE);
-        gc.fillText(EnhancedEnigmaLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[4] * DOT_GAP) + 2*DOT_SIZE);
-        gc.fillText(EnhancedEnigmaLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), LEFT_ROTOR_BOX_X - DOT_SIZE/2 - INPUT_STUB_LENGTH - 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
+        gc.fillText(EnigmaPlusLogger.getCyphertext().substring(visualiserIndex, visualiserIndex + 1), PLUGBOARD_BOX_X + BOX_WIDTH - DOT_SIZE/2 + INPUT_STUB_LENGTH + 5, Y_OFFSET + (wiringPath[4] * DOT_GAP) + 2*DOT_SIZE);
+        gc.fillText(EnigmaPlusLogger.getPlaintext().substring(visualiserIndex, visualiserIndex + 1), LEFT_ROTOR_BOX_X - DOT_SIZE/2 - INPUT_STUB_LENGTH - 5, Y_OFFSET + (wiringPath[0] * DOT_GAP) + 2*DOT_SIZE);
 
     }
 
@@ -142,9 +142,9 @@ public class EnhancedEnigmaVisualiser {
         final double LABEL_HEIGHT = CANVAS_HEIGHT - 5;
         gc.setFont(new Font(null, LABEL_SIZE));
         gc.fillText("Plugboard", PLUGBOARD_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
-        gc.fillText(EnhancedEnigmaLogger.getRotorName(0), RIGHT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
-        gc.fillText(EnhancedEnigmaLogger.getRotorName(1), MIDDLE_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
-        gc.fillText(EnhancedEnigmaLogger.getRotorName(2), LEFT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);    
+        gc.fillText(EnigmaPlusLogger.getRotorName(0), RIGHT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaPlusLogger.getRotorName(1), MIDDLE_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);
+        gc.fillText(EnigmaPlusLogger.getRotorName(2), LEFT_ROTOR_BOX_X + BOX_WIDTH / 2, LABEL_HEIGHT);    
     }
 
     private void drawRectangles() {

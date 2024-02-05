@@ -6,15 +6,15 @@ import java.util.List;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 
-public class EnhancedEnigma extends RotorMachineBase{
+public class EnigmaPlus extends RotorMachineBase{
     
-    public EnhancedEnigma(List<Rotor> rotorsIn, Plugboard plugboard) {
+    public EnigmaPlus(List<Rotor> rotorsIn, Plugboard plugboard) {
         super();
         this.rotors = rotorsIn;
         this.plugboard = plugboard;
     }
 
-    public static EnhancedEnigma createDefaultEnhancedEnigma() {
+    public static EnigmaPlus createDefaultEnhancedEnigma() {
         List<Rotor> defaultRotors = new ArrayList<>();
         Rotor rightRotor = RotorFactory.buildPresetRotor(RotorFactory.III_ROTOR, 0, 0);
         Rotor middleRotor = RotorFactory.buildPresetRotor(RotorFactory.II_ROTOR, 0, 0);
@@ -24,7 +24,7 @@ public class EnhancedEnigma extends RotorMachineBase{
         defaultRotors.add(leftRotor);
 
         Plugboard plugboard = new Plugboard();
-        EnhancedEnigma instance = new EnhancedEnigma(defaultRotors, plugboard);
+        EnigmaPlus instance = new EnigmaPlus(defaultRotors, plugboard);
         return instance;
     }
 
@@ -34,7 +34,7 @@ public class EnhancedEnigma extends RotorMachineBase{
         char[] charArray = message.toCharArray();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rotors.size(); i++ ) {
-            EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+            EnigmaPlusLogger.addRotorName(rotors.get(i).getName());
         }
         for (char c : charArray) {
             if (!loggingEnabled) {
@@ -47,10 +47,10 @@ public class EnhancedEnigma extends RotorMachineBase{
         }
 
         if (loggingEnabled) {
-            EnhancedEnigmaLogger.setPlaintext(message);
-            EnhancedEnigmaLogger.setCyphertext(sb.toString());
+            EnigmaPlusLogger.setPlaintext(message);
+            EnigmaPlusLogger.setCyphertext(sb.toString());
             for (int i = 0; i < rotors.size(); i++ ) {
-                EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+                EnigmaPlusLogger.addRotorName(rotors.get(i).getName());
             }
         }
         return sb.toString();
@@ -71,10 +71,10 @@ public class EnhancedEnigma extends RotorMachineBase{
             
         }
         if (loggingEnabled) {
-            EnhancedEnigmaLogger.setPlaintext(message);
-            EnhancedEnigmaLogger.setCyphertext(sb.toString());
+            EnigmaPlusLogger.setPlaintext(message);
+            EnigmaPlusLogger.setCyphertext(sb.toString());
             for (int i = 0; i < rotors.size(); i++ ) {
-                EnhancedEnigmaLogger.addRotorName(rotors.get(i).getName());
+                EnigmaPlusLogger.addRotorName(rotors.get(i).getName());
             }
         }
         return sb.toString();
@@ -148,19 +148,19 @@ public class EnhancedEnigma extends RotorMachineBase{
     }
 
     private char loggedEncryption(char character) {
-        EnhancedEnigmaLogger.setIsDecoding(false);
+        EnigmaPlusLogger.setIsDecoding(false);
         if (!Character.isLetter(character)) {
-            EnhancedEnigmaLogger.addEncryptionStep(character + " -> " + character);
-            EnhancedEnigmaLogger.addRotation(getCurrentRotation());
+            EnigmaPlusLogger.addEncryptionStep(character + " -> " + character);
+            EnigmaPlusLogger.addRotation(getCurrentRotation());
             String rotationString = "";
             for (int i = rotors.size(); i-- > 0;) {
                 rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
             }
-            EnhancedEnigmaLogger.addRotationString(rotationString);
+            EnigmaPlusLogger.addRotationString(rotationString);
 
             return character;
         }
-        EnhancedEnigmaLogger.setLogged(true);
+        EnigmaPlusLogger.setLogged(true);
         String encryptionPath = character + " -> ";
         rotate();
         int characterIndex = character - Constants.JAVA_A_VALUE;
@@ -179,27 +179,27 @@ public class EnhancedEnigma extends RotorMachineBase{
         for (int i = rotors.size(); i-- > 0;) {
             rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
         }
-        EnhancedEnigmaLogger.addRotationString(rotationString);
-        EnhancedEnigmaLogger.addRotation(getCurrentRotation());
-        EnhancedEnigmaLogger.addEncryptionStep(encryptionPath);
+        EnigmaPlusLogger.addRotationString(rotationString);
+        EnigmaPlusLogger.addRotation(getCurrentRotation());
+        EnigmaPlusLogger.addEncryptionStep(encryptionPath);
         return Tools.convertIndexToCharacter(newChar);
     }
 
 
     private char loggedDecoding(char character) {
-        EnhancedEnigmaLogger.setIsDecoding(true);
+        EnigmaPlusLogger.setIsDecoding(true);
         if (!Character.isLetter(character)) {
-            EnhancedEnigmaLogger.addEncryptionStep(character + " -> " + character);
-            EnhancedEnigmaLogger.addRotation(getCurrentRotation());
+            EnigmaPlusLogger.addEncryptionStep(character + " -> " + character);
+            EnigmaPlusLogger.addRotation(getCurrentRotation());
             String rotationString = "";
             for (int i = rotors.size(); i-- > 0;) {
                 rotationString += Tools.convertIndexToCharacter(rotors.get(i).getRotationPosition()); 
             }
-            EnhancedEnigmaLogger.addRotationString(rotationString);
+            EnigmaPlusLogger.addRotationString(rotationString);
 
             return character;        
         }
-        EnhancedEnigmaLogger.setLogged(true);
+        EnigmaPlusLogger.setLogged(true);
         String encryptionPath = character + " -> ";
         rotate();
         int characterIndex = character - Constants.JAVA_A_VALUE;
@@ -211,11 +211,11 @@ public class EnhancedEnigma extends RotorMachineBase{
             newChar = rotors.get(i).encrypt(newChar, Direction.BACKWARD);
             encryptionPath += Tools.convertIndexToCharacter(newChar) + " -> ";
         }
-        EnhancedEnigmaLogger.addRotationString(rotationString);
-        EnhancedEnigmaLogger.addRotation(getCurrentRotation());
+        EnigmaPlusLogger.addRotationString(rotationString);
+        EnigmaPlusLogger.addRotation(getCurrentRotation());
         newChar = plugboard.encrypt(newChar);
         encryptionPath += Tools.convertIndexToCharacter(newChar);
-        EnhancedEnigmaLogger.addEncryptionStep(encryptionPath);
+        EnigmaPlusLogger.addEncryptionStep(encryptionPath);
         return Tools.convertIndexToCharacter(newChar);
     }
     

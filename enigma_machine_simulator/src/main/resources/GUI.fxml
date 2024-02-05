@@ -84,7 +84,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="enhanced_enigma_tab" text="Enhanced Enigma">
+                <Tab fx:id="enhanced_enigma_tab" text="EnigmaPlus">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="820.0">
                            <children>

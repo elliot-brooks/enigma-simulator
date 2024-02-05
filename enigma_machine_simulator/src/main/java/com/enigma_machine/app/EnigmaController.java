@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.xml.sax.SAXException;
 
-import com.enigma_machine.enigma.EnhancedEnigma;
-import com.enigma_machine.enigma.EnhancedEnigmaLogger;
+import com.enigma_machine.enigma.EnigmaPlus;
+import com.enigma_machine.enigma.EnigmaPlusLogger;
 import com.enigma_machine.enigma.Enigma;
 import com.enigma_machine.enigma.EnigmaLogger;
 import com.enigma_machine.enigma.Plugboard;
@@ -122,7 +122,7 @@ public class EnigmaController {
     public Tab enhanced_enigma_tab;
 
     public Enigma enigmaModel;
-    public EnhancedEnigma enhancedEnigmaModel;
+    public EnigmaPlus enhancedEnigmaModel;
     public boolean threadInterrupt = false;
     public EnigmaVisualiser visualiser;
     public EnhancedEnigmaVisualiser enhancedVisualiser;
@@ -139,7 +139,7 @@ public class EnigmaController {
     }
 
     public void incrementIndex() {
-        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1 || visualiserIndex < EnhancedEnigmaLogger.getPlaintext().length() - 1) {
+        if (visualiserIndex < EnigmaLogger.getPlaintext().length() - 1 || visualiserIndex < EnigmaPlusLogger.getPlaintext().length() - 1) {
             visualiserIndex++;
         }
     }
@@ -227,7 +227,7 @@ public class EnigmaController {
 
         next_visualisation_button.setOnAction(ActionEvent -> {
             incrementIndex();
-            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnigmaPlusLogger.hasLogged()) {
                 updateVisualiser();
             }
             
@@ -235,14 +235,14 @@ public class EnigmaController {
 
         previous_visualisation_button.setOnAction(ActionEvent -> {
             decrementIndex();
-            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnigmaPlusLogger.hasLogged()) {
                 updateVisualiser();
             }
             
         });
 
         verbose_logging_toggle.setOnAction(ActionEvent -> {
-            if (EnigmaLogger.hasLogged() || EnhancedEnigmaLogger.hasLogged()) {
+            if (EnigmaLogger.hasLogged() || EnigmaPlusLogger.hasLogged()) {
                 updateVisualiser();
             }
             
@@ -284,17 +284,17 @@ public class EnigmaController {
             current_rotation_label.setText(EnigmaLogger.getRotationString(visualiserIndex));
         }
         else {
-            if (!(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
+            if (!(EnigmaPlusLogger.getEncryptionStep(visualiserIndex).length() == 6)) {
                 boolean isDecoding = decode_radio_button.isSelected();
                 if (verbose) {
-                    enhancedVisualiser.drawEnhancedWiringDiagram(visualiserIndex, enhancedEnigmaModel.getAllPossiblePaths(EnhancedEnigmaLogger.getRotation(visualiserIndex), isDecoding), isDecoding);
+                    enhancedVisualiser.drawEnhancedWiringDiagram(visualiserIndex, enhancedEnigmaModel.getAllPossiblePaths(EnigmaPlusLogger.getRotation(visualiserIndex), isDecoding), isDecoding);
                 }
                 else {
                     enhancedVisualiser.drawEnhancedWiringDiagram(visualiserIndex, null, isDecoding);
                 }
             }
-            encryption_step_label.setText(EnhancedEnigmaLogger.getEncryptionStep(visualiserIndex));
-            current_rotation_label.setText(EnhancedEnigmaLogger.getRotationString(visualiserIndex));
+            encryption_step_label.setText(EnigmaPlusLogger.getEncryptionStep(visualiserIndex));
+            current_rotation_label.setText(EnigmaPlusLogger.getRotationString(visualiserIndex));
         }
     }
 
@@ -352,7 +352,7 @@ public class EnigmaController {
             enhancedPlugboardPairings.add(string);
         }
 
-        enhancedEnigmaModel = new EnhancedEnigma(enhancedRotors, enhancedPlugboard);
+        enhancedEnigmaModel = new EnigmaPlus(enhancedRotors, enhancedPlugboard);
         enhancedEnigmaModel.addCables(enhancedPlugboardPairings);
     }
 
@@ -450,7 +450,7 @@ public class EnigmaController {
     public void clearLogging() {
         visualiser.clearVisualisation();
         EnigmaLogger.resetLogger();
-        EnhancedEnigmaLogger.resetLogger();
+        EnigmaPlusLogger.resetLogger();
         log_text_area.setText("");
         encryption_step_label.setText("");
         current_rotation_label.setText("");
