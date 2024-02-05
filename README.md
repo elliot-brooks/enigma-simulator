@@ -5,7 +5,7 @@ In addition to recreating the beauty of the Enigma, this project develops anothe
 * Self-coding
 * Reciprocal coding
 
-![alt](docs/images/Enigma-wiring-diagram.png)
+![alt](docs/images/Enigma_gif.gif)
 
 ## How to run the program
 The program can be compiled by using
