@@ -12,6 +12,7 @@ import com.enigma_machine.enigma.EnigmaLogger;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.Reflector;
 import com.enigma_machine.enigma.Rotor;
+import com.enigma_machine.parsers.ComponentCache;
 import com.enigma_machine.tools.Constants;
 import com.enigma_machine.tools.Tools;
 import javafx.application.Platform;

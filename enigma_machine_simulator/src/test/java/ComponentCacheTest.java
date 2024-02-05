@@ -3,7 +3,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import com.enigma_machine.app.ComponentCache;
+import com.enigma_machine.parsers.ComponentCache;
 
 public class ComponentCacheTest {
 
