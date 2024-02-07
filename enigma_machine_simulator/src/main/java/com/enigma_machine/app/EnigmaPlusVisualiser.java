@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-public class EnhancedEnigmaVisualiser {
+public class EnigmaPlusVisualiser {
 
     private GraphicsContext gc;
 
@@ -32,7 +32,7 @@ public class EnhancedEnigmaVisualiser {
     static HashMap<Integer,Integer> railHeightMap = new HashMap<>();
 
 
-    public EnhancedEnigmaVisualiser(Canvas canvas) {
+    public EnigmaPlusVisualiser(Canvas canvas) {
         gc = canvas.getGraphicsContext2D();
         CANVAS_HEIGHT = canvas.getHeight();
         CANVAS_WIDTH = canvas.getWidth();

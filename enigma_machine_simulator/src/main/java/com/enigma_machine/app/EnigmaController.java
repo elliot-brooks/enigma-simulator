@@ -121,12 +121,14 @@ public class EnigmaController {
     public Tab classic_enigma_tab;
     @FXML
     public Tab enhanced_enigma_tab;
+    @FXML
+    public Label current_permutation_label;
 
     public Enigma enigmaModel;
     public EnigmaPlus enhancedEnigmaModel;
     public boolean threadInterrupt = false;
     public EnigmaVisualiser visualiser;
-    public EnhancedEnigmaVisualiser enhancedVisualiser;
+    public EnigmaPlusVisualiser enhancedVisualiser;
     public int visualiserIndex = 0;
 
     @FXML
@@ -135,8 +137,9 @@ public class EnigmaController {
         initReflectors();
         initRotors();
         initButtons();
+        current_permutation_label.setText("~7.91e+12");
         visualiser = new EnigmaVisualiser(visualisation_canvas);
-        enhancedVisualiser = new EnhancedEnigmaVisualiser(visualisation_canvas);
+        enhancedVisualiser = new EnigmaPlusVisualiser(visualisation_canvas);
     }
 
     public void incrementIndex() {
@@ -260,11 +263,13 @@ public class EnigmaController {
         enhanced_enigma_tab.setOnSelectionChanged(ActionEvent -> {
             clearMessageText();
             clearLogging();
+            current_permutation_label.setText("~4.03e+26");
         });
 
         classic_enigma_tab.setOnSelectionChanged(ActionEvent -> {
             clearMessageText();
             clearLogging();
+            current_permutation_label.setText("~7.91e+12");
         });
 
     }
@@ -357,8 +362,14 @@ public class EnigmaController {
         enhancedEnigmaModel.addCables(enhancedPlugboardPairings);
     }
 
-    private void stepView() {
+    private void stepViewEnigmaPlus() {
         // Update rotations to match the model
+        enhanced_right_rotor_rotation.getValueFactory().setValue(EnigmaPlusLogger.getRotationString(visualiserIndex).charAt(2));
+        enhanced_middle_rotor_rotation.getValueFactory().setValue(EnigmaPlusLogger.getRotationString(visualiserIndex).charAt(1));
+        enhanced_left_rotor_rotation.getValueFactory().setValue(EnigmaPlusLogger.getRotationString(visualiserIndex).charAt(0));
+    }
+
+    private void stepViewEnigma() {
         right_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(2));
         middle_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(1));
         left_rotor_rotation.getValueFactory().setValue(EnigmaLogger.getRotationString(visualiserIndex).charAt(0));
@@ -377,7 +388,7 @@ public class EnigmaController {
             visualiserIndex = 0;
             if (step_check_box.isSelected()) {
                 log_tab_pane.getSelectionModel().select(1);
-                stepThrough();
+                stepThroughEnigma();
                 log_text_area.setText(EnigmaLogger.getLog());
             }
             else {
@@ -399,12 +410,20 @@ public class EnigmaController {
                 cypherText = enhancedEnigmaModel.decode(input_text.getText(), logging);
             }
             visualiserIndex = 0;
-            message_text.setText(cypherText);
-            if (logging) {
-                updateVisualiser();
-            } else {
-                clearLogging();
+            if (step_check_box.isSelected()) {
+                log_tab_pane.getSelectionModel().select(1);
+                stepThroughEnigmaPlus();
+                log_text_area.setText(EnigmaPlusLogger.getLog());
             }
+            else {
+                message_text.setText(cypherText);
+                if (logging) {
+                    updateVisualiser();
+                } else {
+                    clearLogging();
+            }
+            }
+            
         }
     }
 
@@ -424,7 +443,7 @@ public class EnigmaController {
         previous_visualisation_button.setDisable(false);
     }
 
-    private void stepThrough() {
+    private void stepThroughEnigma() {
         Thread thread = new Thread(() -> {
             try {
                 disableButtons();
@@ -435,14 +454,42 @@ public class EnigmaController {
                     String cypherSubstring = EnigmaLogger.getCyphertext().substring(0, i + 1);
                     Platform.runLater(() -> updateVisualiser());
                     Platform.runLater(() -> message_text.setText(cypherSubstring));
-                    Platform.runLater(() -> stepView());
+                    Platform.runLater(() -> stepViewEnigma());
                     long sleepDuration = (long) (speed_slider.getValue() * 1000l); 
                     Thread.sleep(sleepDuration);
                     incrementIndex();
                 }
-                enableButtons();
             } catch (Exception exc) {
                 System.out.println("THREAD ERROR");
+            }
+            finally {
+                enableButtons();
+            }
+        });
+        thread.start();
+    }
+
+    private void stepThroughEnigmaPlus() {
+        Thread thread = new Thread(() -> {
+            try {
+                disableButtons();
+                for (int i = 0; i < EnigmaPlusLogger.getPlaintext().length(); i++) {
+                    if (threadInterrupt) {
+                        break;
+                    }
+                    String cypherSubstring = EnigmaPlusLogger.getCyphertext().substring(0, i + 1);
+                    Platform.runLater(() -> updateVisualiser());
+                    Platform.runLater(() -> message_text.setText(cypherSubstring));
+                    Platform.runLater(() -> stepViewEnigmaPlus());
+                    long sleepDuration = (long) (speed_slider.getValue() * 1000l); 
+                    Thread.sleep(sleepDuration);
+                    incrementIndex();
+                }
+            } catch (Exception exc) {
+                System.out.println("THREAD ERROR");
+            }
+            finally {
+                enableButtons();
             }
         });
         thread.start();

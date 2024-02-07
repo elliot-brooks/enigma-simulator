@@ -182,6 +182,12 @@
                                     <Slider fx:id="speed_slider" blockIncrement="0.0" disable="true" majorTickUnit="0.5" max="3.0" min="0.5" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                                  </children>
                               </VBox>
+                              <Label text="Machine Permutations : ">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="current_permutation_label" />
                            </children>
                         </HBox>
                      </bottom>
