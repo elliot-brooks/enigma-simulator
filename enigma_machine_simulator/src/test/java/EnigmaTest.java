@@ -64,8 +64,10 @@ public class EnigmaTest {
     @Test
     public void defaultEncryptionTest() {
         Enigma machine = Enigma.createDefaultEnigma();
-
         assertEquals("BD ZGO", machine.encode("AA AAA", false));
+
+        machine = Enigma.createDefaultEnigma();
+        assertEquals("BD ZGO", machine.encode("AA AAA", true));
     }
 
     @Test

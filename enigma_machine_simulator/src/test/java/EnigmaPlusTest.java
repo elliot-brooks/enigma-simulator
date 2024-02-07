@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.enigma_machine.enigma.EnigmaPlus;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
 
-public class EnhancedEnigmaTest {
+public class EnigmaPlusTest {
     
     @Test
     public void configurationTest() throws PlugboardConnectionDoesNotExistException {
@@ -41,6 +41,12 @@ public class EnhancedEnigmaTest {
         String cypherText = machine.encode("HEL LO", true);
         machine.resetMachine();
         assertEquals("HEL LO", machine.decode(cypherText, true));
+
+        // Without logging
+        machine.resetMachine();
+        cypherText = machine.encode("HEL LO", false);
+        machine.resetMachine();
+        assertEquals("HEL LO", machine.decode(cypherText, false));
     }
 
     @Test
