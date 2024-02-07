@@ -20,14 +20,14 @@ import com.enigma_machine.enigma.exceptions.InvalidRotorEncodingException;
 import com.enigma_machine.tools.Tools;
 
 public class RotorBankParser {
-    private static final String ROTOR_BANK_PATH_REL = "../config/rotor_bank.xml";
+    private static final String ROTOR_BANK_PATH_REL = "/rotor_bank.xml";
     private static final String NAME_TAG = "name";
     private static final String ENCODING_TAG = "encoding";
     private static final String TURNOVER_TAG = "turnover_position";
 
-    public static HashMap<String, Rotor> parse() throws SAXException, IOException, ParserConfigurationException {
+    public static HashMap<String, Rotor> parse(String configPath) throws SAXException, IOException, ParserConfigurationException {
         HashMap<String, Rotor> reflectorMap = new HashMap<>();
-        File rotorBankFile = new File(ROTOR_BANK_PATH_REL);
+        File rotorBankFile = new File(configPath + ROTOR_BANK_PATH_REL);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         builder = factory.newDocumentBuilder();

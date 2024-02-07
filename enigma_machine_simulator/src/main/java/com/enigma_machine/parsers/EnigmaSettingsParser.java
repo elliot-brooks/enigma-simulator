@@ -31,7 +31,7 @@ public class EnigmaSettingsParser {
     private static final String ENCODING_TAG = "encoding";
     private static final String RING_SETTING_TAG = "ring_setting";
     private static final String START_POSITION_TAG = "start_position";
-    private static final String ENIGMA_SETTINGS_PATH_REL = "../config/enigma_settings.xml";
+    private static final String ENIGMA_SETTINGS_PATH_REL = "/enigma_settings.xml";
 
     private Plugboard plugboard = new Plugboard();
     private List<Rotor> rotors = new ArrayList<>();
@@ -43,7 +43,7 @@ public class EnigmaSettingsParser {
             MissingRotorException, MissingReflectorException {
         this.cache = cache;
         enigmaMachine = Enigma.createCustomEnigma(rotors, plugboard, reflector);
-        File settingsFile = new File(ENIGMA_SETTINGS_PATH_REL);
+        File settingsFile = new File(cache.getConfigPath() + ENIGMA_SETTINGS_PATH_REL);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         builder = factory.newDocumentBuilder();

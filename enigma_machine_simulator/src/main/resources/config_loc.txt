@@ -1,0 +1,1 @@
+ENTER_CONFIG_PATH_HERE (defaults to ../config/ relative to cd)
