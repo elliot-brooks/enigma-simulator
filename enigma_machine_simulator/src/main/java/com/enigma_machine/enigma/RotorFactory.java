@@ -1,7 +1,7 @@
 package com.enigma_machine.enigma;
 
 import com.enigma_machine.enigma.exceptions.InvalidRotorEncodingException;
-import com.enigma_machine.tools.Tools;
+import com.enigma_machine.enigma.tools.Tools;
 
 public class RotorFactory {
     public static final String I_ROTOR = "I";

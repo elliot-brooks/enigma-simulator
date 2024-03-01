@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
-import com.enigma_machine.tools.Constants;
+import com.enigma_machine.enigma.tools.Constants;
 
 public class PlugboardTest {
 

@@ -1,4 +1,4 @@
-package com.enigma_machine.tools;
+package com.enigma_machine.enigma.tools;
 
 import java.util.Collections;
 import java.util.stream.Collectors;

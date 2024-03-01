@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.enigma_machine.enigma.EnigmaLogger;
-import com.enigma_machine.tools.Constants;
+import com.enigma_machine.enigma.tools.Constants;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

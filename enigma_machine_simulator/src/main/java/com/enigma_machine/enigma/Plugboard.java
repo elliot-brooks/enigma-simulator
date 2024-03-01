@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionAlreadyEstablishedException;
 import com.enigma_machine.enigma.exceptions.PlugboardConnectionDoesNotExistException;
-import com.enigma_machine.tools.Constants;
+import com.enigma_machine.enigma.tools.Constants;
 
 public class Plugboard {
     private int cablesUsed;

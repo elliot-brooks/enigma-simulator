@@ -1,6 +1,6 @@
 package com.enigma_machine.enigma;
 
-import com.enigma_machine.tools.Constants;
+import com.enigma_machine.enigma.tools.Constants;
 
 public class Rotor {
     private String encoding;

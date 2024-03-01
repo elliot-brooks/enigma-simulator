@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.enigma_machine.enigma.Reflector;
 import com.enigma_machine.enigma.ReflectorFactory;
 import com.enigma_machine.enigma.exceptions.InvalidReflectorEncodingException;
-import com.enigma_machine.tools.Tools;
+import com.enigma_machine.enigma.tools.Tools;
 
 public class ReflectorTest {
 

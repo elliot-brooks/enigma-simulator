@@ -3,7 +3,7 @@ package com.enigma_machine.enigma;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.enigma_machine.tools.Constants;
+import com.enigma_machine.enigma.tools.Constants;
 
 public class EnigmaPlusLogger {
     private static boolean decoding = false;

@@ -8,7 +8,7 @@ import com.enigma_machine.enigma.Direction;
 import com.enigma_machine.enigma.Rotor;
 import com.enigma_machine.enigma.RotorFactory;
 import com.enigma_machine.enigma.exceptions.InvalidReflectorEncodingException;
-import com.enigma_machine.tools.Tools;
+import com.enigma_machine.enigma.tools.Tools;
 
 public class RotorTest {
 

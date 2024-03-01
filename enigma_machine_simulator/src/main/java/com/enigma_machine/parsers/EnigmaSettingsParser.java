@@ -19,9 +19,9 @@ import com.enigma_machine.enigma.Enigma;
 import com.enigma_machine.enigma.Plugboard;
 import com.enigma_machine.enigma.Reflector;
 import com.enigma_machine.enigma.Rotor;
+import com.enigma_machine.enigma.tools.Tools;
 import com.enigma_machine.parsers.exceptions.MissingReflectorException;
 import com.enigma_machine.parsers.exceptions.MissingRotorException;
-import com.enigma_machine.tools.Tools;
 
 public class EnigmaSettingsParser {
     private static final String ROTOR_TAG = "rotor";
