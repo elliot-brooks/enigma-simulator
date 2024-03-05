@@ -26,10 +26,10 @@ public class EnigmaSimulatorCLI {
 
         // Get message input
         Scanner reader = new Scanner(System.in);
-        System.out.println("Enter a message: ");
+        System.out.println("Enter plaintext message: ");
         String message = reader.nextLine();
         reader.close();
-
-        System.out.println(message + " = \n" + machine.encode(message, false));
+        System.out.println("\nCyphertext");
+        System.out.println( machine.encode(message, false));
     }
 }
