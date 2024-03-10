@@ -24,7 +24,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="890.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane fx:id="enigma_tab_pane" prefHeight="280.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="enigma_tab_pane" prefHeight="260.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="classic_enigma_tab" text="Classic Enigma">
                   <content>
@@ -141,7 +141,7 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <TitledPane animated="false" collapsible="false" prefHeight="53.0" prefWidth="820.0" text="Plugboard">
+            <TitledPane animated="false" collapsible="false" prefHeight="82.0" prefWidth="820.0" text="Plugboard">
                <content>
                   <BorderPane prefHeight="0.0" prefWidth="638.0">
                      <center>
