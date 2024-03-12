@@ -23,7 +23,7 @@ public class EnigmaSimulatorApp extends Application {
         loader.setController(enigmaController);
         AnchorPane root = loader.load();
         enigmaController.init();
-        Scene scene = new Scene(root, 820, 1000);
+        Scene scene = new Scene(root, 820, 880);
         stage.setScene(scene);
         stage.setTitle("E N I G M A  S I M U L A T O R");
         stage.show();

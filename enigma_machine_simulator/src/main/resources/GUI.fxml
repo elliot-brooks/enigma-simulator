@@ -20,19 +20,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="1000.0" prefWidth="820.0" stylesheets="@caspian-embedded-modified.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="850.0" prefWidth="820.0" stylesheets="@caspian-embedded-modified.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="890.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="863.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane fx:id="enigma_tab_pane" prefHeight="304.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="enigma_tab_pane" prefHeight="269.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab fx:id="classic_enigma_tab" text="Classic Enigma">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="820.0">
                            <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="238.0" prefWidth="820.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="820.0">
                                  <children>
-                                    <TitledPane animated="false" collapsible="false" prefHeight="233.0" prefWidth="210.0" text="Reflector">
+                                    <TitledPane animated="false" collapsible="false" prefHeight="185.0" prefWidth="210.0" text="Reflector">
                                        <content>
                                           <BorderPane prefHeight="204.0" prefWidth="168.0">
                                              <center>
@@ -88,7 +88,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="820.0">
                            <children>
-                              <TitledPane animated="false" collapsible="false" prefHeight="185.0" prefWidth="820.0" text="Rotors">
+                              <TitledPane animated="false" collapsible="false" prefHeight="228.0" prefWidth="820.0" text="Rotors">
                                  <content>
                                     <VBox prefHeight="279.0" prefWidth="818.0">
                                        <children>
@@ -230,7 +230,7 @@
                   </Tab>
                   <Tab text="Visualisation">
                      <content>
-                        <BorderPane prefHeight="213.0" prefWidth="820.0">
+                        <BorderPane prefHeight="216.0" prefWidth="820.0">
                            <center>
                               <Canvas fx:id="visualisation_canvas" height="210.0" width="800.0" BorderPane.alignment="CENTER">
                                  <BorderPane.margin>

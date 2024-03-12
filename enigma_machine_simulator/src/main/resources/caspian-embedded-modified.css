@@ -3765,7 +3765,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .slider > .thumb {
   -fx-background-color: -color-slider-thumb-border, -color-slider-thumb;
   -fx-background-insets: 0, 2px;
-  -fx-background-radius: 50px;
+  -fx-background-radius: 25px;
   -fx-effect: none;
 }
 .slider > .track {
@@ -3785,7 +3785,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-opacity: 0.4;
 }
 .slider:horizontal > .thumb {
-  -fx-padding: 10px 10px 10px 10px;
+  -fx-padding: 10px 10px 5px 5px;
 }
 .slider:horizontal > .track {
   -fx-padding: 10px 0 10px 0;
@@ -3864,7 +3864,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .spinner > .text-field {
   -fx-background-radius: 4px 0 0 4px;
   -fx-background-insets: 0;
-  -fx-padding: 7px 11px 7px 11px;
+  -fx-padding: 0px 11px 0px 11px;
 }
 .spinner > .text-field:readonly {
   -fx-background-color: -color-input-border, -color-input-bg;
@@ -4330,7 +4330,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 .text-area .content {
   -fx-cursor: text;
-  -fx-padding: 8px 12px 8px 12px;
+  -fx-padding: 1px 12px 1px 12px;
 }
 
 .password-field {
@@ -4388,7 +4388,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 .titled-pane > .title {
   -fx-background-color: -color-border-default, -color-bg-default;
-  -fx-padding: 10px 20px 10px 20px;
+  -fx-padding: 2px 20px 0px 20px;
 }
 .titled-pane > .title > .text {
   -fx-font-size: 1em;
