@@ -1,0 +1,630 @@
+.root {
+  -color-dark: #1b1f24;
+  -color-light: #ffffff;
+  -color-base-0: #f6f8fa;
+  -color-base-1: #eaeef2;
+  -color-base-2: #d0d7de;
+  -color-base-3: #afb8c1;
+  -color-base-4: #8c959f;
+  -color-base-5: #6e7781;
+  -color-base-6: #57606a;
+  -color-base-7: #424a53;
+  -color-base-8: #32383f;
+  -color-base-9: #24292f;
+  -color-accent-0: #ddf4ff;
+  -color-accent-1: #b6e3ff;
+  -color-accent-2: #80ccff;
+  -color-accent-3: #54aeff;
+  -color-accent-4: #218bff;
+  -color-accent-5: #0969da;
+  -color-accent-6: #0550ae;
+  -color-accent-7: #033d8b;
+  -color-accent-8: #0a3069;
+  -color-accent-9: #002155;
+  -color-success-0: #dafbe1;
+  -color-success-1: #aceebb;
+  -color-success-2: #6fdd8b;
+  -color-success-3: #4ac26b;
+  -color-success-4: #2da44e;
+  -color-success-5: #1a7f37;
+  -color-success-6: #116329;
+  -color-success-7: #044f1e;
+  -color-success-8: #003d16;
+  -color-success-9: #002d11;
+  -color-warning-0: #fff8c5;
+  -color-warning-1: #fae17d;
+  -color-warning-2: #eac54f;
+  -color-warning-3: #d4a72c;
+  -color-warning-4: #bf8700;
+  -color-warning-5: #9a6700;
+  -color-warning-6: #7d4e00;
+  -color-warning-7: #633c01;
+  -color-warning-8: #4d2d00;
+  -color-warning-9: #3b2300;
+  -color-danger-0: #ffebe9;
+  -color-danger-1: #ffcecb;
+  -color-danger-2: #ffaba8;
+  -color-danger-3: #ff8182;
+  -color-danger-4: #fa4549;
+  -color-danger-5: #cf222e;
+  -color-danger-6: #a40e26;
+  -color-danger-7: #82071e;
+  -color-danger-8: #660018;
+  -color-danger-9: #4c0014;
+  -color-fg-default: #24292f;
+  -color-fg-muted: #57606a;
+  -color-fg-subtle: #6e7781;
+  -color-fg-emphasis: #ffffff;
+  -color-bg-default: #ffffff;
+  -color-bg-overlay: #ffffff;
+  -color-bg-subtle: #f6f8fa;
+  -color-bg-inset: #f6f8fa;
+  -color-border-default: #d0d7de;
+  -color-border-muted: #d0d7de;
+  -color-border-subtle: rgb(221, 221, 222);
+  -color-shadow-default: #d0d7de;
+  -color-neutral-emphasis-plus: #24292f;
+  -color-neutral-emphasis: #6e7781;
+  -color-neutral-muted: rgba(175, 184, 193, 0.2);
+  -color-neutral-subtle: rgba(234, 238, 242, 0.5);
+  -color-accent-fg: #0969da;
+  -color-accent-emphasis: #0969da;
+  -color-accent-muted: rgba(84, 174, 255, 0.4);
+  -color-accent-subtle: #ddf4ff;
+  -color-warning-fg: #9a6700;
+  -color-warning-emphasis: #bf8700;
+  -color-warning-muted: rgba(212, 167, 44, 0.4);
+  -color-warning-subtle: #fff8c5;
+  -color-success-fg: #1a7f37;
+  -color-success-emphasis: #2da44e;
+  -color-success-muted: rgba(74, 194, 107, 0.4);
+  -color-success-subtle: #dafbe1;
+  -color-danger-fg: #cf222e;
+  -color-danger-emphasis: #cf222e;
+  -color-danger-muted: rgba(255, 129, 130, 0.4);
+  -color-danger-subtle: #ffebe9;
+  -color-chart-1: #f3622d;
+  -color-chart-2: #fba71b;
+  -color-chart-3: #57b757;
+  -color-chart-4: #41a9c9;
+  -color-chart-5: #4258c9;
+  -color-chart-6: #9a42c8;
+  -color-chart-7: #c84164;
+  -color-chart-8: #888888;
+  -color-chart-1-alpha70: rgba(243, 98, 45, 0.7);
+  -color-chart-2-alpha70: rgba(251, 167, 27, 0.7);
+  -color-chart-3-alpha70: rgba(87, 183, 87, 0.7);
+  -color-chart-4-alpha70: rgba(65, 169, 201, 0.7);
+  -color-chart-5-alpha70: rgba(66, 88, 201, 0.7);
+  -color-chart-6-alpha70: rgba(154, 66, 200, 0.7);
+  -color-chart-7-alpha70: rgba(200, 65, 100, 0.7);
+  -color-chart-8-alpha70: rgba(136, 136, 136, 0.7);
+  -color-chart-1-alpha20: rgba(243, 98, 45, 0.2);
+  -color-chart-2-alpha20: rgba(251, 167, 27, 0.2);
+  -color-chart-3-alpha20: rgba(87, 183, 87, 0.2);
+  -color-chart-4-alpha20: rgba(65, 169, 201, 0.2);
+  -color-chart-5-alpha20: rgba(66, 88, 201, 0.2);
+  -color-chart-6-alpha20: rgba(154, 66, 200, 0.2);
+  -color-chart-7-alpha20: rgba(200, 65, 100, 0.2);
+  -color-chart-8-alpha20: rgba(136, 136, 136, 0.2);
+  -fx-background-color: -color-bg-default;
+  -fx-font-size: 14px;
+  -fx-background-radius: inherit;
+  -fx-background-insets: inherit;
+  -fx-padding: inherit;
+}
+.root.popup {
+  -fx-background-color: transparent;
+}
+.text {
+  -fx-font-smoothing-type: gray;
+  -fx-bounds-type: logical_vertical_center;
+}
+.titled-pane {
+  -fx-background-color: -color-bg-default;
+  -fx-text-fill: -color-fg-default;
+  -fx-effect: none;
+}
+.titled-pane > .content {
+  -fx-border-color: -color-border-default;
+  -fx-border-width: 0 1px 1px 1px;
+  -fx-border-radius: 0 0 4px 4px;
+  -fx-background-radius: 0 0 4px 4px;
+  -fx-background-color: -color-bg-default;
+  -fx-padding: 0px 20px 0px 20px;
+  -fx-alignment: TOP_LEFT;
+}
+.spinner {
+  -fx-background-color: -color-bg-default;
+  -fx-border-color: -color-border-default;
+  -fx-border-radius: 4px;
+  -fx-border-width: 1px;
+}
+.spinner > .text-field {
+  -fx-background-radius: 4px 0 0 4px;
+  -fx-background-insets: 0;
+  -fx-padding: 2px 11px 2px 11px;
+}
+.spinner > .increment-arrow-button {
+  -fx-background-color: -color-bg-subtle;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0 4px 0 0;
+  -fx-padding: 10px;
+}
+.spinner > .increment-arrow-button:hover {
+  -fx-background-color: -color-base-2;
+}
+.spinner > .increment-arrow-button > .increment-arrow {
+  -fx-background-color: -color-fg-default;
+  -fx-background-insets: 0;
+  -fx-padding: 0 0.25em 0 0.25em;
+  -fx-shape: "M7 14l5-5 5 5z";
+  -fx-scale-shape: false;
+}
+.spinner > .decrement-arrow-button {
+  -fx-background-color: -color-bg-subtle;
+  -fx-background-insets: -1 0 0 0;
+  -fx-background-radius: 0 0 4px 0;
+  -fx-padding: 10px;
+}
+.spinner > .decrement-arrow-button:hover {
+  -fx-background-color: -color-base-2;
+}
+.spinner > .decrement-arrow-button > .decrement-arrow {
+  -fx-background-color: -color-fg-default;
+  -fx-background-insets: 0;
+  -fx-padding: 0 0.25em 0 0.25em;
+  -fx-shape: "M7 10l5 5 5-5z";
+  -fx-scale-shape: false;
+}
+.choice-box {
+  -fx-background-color: -color-border-default, -color-bg-default;
+  -fx-background-insets: 0, 1px;
+  -fx-background-radius: 4px, 3px;
+  -fx-text-fill: -color-fg-default;
+  -fx-alignment: CENTER;
+  -fx-content-display: LEFT;
+  -fx-padding: 0px 12px 0px 12px;
+}
+.choice-box:disabled {
+  -fx-opacity: 0.4;
+}
+.choice-box:success, .choice-box:success:focused {
+  -fx-background-color: -color-success-emphasis, -color-bg-default;
+}
+.choice-box:danger, .choice-box:danger:focused {
+  -fx-background-color: -color-danger-emphasis, -color-bg-default;
+}
+.choice-box:focused {
+  -fx-background-color: -color-accent-emphasis, -color-bg-default;
+}
+.choice-box.left-pill {
+  -fx-background-radius: 4px 0 0 4px, 3px 0 0 3px;
+  -fx-background-insets: 0, 1px 0 1px 1px;
+}
+.choice-box.left-pill:focused {
+  -fx-background-insets: 0, 1px;
+}
+.choice-box.center-pill {
+  -fx-background-radius: 0;
+  -fx-background-insets: 0, 1px 0 1px 0;
+}
+.choice-box.center-pill:focused {
+  -fx-background-insets: 0, 1px;
+}
+.choice-box.right-pill {
+  -fx-background-radius: 0 4px 4px 0, 0 3px 3px 0;
+  -fx-background-insets: 0, 1px 1px 1px 0;
+}
+.choice-box.right-pill:focused {
+  -fx-background-insets: 0, 1px;
+}
+.choice-box > .label {
+  -fx-text-fill: -color-fg-default;
+}
+.choice-box > .open-button > .arrow {
+  -fx-shape: "M7 10l5 5 5-5z";
+  -fx-scale-shape: false;
+  -fx-background-color: -color-fg-muted;
+}
+.choice-box:success > .label {
+  -fx-text-fill: -color-success-fg;
+}
+.choice-box:success > .open-button > .arrow {
+  -fx-background-color: -color-success-fg;
+}
+.choice-box:danger > .label {
+  -fx-text-fill: -color-danger-fg;
+}
+.choice-box:danger > .open-button > .arrow {
+  -fx-background-color: -color-danger-fg;
+}
+.choice-box:disabled > .label {
+  -fx-opacity: 1;
+}
+.cell .choice-box {
+  -fx-background-color: transparent;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-padding: 0 12px 0 0;
+  -fx-alignment: CENTER_LEFT;
+  -fx-content-display: LEFT;
+}
+.choice-box.alt-icon > .open-button > .arrow {
+  -fx-shape: "M12 5.83L15.17 9l1.41-1.41L12 3 7.41 7.59 8.83 9 12 5.83zm0 12.34L8.83 15l-1.41 1.41L12 21l4.59-4.59L15.17 15 12 18.17z";
+  -fx-scale-shape: false;
+}
+.button {
+  -color-button-bg: -color-bg-subtle;
+  -color-button-fg: -color-fg-default;
+  -color-button-border: -color-border-default;
+  -color-button-bg-hover: -color-base-1;
+  -color-button-fg-hover: -color-button-fg;
+  -color-button-border-hover: -color-button-border;
+  -color-button-bg-focused: -color-button-bg;
+  -color-button-fg-focused: -color-button-fg;
+  -color-button-border-focused: -color-accent-emphasis;
+  -color-button-bg-pressed: -color-bg-subtle;
+  -color-button-fg-pressed: -color-button-fg;
+  -color-button-border-pressed: transparent;
+  -color-button-shadow: -color-shadow-default;
+  -fx-background-color: -color-button-border, -color-button-bg;
+  -fx-background-insets: 0, 1px;
+  -fx-background-radius: 4px, 3px;
+  -fx-graphic-text-gap: 6px;
+  -fx-text-fill: -color-button-fg;
+  -fx-alignment: CENTER;
+  -fx-padding: 4px 12px 4px 12px;
+}
+.button .font-icon,
+.button .ikonli-font-icon {
+  -fx-icon-color: -color-button-fg;
+  -fx-fill: -color-button-fg;
+}
+.button:disabled {
+  -fx-opacity: 0.4;
+  -fx-effect: none;
+}
+.tab-pane {
+  -color-tab-bg-selected: -color-bg-default;
+  -color-tab-fg-selected: -color-fg-default;
+  -color-tab-border-selected: -color-accent-emphasis;
+}
+.tab-pane > .tab-header-area {
+  -fx-background-insets: 0;
+  -fx-background-color: -color-bg-default;
+  -fx-alignment: CENTER;
+}
+.tab-pane > .tab-header-area > .tab-header-background {
+  -fx-background-insets: 0 0 0 0, 0 0 2px 0;
+  -fx-background-color: -color-border-default, -color-bg-default;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+  -fx-background-insets: 0 0 0 0, 0 0 2px 0;
+  -fx-background-color: transparent, transparent;
+  -fx-padding: 0.1em 0.6em 0.3em 0.6em;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+  -fx-alignment: CENTER;
+  -fx-text-fill: -color-fg-default;
+  -fx-padding: 0em 0.4em 0em 0.4em;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label > * {
+  -fx-fill: -color-fg-default;
+  -fx-icon-color: -color-fg-default;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
+  -fx-background-color: -color-fg-default;
+  -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
+  -fx-scale-shape: false;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover {
+  -fx-cursor: hand;
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+  -fx-background-color: -color-border-default, -color-bg-subtle;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:top:selected, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected {
+  -fx-background-color: -color-tab-border-selected, -color-tab-bg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:top:selected > .tab-container > .tab-label, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected > .tab-container > .tab-label {
+  -fx-fill: -color-tab-fg-selected;
+  -fx-text-fill: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:top:selected > .tab-container > .tab-label > *, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected > .tab-container > .tab-label > * {
+  -fx-fill: -color-tab-fg-selected;
+  -fx-icon-color: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:top:selected > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:bottom:selected > .tab-container > .tab-close-button {
+  -fx-background-color: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:disabled {
+  -fx-background-color: -color-border-default, -color-bg-default;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:disabled > .tab-container {
+  -fx-opacity: 0.4;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left > .tab-container > .tab-label, .tab-pane > .tab-header-area > .headers-region > .tab:right > .tab-container > .tab-label {
+  -fx-padding: 0.2em 0.4em 0.2em 0.4em;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:hover, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover {
+  -fx-background-color: -color-border-default, -color-bg-subtle;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:hover > .tab-container > .tab-label, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover > .tab-container > .tab-label {
+  -fx-text-fill: -color-fg-default;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:hover > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:right:hover > .tab-container > .tab-close-button {
+  -fx-background-color: -color-fg-default;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:selected, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected {
+  -fx-background-color: -color-tab-border-selected, -color-tab-bg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:selected > .tab-container > .tab-label, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected > .tab-container > .tab-label {
+  -fx-fill: -color-tab-fg-selected;
+  -fx-text-fill: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:selected > .tab-container > .tab-label > *, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected > .tab-container > .tab-label > * {
+  -fx-fill: -color-tab-fg-selected;
+  -fx-icon-color: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:selected > .tab-container > .tab-close-button, .tab-pane > .tab-header-area > .headers-region > .tab:right:selected > .tab-container > .tab-close-button {
+  -fx-background-color: -color-tab-fg-selected;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:left:disabled, .tab-pane > .tab-header-area > .headers-region > .tab:right:disabled {
+  -fx-background-color: transparent;
+}
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button {
+  -fx-padding: 1em;
+}
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:disabled {
+  -fx-opacity: 0.4;
+}
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button > .arrow {
+  -fx-shape: "M7 10l5 5 5-5z";
+  -fx-scale-shape: false;
+  -fx-background-color: -color-fg-default;
+}
+.slider {
+  -color-slider-thumb: -color-accent-emphasis;
+  -color-slider-thumb-border: -color-accent-emphasis;
+  -color-slider-track: -color-border-muted;
+  -color-slider-track-progress: -color-accent-emphasis;
+  -color-slider-tick: -color-fg-muted;
+}
+.slider.large {
+  -color-slider-thumb: -color-fg-emphasis;
+  -color-slider-thumb-border: -color-accent-emphasis;
+}
+.slider > .thumb {
+  -fx-background-color: -color-slider-thumb-border, -color-slider-thumb;
+  -fx-background-insets: 0, 2px;
+  -fx-background-radius: 25px;
+  -fx-effect: none;
+}
+.slider > .track {
+  -fx-background-color: transparent, -color-slider-track;
+  -fx-background-radius: 4px;
+}
+.slider > .axis {
+  -fx-tick-label-fill: -color-slider-tick;
+  -fx-tick-length: 5px;
+  -fx-minor-tick-length: 3px;
+}
+.slider > .axis > .axis-tick-mark,
+.slider > .axis > .axis-minor-tick-mark {
+  -fx-stroke: -color-slider-tick;
+}
+.slider:disabled {
+  -fx-opacity: 0.4;
+}
+.titled-pane {
+  -fx-background-color: -color-bg-default;
+  -fx-text-fill: -color-fg-default;
+  -fx-effect: none;
+}
+.titled-pane.elevated-1 {
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 2px, 0.5, 0, 2);
+}
+.titled-pane.elevated-2 {
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.5, 0, 2);
+}
+.titled-pane.elevated-3 {
+  -fx-effect: dropshadow(
+    three-pass-box,
+    -color-shadow-default,
+    16px,
+    0.5,
+    0,
+    2
+  );
+}
+.titled-pane.elevated-4 {
+  -fx-effect: dropshadow(
+    three-pass-box,
+    -color-shadow-default,
+    20px,
+    0.5,
+    0,
+    2
+  );
+}
+.titled-pane > .title {
+  -fx-background-color: -color-border-default, -color-bg-default;
+  -fx-padding: 2px 20px 0px 20px;
+}
+.titled-pane > .title > .text {
+  -fx-font-size: 1em;
+}
+.titled-pane > .title > .arrow-button {
+  -fx-background-color: none;
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-padding: 0 10px 0 0;
+}
+.titled-pane > .title > .arrow-button > .arrow {
+  -fx-shape: "M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z";
+  -fx-scale-shape: false;
+  -fx-background-color: -color-fg-default;
+  -fx-padding: 4px 5px 4px 5px;
+}
+.titled-pane > .content {
+  -fx-border-color: -color-border-default;
+  -fx-border-width: 0 1px 1px 1px;
+  -fx-border-radius: 0 0 4px 4px;
+  -fx-background-radius: 0 0 4px 4px;
+  -fx-background-color: -color-bg-default;
+  -fx-padding: 0px 20px 0px 20px;
+  -fx-alignment: TOP_LEFT;
+}
+.titled-pane:disabled > .title > *,
+.titled-pane:disabled > .content > * {
+  -fx-opacity: 0.4;
+}
+.titled-pane:expanded > .title {
+  -fx-background-radius: 4px 4px 0 0, 3px 3px 0 0;
+  -fx-background-insets: 0, 1px 1px 0 1px;
+}
+.titled-pane:collapsed > .title {
+  -fx-background-insets: 0, 1px;
+  -fx-background-radius: 4px, 3px;
+}
+.titled-pane.interactive:hover {
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.5, 0, 2);
+}
+.titled-pane:show-mnemonics > .mnemonic-underline {
+  -fx-stroke: -color-fg-default;
+}
+.titled-pane.dense > .title {
+  -fx-padding: 5px 10px 5px 10px;
+}
+.titled-pane.dense > .title > .text {
+  -fx-font-size: 1.1em;
+}
+.titled-pane.dense > .title > .arrow-button {
+  -fx-padding: 0 10px 0 0;
+}
+.titled-pane.dense > .content {
+  -fx-padding: 10px 10px 5px 10px;
+}
+.titled-pane.alt-icon > .title > .arrow-button > .arrow {
+  -fx-shape: "M7 10l5 5 5-5z";
+  -fx-scale-shape: false;
+}
+.radio-button {
+  -fx-background-color: -color-bg-default;
+  -fx-text-fill: -color-fg-default;
+  -fx-label-padding: 2px 2px 0 6px;
+}
+.radio-button > .radio {
+  -fx-background-color: -color-border-default, -color-bg-default;
+  -fx-background-insets: 0, 1.5px;
+  -fx-background-radius: 1em;
+  -fx-padding: 3px;
+  -fx-alignment: CENTER;
+}
+.radio-button > .radio > .dot {
+  -fx-background-color: transparent, transparent;
+  -fx-background-insets: 0, 1px;
+  -fx-background-radius: 1em;
+  -fx-min-height: 0.75em;
+  -fx-max-height: 0.75em;
+  -fx-min-width: 0.75em;
+  -fx-max-width: 0.75em;
+}
+.radio-button > .radio:hover {
+  -fx-background-color: -color-fg-muted, -color-bg-subtle;
+}
+.radio-button:disabled {
+  -fx-opacity: 0.4;
+}
+.radio-button:disabled > .radio {
+  -fx-opacity: 0.4;
+}
+.radio-button:selected > .radio {
+  -fx-background-color: -color-accent-emphasis, -color-accent-emphasis;
+}
+.radio-button:selected > .radio > .dot {
+  -fx-background-color: -color-accent-emphasis, -color-fg-emphasis;
+  -fx-background-insets: 0, 1px;
+}
+
+.check-box {
+  -fx-text-fill: -color-fg-default;
+  -fx-label-padding: 2px 2px 0 6px;
+}
+.check-box > .box {
+  -fx-background-color: -color-border-default, -color-bg-default;
+  -fx-background-insets: 0, 1.5px;
+  -fx-background-radius: 4px, 3px;
+  -fx-padding: 3px 4px 3px 4px;
+  -fx-alignment: CENTER;
+}
+.check-box > .box > .mark {
+  -fx-background-color: -color-bg-default;
+  -fx-shape: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z";
+  -fx-scale-shape: true;
+  -fx-min-height: 0.75em;
+  -fx-max-height: 0.75em;
+  -fx-min-width: 0.75em;
+  -fx-max-width: 0.75em;
+}
+.check-box > .box:hover {
+  -fx-background-color: -color-fg-subtle, -color-bg-subtle;
+}
+.check-box:indeterminate > .box {
+  -fx-background-color: -color-border-default, -color-bg-default;
+}
+.check-box:indeterminate > .box > .mark {
+  -fx-background-color: -color-fg-subtle;
+  -fx-shape: "M 17,13 H 7 v -2 h 10 z";
+  -fx-scale-shape: false;
+}
+.check-box:disabled {
+  -fx-opacity: 0.4;
+}
+.check-box:disabled > .box {
+  -fx-opacity: 0.4;
+}
+.check-box:selected > .box {
+  -fx-background-color: -color-accent-emphasis, -color-accent-emphasis;
+}
+.check-box:selected > .box > .mark {
+  -fx-background-color: -color-fg-emphasis;
+}
+.menu-item {
+  -fx-background-color: -color-bg-default;
+  -fx-padding: 8px 12px 8px 12px;
+  -fx-background-radius: 5px;
+}
+.menu-item > .graphic-container {
+  -fx-padding: 0 6px 0 0;
+}
+.menu-item > .label {
+  -fx-padding: 0 1em 0 0;
+  -fx-text-fill: -color-fg-default;
+}
+.menu-item > .left-container {
+  -fx-padding: 0 1em 0 0;
+}
+.menu-item > .right-container {
+  -fx-padding: 0 0 0 0.5em;
+}
+.menu-item:focused {
+  -fx-background-color: -color-base-1, -color-base-1;
+}
+.menu-item:focused > .label {
+  -fx-text-fill: -color-fg-default;
+}
+.menu-item:focused > .right-container > .arrow {
+  -fx-background-color: -color-fg-default;
+}
+.menu-item:focused .font-icon, .menu-item:focused .ikonli-font-icon {
+  -fx-icon-color: -color-fg-default;
+  -fx-fill: -color-fg-default;
+}
+.menu-item:disabled {
+  -fx-opacity: 0.4;
+}
+
