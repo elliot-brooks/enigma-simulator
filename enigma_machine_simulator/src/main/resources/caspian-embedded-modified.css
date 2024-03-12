@@ -3864,7 +3864,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .spinner > .text-field {
   -fx-background-radius: 4px 0 0 4px;
   -fx-background-insets: 0;
-  -fx-padding: 0px 11px 0px 11px;
+  -fx-padding: 2px 11px 2px 11px;
 }
 .spinner > .text-field:readonly {
   -fx-background-color: -color-input-border, -color-input-bg;
