@@ -20,28 +20,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="820.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="1000.0" prefWidth="820.0" stylesheets="@caspian-embedded-modified.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="270.0" layoutY="140.0" prefHeight="890.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane fx:id="enigma_tab_pane" prefHeight="260.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab fx:id="classic_enigma_tab" text="Classic Enigma">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="190.0" prefWidth="820.0">
+            <TabPane fx:id="enigma_tab_pane" prefHeight="304.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab fx:id="classic_enigma_tab" text="Classic Enigma">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="820.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="186.0" prefWidth="820.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="238.0" prefWidth="820.0">
                                  <children>
-                                    <TitledPane animated="false" collapsible="false" prefHeight="219.0" prefWidth="210.0" text="Reflector">
+                                    <TitledPane animated="false" collapsible="false" prefHeight="233.0" prefWidth="210.0" text="Reflector">
                                        <content>
-                                          <BorderPane prefHeight="36.0" prefWidth="208.0">
+                                          <BorderPane prefHeight="204.0" prefWidth="168.0">
                                              <center>
                                                 <ChoiceBox fx:id="reflector_choice" prefWidth="150.0" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane animated="false" collapsible="false" prefHeight="227.0" prefWidth="610.0" text="Rotors">
+                                    <TitledPane animated="false" collapsible="false" prefHeight="234.0" prefWidth="610.0" text="Rotors">
                                        <content>
                                           <VBox prefHeight="0.0" prefWidth="607.0">
                                              <children>
@@ -82,13 +82,13 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab fx:id="enhanced_enigma_tab" text="EnigmaPlus">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="820.0">
+                     </content>
+                  </Tab>
+                  <Tab fx:id="enhanced_enigma_tab" text="EnigmaPlus">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="81.0" prefWidth="820.0">
                            <children>
-                              <TitledPane animated="false" collapsible="false" prefHeight="187.0" prefWidth="820.0" text="Rotors">
+                              <TitledPane animated="false" collapsible="false" prefHeight="185.0" prefWidth="820.0" text="Rotors">
                                  <content>
                                     <VBox prefHeight="279.0" prefWidth="818.0">
                                        <children>
@@ -137,11 +137,11 @@
                               </TitledPane>
                            </children>
                         </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
+                     </content>
+                  </Tab>
+               </tabs>
             </TabPane>
-            <TitledPane animated="false" collapsible="false" prefHeight="82.0" prefWidth="820.0" text="Plugboard">
+            <TitledPane animated="false" collapsible="false" prefHeight="122.0" prefWidth="820.0" text="Plugboard">
                <content>
                   <BorderPane prefHeight="0.0" prefWidth="638.0">
                      <center>
@@ -150,7 +150,7 @@
                   </BorderPane>
                </content>
             </TitledPane>
-            <TitledPane animated="false" collapsible="false" prefHeight="77.0" prefWidth="820.0" text="Plaintext">
+            <TitledPane animated="false" collapsible="false" prefHeight="137.0" prefWidth="820.0" text="Plaintext">
                <content>
                   <BorderPane prefHeight="45.0" prefWidth="818.0">
                      <bottom>

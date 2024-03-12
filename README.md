@@ -57,7 +57,8 @@ java -cp target/enigma_machine_simulator-1.0.jar com.enigma_machine.launcher.Lau
 - **UKW-A** Reflector
 - **UKW-B** Reflector
 - **UKW-C** Reflector
----
-**Created by**
 
-@elliot-brooks
+## Acknowledgements
+This project utilizes the a modified version of `caspian-embedded.css` style sheet from [mkpaz/atlantafx](https://github.com/mkpaz/atlantafx), which is licensed under the MIT License. The original work can be found at the provided link.
+
+
