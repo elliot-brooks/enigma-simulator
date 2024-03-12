@@ -34,11 +34,15 @@
                                  <children>
                                     <TitledPane animated="false" collapsible="false" prefHeight="248.0" prefWidth="210.0" text="Reflector">
                                        <content>
-                                          <BorderPane prefHeight="224.0" prefWidth="168.0">
-                                             <top>
-                                                <ChoiceBox fx:id="reflector_choice" prefHeight="66.0" prefWidth="146.0" BorderPane.alignment="CENTER" />
-                                             </top>
-                                          </BorderPane>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                             <children>
+                                                <ChoiceBox fx:id="reflector_choice" prefHeight="38.0" prefWidth="146.0">
+                                                   <HBox.margin>
+                                                      <Insets top="45.0" />
+                                                   </HBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </HBox>
                                        </content>
                                     </TitledPane>
                                     <TitledPane animated="false" collapsible="false" prefHeight="248.0" prefWidth="610.0" text="Rotors">
