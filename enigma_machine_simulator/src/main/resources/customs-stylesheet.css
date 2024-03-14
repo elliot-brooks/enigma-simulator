@@ -302,7 +302,7 @@
 .tab-pane > .tab-header-area > .headers-region > .tab {
   -fx-background-insets: 0 0 0 0, 0 0 2px 0;
   -fx-background-color: transparent, transparent;
-  -fx-padding: 0.1em 0.6em 0.3em 0.6em;
+  -fx-padding: 0.1em 0.6em 0.1em 0.6em;
 }
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
   -fx-alignment: CENTER;
@@ -472,7 +472,7 @@
 .titled-pane > .content {
   -fx-border-color: -color-border-default;
   -fx-border-width: 0 1px 1px 1px;
-  -fx-border-radius: 0 0 4px 4px;
+  -fx-border-radius: 0;
   -fx-background-radius: 0 0 4px 4px;
   -fx-background-color: -color-bg-default;
   -fx-padding: 0px 20px 0px 20px;
